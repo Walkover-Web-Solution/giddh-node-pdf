@@ -1,0 +1,931 @@
+html#default
+head
+  title
+  link(href=fontFamilyPath, rel='stylesheet')
+  style(type='text/css').
+    /* reset */
+    * {
+    border: 0;
+    box-sizing: content-box;
+    color: #262626;
+    font-family: inherit;
+    font-size: 10px;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: top;
+    }
+    /* heading */
+    header h1 {
+    /* color: #df4927; */
+    font-size: 14px;
+    }
+    header h2 {
+    color: #df4927;
+    font-size: 18px;
+    }
+    /* table */
+    table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: inherit
+    }
+    .item th,
+    tfoot tr th {
+    background: #f2f2f2;
+    border: 0;
+    }
+    /* page */
+    html {
+    overflow: auto;
+    padding: 0;
+    cursor: default;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0.1in;
+    letter-spacing: 0;
+    width: 100%;
+    }
+    body {
+    background: #FFF;
+    border-radius: 1px;
+    /* box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); */
+    }
+    /* header */
+    header {
+    margin: 0;
+    background: #fff;
+    padding: 0.23in 0.23in 0.03in
+    }
+    header:after {
+    clear: both;
+    content: "";
+    display: table;
+    }
+    .pull-right tr td {
+    text-align: right !important;
+    }
+    header .numDetail strong {
+    width: 50px;
+    float: left;
+    }
+    .meta {
+    padding: 0 0.23in 0.03in;
+    margin-bottom: 10px;
+    }
+    .meta tbody tr td,
+    .meta tbody tr th {
+    border: 0;
+    padding: 5px 0;
+    }
+    .meta tbody tr th {
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    color: #262626;
+    }
+    .meta tbody tr td {
+    padding: 7px 0;
+    line-height: 1.3rem;
+    }
+    /*.meta tbody tr td:nth-child(2)>table tbody tr td{background: #f2f2f2;padding: 0 10px;line-height: 2rem;margin: 4px 0; display: -webkit-box;}*/
+    header figure {
+    float: left;
+    font-style: normal;
+    line-height: 1.25;
+    margin: 0 0 0.3em 0;
+    }
+    header figure p {
+    margin: 0 0 0.25em;
+    }
+    header span,
+    header img {
+    display: block;
+    float: right;
+    }
+    header span {
+    margin: 0 0 1em 1em;
+    max-height: 25%;
+    max-width: 60%;
+    position: relative;
+    }
+    header img {
+    max-height: 100%;
+    max-width: 100%;
+    }
+    header table tr td {
+    border: 0;
+    padding: 4px 0;
+    }
+    /* article */
+    article {
+    margin-bottom: 10px;
+    }
+    article:after {
+    clear: both;
+    content: "";
+    display: table;
+    }
+    article h1 {
+    clip: rect(0 0 0 0);
+    position: absolute;
+    }
+    article address {
+    float: left;
+    font-weight: bold;
+    }
+    .text-right {
+    text-align: right;
+    }
+    /* table items */
+    table.item {
+    clear: both;
+    width: 100%;
+    table-layout: auto;
+    }
+    table.item th,
+    table.item tfoot tr th {
+    text-align: right;
+    position: relative;
+    padding: 14px 7px;
+    line-height: 1.2rem;
+    }
+    table.item tr th:nth-child(2) {
+    text-align: left;
+    }
+    table.item tfoot tr th {
+    padding-right: 7px;
+    }
+    table.item tr th,
+    table.item tfoot tr th {
+    font-weight: bold;
+    }
+    table.item tfoot tr th {
+    border-top: 1px solid rgba(89, 89, 89, 0.6);
+    }
+    table.item td {
+    border-radius: 0;
+    padding: 7px;
+    border-top: 1px solid rgba(89, 89, 89, 0.6);
+    text-align: right;
+    line-height: 1.2rem;
+    }
+    table.item td p {
+    color: #595959;
+    }
+    table.item td:nth-child(1) {
+    width: 26%;
+    }
+    table.item td:nth-child(2) {
+    width: 38%;
+    text-align: left;
+    }
+    table.item td:nth-child(3) {
+    text-align: right;
+    width: 12%;
+    }
+    table.item td:nth-child(4) {
+    text-align: right;
+    width: 12%;
+    }
+    table.item td:nth-child(5) {
+    text-align: right;
+    width: 12%;
+    }
+    /* table balance */
+    table.balance {
+    width: 75%;
+    float: right;
+    margin: 0px 7px 40px;
+    }
+    table.balance th,
+    table.balance td {
+    width: 50%;
+    text-align: right;
+    padding: 4px;
+    }
+    /* aside */
+    aside h1 {
+    border: none;
+    border-width: 0 0 1px;
+    margin: 0 0 1em;
+    }
+    aside h1 {
+    border-color: #999;
+    border-bottom-style: solid;
+    }
+    /*footer*/
+    footer {
+    border-top: 2px solid #df4927;
+    padding: 15px 0;
+    margin: 8px 0 0;
+    background: #fff;
+    float: left;
+    color: red;
+    width: 100%;
+    overflow: auto;
+    }
+    footer p {
+      color: red;
+    }
+    aside {
+    line-height: 1.5rem;
+    }
+    .subfooter {
+    padding: 0 20px;
+    }
+    .subfooter hr {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin: 3px 0;
+    }
+    .subfooter h4 {
+    font-size: 17px;
+    color: #df4927;
+    margin: 10px 0 0
+    }
+    @page {
+    margin: 0;
+    size: A4 portrait;
+    }
+    @media print {
+    * {
+    -webkit-print-color-adjust: exact;
+    }
+    {
+    background: none;
+    padding: 0;
+    }
+    body {
+    box-shadow: none;
+    margin: 0;
+    }
+    span:empty {
+    display: none;
+    }
+    /* footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    } */
+    header {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0;
+    }
+    table.item {
+    page-break-inside: always;
+    page-break-after: auto;
+    }
+    table.balance {
+    page-break-inside: auto;
+    page-break-before: always;
+    }
+    tr {
+    page-break-inside: avoid;
+    page-break-after: auto
+    }
+    /*article {margin: 10in 0;}*/
+    .cargoDetail {
+    margin-top: 1.2in
+    }
+    .subfooter {
+    padding-bottom: 4in
+    }
+    }
+    .docTitle {
+    width: 100%;
+    line-height: 20px;
+    text-align: center;
+    height: 30px;
+    position: relative;
+    }
+    .docTitle h2 {
+    text-align: center;
+    position: absolute;
+    right: 0;
+    left: -21px;
+    width: 105.5%;
+    }
+    /* .docTitle h2:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    height: 20px;
+    width: 100%;
+    right: 0;
+    left: 0;
+    background: #df4927;
+    height: 2px;
+    margin: 0 auto;
+    } */
+    .docTitle h2:after {
+    content: attr(title);
+    width: auto;
+    position: relative;
+    background: #fff;
+    margin: 0 auto;
+    padding: 6px 16px;
+    right: 0;
+    line-height: 40px;
+    vertical-align: middle;
+    z-index: 0;
+    left: 0;
+    }
+    p {
+    margin: 0;
+    }
+    h2 {
+    margin: 0;
+    font-size: inherit
+    }
+    table.item th .bgClr {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: aqua;
+    left: 0;
+    right: 0;
+    width: 100%;
+    opacity: 0.05;
+    z-index: 0;
+    }
+    .docTitle hr {
+    position: absolute;
+    height: 2px;
+    top: 50%;
+    width: 100%;
+    }
+    strong {
+    font-weight: bold;
+    }
+    /* common template css  */
+    #pageHeader {
+    color: red;
+    }
+    * {
+    font-family: !{fontFamilyName}, sans-serif !important;
+    }
+//- class="disabled-area"
+//- #pageHeader Default header
+div
+  #pageHeader
+    header
+      figure.col-xs-12
+        img.pull-left(src='https://moninstantphoto.com/img/LES_PHOTOGRAPHES/186_A.-text.png' alt='')
+      figure.col-xs-6
+        strong
+          h2 #{context.companyName}
+      table(cellspacing='0' cellpadding='0')
+        tbody
+          tr
+            td
+              table.numDetail
+                tbody
+                  tr
+                    td
+                      strong #{context.label.gstin}
+                      |  #{context.gstin}
+                  tr
+                    td
+                      strong PAN
+                      |  #{context.pan}
+            td(colspan='2')
+            td.pull-right
+              table
+                tbody
+                  tr
+                    td
+                      strong #{context.label.invoiceDate}
+                    td #{context.invoiceDate}
+                  tr
+                    td
+                      strong #{context.label.invoiceNumber}
+                    td #{context.invoiceNumber}
+      .docTitle
+        h2(title='INVOICE')
+          hr(style='background-color: #df4927;')
+    table.meta.cargoDetail(cellspacing='0' cellpadding='0')
+      tbody
+        tr
+          td
+            p
+              strong Mr. Alok Gangrade
+            p alokgangrade@gmail.com
+            p +91 9876543210
+          td
+            p
+              strong Billing Address
+            p Green Soft Solutions
+            p 24 Building Name
+            p 3rd Floor
+            p 5 A.B. Road
+            p Indore (M.P.) 452000
+          td
+            p
+              strong Shipping Address
+            p Green Soft Solutions
+            p 24 Building Name
+            p 3rd Floor
+            p 5 A.B. Road
+            p Indore (M.P.) 452000
+        tr
+          td
+            p
+              strong Due Date
+            p 30/06/2017
+          td
+            p
+              strong GSTIN
+            p 22BBBBBB000A1Z0
+          td
+            p
+              strong GSTIN
+            p 22BBBBBB000A1Z0
+    table.meta
+      tbody
+        tr
+          td
+            strong Ship Date
+            p 30/06/2017
+          td
+            strong Ship Via
+            p 30/06/2017
+          td
+            strong Tracking No.
+            p 323443242342
+          td
+            strong Custom Field 1
+            p Hello this is custom field
+          td
+            strong Custom Field 2
+            p 2324342424432
+          td
+            strong Custom Field 3
+            p Field 3
+  #Template-table
+    article
+      table.item(cellpadding='0' cellspacing='0')
+        thead
+          tr
+            th S no.
+            th(colspan='2') Item
+            th HSN/SAC
+            th Qty.
+            th Rate/ Item (&#x20B9;)
+            th Dis./ Item (&#x20B9;)
+            th Taxable Value (&#x20B9;)
+            th SGST (&#x20B9;)
+            th CGST (&#x20B9;)
+            th CESS (&#x20B9;)
+            th(colspan='2') Total (&#x20B9;)
+        tbody
+          //- each entry in context.entries
+          //-   tr
+          //-     td {{entry.uniqueName}}
+          //-     td(colspan='2') Dummy Product Edition 2
+          //-     td 123456
+          //-     td 10 No.
+          //-     td 1000.00
+          //-     td 30.00
+          //-     td 9700.00
+          //-     td
+          //-       | 9700.00
+          //-       p @10%
+          //-     td
+          //-       | 970.00
+          //-       p @10%
+          //-     td
+          //-       | 970.00
+          //-       p @10%
+          //-     td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+          tr
+            td 1
+            td(colspan='2') Dummy Product Edition 2
+            td 123456
+            td 10 No.
+            td 1000.00
+            td 30.00
+            td 9700.00
+            td
+              | 9700.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td
+              | 970.00
+              p @10%
+            td(colspan='2') 11000344640.00
+        tfoot
+          tr
+            th(colspan='6')  &nbsp;
+            th 30100.00
+            th 30100.00
+            th 30100.00
+            th 30100.00
+            th(colspan='2') 30100.00
+  #Template-footer
+    aside
+      table.balance
+        tr
+          th
+            strong Taxable Amount
+          td
+            span &#x20B9;30100.00
+        tr
+          th
+            strong Total Tax*
+          td
+            span &#x20B9;5920.00
+        tr
+          th
+            strong Invoice Total
+          td
+            span &#x20B9;36020.00
+        tr
+          th
+            strong Invoice Total (In words)
+          td Thirty Six Thousand Twenty Only
+  #pageFooter
+    //- table.subfooter(cellpadding='0' cellspacing='0')
+    //-   tbody
+    //-     tr
+    //-       td(colspan='2')
+    //-         p(style='margin-bottom: 15px;')
+    //-           strong *Tax to be paid on Reverse Charge
+    //-         section
+    //-           strong
+    //-             h2 Notes
+    //-           p All payments to be made in cash
+    //-           p Contact us for queries on these quotations.
+    //-       td(style='text-align: center;vertical-align: bottom;')
+    //-         hr
+    //-         strong
+    //-           h3 Walkover Web Solutions Private Limited
+    //-         strong
+    //-           small (Signature)
+    //-     tr
+    //-       td
+    //-         strong
+    //-           h4 Thank You for your business.
+    footer(style='text-align: center;')
+      p(style='float: left;') {{page}} / {{pages}}
+      p Walkover Web Solutions Private Limited
+      p
+        | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)
