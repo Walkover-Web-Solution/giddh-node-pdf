@@ -120,6 +120,103 @@ module.exports = {
                 "taxList": [],
                 "voucherType": null,
                 "entryTotal": 250.00
+            }],
+            [{
+                "uniqueName": "rse1531139207418",
+                "discounts": [],
+                "taxes": [],
+                "transactions": [{
+                    "accountName": "Shipping price",
+                    "accountUniqueName": "shippingprice",
+                    "type": "DEBIT",
+                    "amount": 40.18,
+                    "hsnNumber": null,
+                    "sacNumber": null,
+                    "description": "",
+                    "quantity": null,
+                    "stockUnit": "",
+                    "category": "income",
+                    "taxableValue": 40.18,
+                    "date": null,
+                    "isStockTxn": null,
+                    "stockDetails": {
+                        "name": null,
+                        "uniqueName": null
+                    },
+                    "rate": null
+                }],
+                "description": "Shipping price",
+                "taxableValue": 40.18,
+                "discountTotal": 0,
+                "nonTaxableValue": 0,
+                "entryDate": "09-07-2018",
+                "taxList": [],
+                "voucherType": null,
+                "entryTotal": 40.18
+            }, {
+                "uniqueName": "y0u1531139207571",
+                "discounts": [],
+                "taxes": [],
+                "transactions": [{
+                    "accountName": "Gift Wrap Price",
+                    "accountUniqueName": "giftwrapprice",
+                    "type": "DEBIT",
+                    "amount": 0.00,
+                    "hsnNumber": null,
+                    "sacNumber": null,
+                    "description": "",
+                    "quantity": null,
+                    "stockUnit": "",
+                    "category": "other",
+                    "taxableValue": null,
+                    "date": null,
+                    "isStockTxn": null,
+                    "stockDetails": {
+                        "name": null,
+                        "uniqueName": null
+                    },
+                    "rate": null
+                }],
+                "description": "Gift Wrap Price",
+                "taxableValue": 0.00,
+                "discountTotal": 0,
+                "nonTaxableValue": 0.00,
+                "entryDate": "09-07-2018",
+                "taxList": [],
+                "voucherType": null,
+                "entryTotal": 0.00
+            }, {
+                "uniqueName": "c6p1531139207672",
+                "discounts": [],
+                "taxes": [],
+                "transactions": [{
+                    "accountName": "SALES",
+                    "accountUniqueName": "sales",
+                    "type": "DEBIT",
+                    "amount": 250.00,
+                    "hsnNumber": null,
+                    "sacNumber": null,
+                    "description": "FashionFrame Handmade Wooden Pocket Cigarette Case Holder",
+                    "quantity": 1.00,
+                    "stockUnit": "nos",
+                    "category": "income",
+                    "taxableValue": 250.00,
+                    "date": null,
+                    "isStockTxn": true,
+                    "stockDetails": {
+                        "name": "FashionFrame Handmade Wooden Pocket Cigarette Case Holder",
+                        "uniqueName": "fashionframehandmadewoodenpocketcigarettecaseholder"
+                    },
+                    "rate": 250.00
+                }],
+                "description": "",
+                "taxableValue": 250.00,
+                "discountTotal": 0,
+                "nonTaxableValue": 0,
+                "entryDate": "09-07-2018",
+                "taxList": [],
+                "voucherType": null,
+                "entryTotal": 250.00
             }]
         ],
         "topMargin": "10.0px",

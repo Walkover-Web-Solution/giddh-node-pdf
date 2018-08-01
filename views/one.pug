@@ -411,23 +411,37 @@ html#default
       #Template-table
         article
           table.item(cellpadding='0' cellspacing='0')
-            thead
-              tr
-                th S no.
-                th(colspan='2') Item
-                th HSN/SAC
-                th Qty.
-                th Rate/ Item (&#x20B9;)
-                th Dis./ Item (&#x20B9;)
-                th Taxable Value (&#x20B9;)
-                th SGST (&#x20B9;)
-                th CGST (&#x20B9;)
-                th CESS (&#x20B9;)
-                th(colspan='2') Total (&#x20B9;)
-            tbody
+            each a in context.entries
+              thead
+                tr
+                  th S no.
+                  th(colspan='2') Item
+                  th HSN/SAC
+                  th Qty.
+                  th Rate/ Item (&#x20B9;)
+                  th Dis./ Item (&#x20B9;)
+                  th Taxable Value (&#x20B9;)
+                  //- th SGST (&#x20B9;)
+                  //- th CGST (&#x20B9;)
+                  //- th CESS (&#x20B9;)
+                  th(colspan='2') Total (&#x20B9;)
+              tbody
+                each el, index in a
+                  tr
+                    td= index + 1
+                    td(colspan='2')= el.transactions[0].accountName
+                    td= el.transactions[0].hsnNumber ? el.transactions[0].hsnNumber : '-'
+                    td= el.transactions[0].quantity ? el.transactions[0].quantity : '-'
+                    td= el.transactions[0].rate ? el.transactions[0].rate : '-'
+                    td= el.transactions.discountTotal ? el.transactions.discountTotal : '-'
+                    td= el.transactions[0].taxableValue ? el.transactions[0].taxableValue : '-'
+                    //- td= el.transactions[0].accountName
+                    //- td= el.transactions[0].accountName
+                    //- td= el.transactions[0].accountName
+                    td(colspan='2')= el.transactions[0].amount ? el.transactions[0].amount : '-'
               //- each entry in context.entries
               //-   tr
-              //-     td {{entry.uniqueName}}
+              //-     td !{entry.uniqueName}
               //-     td(colspan='2') Dummy Product Edition 2
               //-     td 123456
               //-     td 10 No.
@@ -444,349 +458,349 @@ html#default
               //-       | 970.00
               //-       p @10%
               //-     td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
-                td 1
-                td(colspan='2') Dummy Product Edition 2
-                td 123456
-                td 10 No.
-                td 1000.00
-                td 30.00
-                td 9700.00
-                td
-                  | 9700.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td
-                  | 970.00
-                  p @10%
-                td(colspan='2') 11000344640.00
-              tr
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
+              //-   td 1
+              //-   td(colspan='2') Dummy Product Edition 2
+              //-   td 123456
+              //-   td 10 No.
+              //-   td 1000.00
+              //-   td 30.00
+              //-   td 9700.00
+              //-   td
+              //-     | 9700.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td
+              //-     | 970.00
+              //-     p @10%
+              //-   td(colspan='2') 11000344640.00
+              //- tr
                 td 1
                 td(colspan='2') Dummy Product Edition 2
                 td 123456
@@ -806,7 +820,7 @@ html#default
                 td(colspan='2') 11000344640.00
             tfoot
               tr
-                th(colspan='6')  &nbsp;
+                th(colspan='5')  &nbsp;
                 th 30100.00
                 th 30100.00
                 th 30100.00
@@ -834,27 +848,27 @@ html#default
               th
                 strong Invoice Total (In words)
               td Thirty Six Thousand Twenty Only
-      table.subfooter(cellpadding='0' cellspacing='0')
-                tbody
-                  tr
-                    td(colspan='2')
-                      p(style='margin-bottom: 15px;')
-                        strong *Tax to be paid on Reverse Charge
-                      section
-                        strong
-                          h2 Notes
-                        p All payments to be made in cash
-                        p Contact us for queries on these quotations.
-                    td(style='text-align: center;vertical-align: bottom;')
-                      hr
-                      strong
-                        h3 Walkover Web Solutions Private Limited
-                      strong
-                        small (Signature)
-                  tr
-                    td
-                      strong
-                        h4 Thank You for your business.
+      //- table.subfooter(cellpadding='0' cellspacing='0')
+      //-           tbody
+      //-             tr
+      //-               td(colspan='2')
+      //-                 p(style='margin-bottom: 15px;')
+      //-                   strong *Tax to be paid on Reverse Charge
+      //-                 section
+      //-                   strong
+      //-                     h2 Notes
+      //-                   p All payments to be made in cash
+      //-                   p Contact us for queries on these quotations.
+      //-               td(style='text-align: center;vertical-align: bottom;')
+      //-                 hr
+      //-                 strong
+      //-                   h3 Walkover Web Solutions Private Limited
+      //-                 strong
+      //-                   small (Signature)
+      //-             tr
+      //-               td
+      //-                 strong
+      //-                   h4 Thank You for your business.
 
       table.subfooter(cellpadding='0' cellspacing='0')
                 tbody
