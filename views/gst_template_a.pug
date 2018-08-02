@@ -33,7 +33,7 @@ html#default
       header {
         margin: 0;
         background: #fff;
-        padding: 0 10px;
+        padding: 10px 10px;
       }
       header figure {
         float: left;
@@ -43,7 +43,9 @@ html#default
       }
       header h2 {
         color: #df4927;
-        font-size: 12px;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 6px;
       }
       .numDetail strong {
         width: 50px;
@@ -54,6 +56,7 @@ html#default
         width: 100%;
         border-collapse: inherit;
         font-size: 93%;
+        margin: 0;
       }
       .docTitle {
         width: 100%;
@@ -64,11 +67,14 @@ html#default
       }
       .meta {
         padding: 0 10px;
+        position: relative;
         margin-bottom: 10px;
+        float: left;
+        display: block;
       }
       .meta tbody tr td {
-        padding: 7px 0;
-        line-height: 1.3rem;
+        padding: 4px 0;
+        line-height: 14px;
       }
       .meta tbody tr td, .meta tbody tr th {
           border: 0;
@@ -110,20 +116,12 @@ html#default
       header figure p {
         margin: 0 0 0.25em;
       }
-      header span,
-      header img {
+
+      .logo img {
         display: block;
-        float: right;
-      }
-      header img {
-        max-width: 40px;
+        max-width: 70px;
         height: auto;
-      }
-      header span {
-        margin: 0 0 1em 1em;
-        max-height: 25%;
-        max-width: 60%;
-        position: relative;
+        margin-bottom: 6px;
       }
       
       header table tr td {
@@ -131,16 +129,7 @@ html#default
         padding: 2px 0;
       }
       /* article */
-      
-      article:after {
-        clear: both;
-        content: "";
-        display: table;
-      }
-      article h1 {
-        clip: rect(0 0 0 0);
-        position: absolute;
-      }
+
       article address {
         float: left;
         font-weight: bold;
@@ -209,7 +198,7 @@ html#default
       table.balance td {
         width: 50%;
         text-align: right;
-        padding: 4px;
+        padding: 2px;
       }
       /* aside */
       aside h1 {
@@ -245,7 +234,7 @@ html#default
         margin: 3px 0;
       }
       .subfooter h4 {
-        font-size: 17px;
+        font-size: 12px;
         color: #df4927;
         margin: 10px 0 0
       }
@@ -313,15 +302,26 @@ html#default
       * {
       font-family: !{fontFamilyName}, sans-serif !important;
       }
+      .pagebreak {
+        page-break-before: always;
+      }
+      /* table { 
+        page-break-inside:avoid;
+        page-break-after:auto;
+        position: relative;
+      } 
+      table.item tr td, table.item tr th {
+        page-break-inside: avoid;
+      }*/
   //- class="disabled-area"
   //- #pageHeader Default header
   body
     div
       #pageHeader
         header
-          figure.col-xs-12
-            img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
-          figure.col-xs-6
+          //- div.logo
+          //-   img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
+          div
             strong
               h2 Walkover Web Solutions Private Limited
           table(cellspacing='0' cellpadding='0')
@@ -415,21 +415,21 @@ html#default
         img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
       #Template-table
         article
-          table.item(cellpadding='0' cellspacing='0')
-            each a in context.entries
+          each a, idx in context.entries
+            table.item(cellpadding='0' cellspacing='0')
               thead
                 tr
                   th S no.
                   th(colspan='2') Item
                   th HSN/SAC
                   th Qty.
-                  th Rate/ Item (&#x20B9;)
-                  th Dis./ Item (&#x20B9;)
-                  th Taxable Value (&#x20B9;)
+                  th Rate/ Item (₹)
+                  th Dis./ Item (₹)
+                  th Taxable Value (₹)
                   //- th SGST (&#x20B9;)
                   //- th CGST (&#x20B9;)
                   //- th CESS (&#x20B9;)
-                  th(colspan='2') Total (&#x20B9;)
+                  th(colspan='2') Total (₹)
               tbody
                 each el, index in a
                   tr
@@ -444,20 +444,21 @@ html#default
                     //- td= el.transactions[0].accountName
                     //- td= el.transactions[0].accountName
                     td(colspan='2')= el.transactions[0].amount ? el.transactions[0].amount : '-'
-              tbody 
-                tr
-                  td
-                  td(colspan='2')
-                  td
-                  td
-                  td
-                  td
-                  td
-                  td(colspan='2')
-              tbody 
-                tr
-                  td(colspan='2')
-                    div(style='height:100vh;width:100%;background:red;page-break-after:always;')
+              //- tbody 
+              //-   tr
+              //-     td
+              //-     td(colspan='2')
+              //-     td
+              //-     td
+              //-     td
+              //-     td
+              //-     td
+              //-     td(colspan='2')
+              //- div
+              //- tbody 
+              //-   tr
+              //-     td(style='height:100vh;width:100%;background:red;page-break-after:always;')
+                    //- div)
               //- tr
               //-   td 1
               //-   td(colspan='2') Dummy Product Edition 2
@@ -476,14 +477,17 @@ html#default
               //-     | 970.00
               //-     p @10%
               //-   td(colspan='2') 11000344640.00
-            tfoot
-              tr
-                th(colspan='5')  &nbsp;
-                th 30100.00
-                th 30100.00
-                th 30100.00
-                th 30100.00
-                th(colspan='2') 30100.00
+              tfoot
+                tr
+                  th(colspan='5')  &nbsp;
+                  th 30100.00
+                  th 30100.00
+                  th 30100.00
+                  th 30100.00
+                  th(colspan='2') 30100.00
+              //- if index != a.length-1 && index != 0
+            if idx != context.entries.length-1
+              div.pagebreak
       #Template-footer
         aside
           table.balance
