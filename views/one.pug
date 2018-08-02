@@ -115,6 +115,10 @@ html#default
         display: block;
         float: right;
       }
+      header img {
+        max-width: 40px;
+        height: auto;
+      }
       header span {
         margin: 0 0 1em 1em;
         max-height: 25%;
@@ -316,7 +320,7 @@ html#default
       #pageHeader
         header
           figure.col-xs-12
-            img.pull-left(src='https://moninstantphoto.com/img/LES_PHOTOGRAPHES/186_A.-text.png' alt='')
+            img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
           figure.col-xs-6
             strong
               h2 Walkover Web Solutions Private Limited
@@ -407,7 +411,8 @@ html#default
             td
               strong Custom Field 3
               p Field 3
-      img.pull-left(src='https://moninstantphoto.com/img/LES_PHOTOGRAPHES/186_A.-text.png' alt='', , style='display: none;')
+      div(style='display: none;') 
+        img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
       #Template-table
         article
           table.item(cellpadding='0' cellspacing='0')
