@@ -1,7 +1,7 @@
 html#default
   head
     title
-    link(href=fontFamilyPath, rel='stylesheet')
+    link(href=fontFamilyPath, rel='stylesheet')ß
     style(type='text/css').
       /* reset */
       html {
@@ -170,7 +170,8 @@ html#default
         color: #595959;
       }
       table.item td:nth-child(1) {
-        width: 26%;
+        width: 10%;
+        text-align: right;
       }
       table.item td:nth-child(2) {
         width: 38%;
@@ -234,7 +235,7 @@ html#default
         margin: 3px 0;
       }
       .subfooter h4 {
-        font-size: 12px;
+        font-size: 14px;
         color: #df4927;
         margin: 10px 0 0
       }
@@ -302,9 +303,25 @@ html#default
       * {
       font-family: !{fontFamilyName}, sans-serif !important;
       }
+      .fa {
+        font: normal normal normal 14px/1 FontAwesome !important;
+      }
       .pagebreak {
         page-break-before: always;
       }
+      .item tr td, .item tr th {
+        page-break-inside: avoid;
+      }
+      .item thead { 
+        display: table-header-group;
+      }
+      .item tfoot {
+        display: table-row-group;
+      }
+      .item thead tr th .fa {
+        font-size: 8px !important;
+      }
+
       /* table { 
         page-break-inside:avoid;
         page-break-after:auto;
@@ -419,17 +436,17 @@ html#default
             table.item(cellpadding='0' cellspacing='0')
               thead
                 tr
-                  th S no.
+                  th(style="width: 110px;") S no.
                   th(colspan='2') Item
                   th HSN/SAC
                   th Qty.
-                  th Rate/ Item (₹)
-                  th Dis./ Item (₹)
-                  th Taxable Value (₹)
+                  th Rate/ Item
+                  th Dis./ Item
+                  th Taxable Value
                   //- th SGST (&#x20B9;)
                   //- th CGST (&#x20B9;)
                   //- th CESS (&#x20B9;)
-                  th(colspan='2') Total (₹)
+                  th(colspan='2') Total
               tbody
                 each el, index in a
                   tr
@@ -493,19 +510,19 @@ html#default
           table.balance
             tr
               th
-                strong Taxable Amount
+                strong Taxable Amount (INR)
               td
-                span &#x20B9;30100.00
+                span &#x20B9; 30100.00
             tr
               th
                 strong Total Tax*
               td
-                span &#x20B9;5920.00
+                span &#x20B9; 5920.00
             tr
               th
-                strong Invoice Total
+                strong Invoice Total (INR)
               td
-                span &#x20B9;36020.00
+                span &#x20B9; 36020.00
             tr
               th
                 strong Invoice Total (In words)

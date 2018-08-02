@@ -32,7 +32,7 @@ function getByteArray(filePath) {
 
 router.get('/', function(req, res, next) {
     // { fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:100' }
-    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    const compiledFunction = pug.compileFile('views/gst_template_b.pug');
     // const data = req.body;
     const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
     let merged = {...data, ...gst_template_a_data };
