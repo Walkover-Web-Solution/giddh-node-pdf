@@ -1,7 +1,7 @@
 html#default
   head
     title
-    link(href=fontFamilyPath, rel='stylesheet')ß
+    link(href=fontFamilyPath, rel='stylesheet')
     style(type='text/css').
       /* reset */
       html {
@@ -340,7 +340,7 @@ html#default
           //-   img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
           div
             strong
-              h2 Walkover Web Solutions Private Limited
+              h2 #{context.companyName}
           table(cellspacing='0' cellpadding='0')
             tbody
               tr
@@ -349,85 +349,93 @@ html#default
                     tbody
                       tr
                         td
-                          strong GSTIN
-                          |  231323123323136
+                          strong #{context.label.gstin}
+                          |  #{context.gstin}
                       tr
                         td
-                          strong PAN
-                          |  231323123323136
+                          if context.label.pan
+                            strong #{context.label.pan}
+                            |  231323123323136
                 td(colspan='2')
                 td.pull-right
                   table
                     tbody
                       tr
                         td
-                          strong Invoice Date
-                        td 23-07-2018
+                          strong #{context.label.invoiceDate}
+                        td #{context.invoiceDate}
                       tr
                         td
-                          strong Invoice No.
-                        td 1-2323223
+                          strong #{context.label.invoiceNumber}
+                        td #{context.invoiceNumber}
           .docTitle
-            h2(title='INVOICE')
+            h2(title=context.label.formNameTaxInvoice)
               hr(style='background-color: #df4927;')
       table.meta.cargoDetail(cellspacing='0' cellpadding='0')
         tbody
           tr
             td
-              p
-                strong Mr. Alok Gangrade
-              p alokgangrade@gmail.com
-              p +91 9876543210
+              if context.customerName || context.customerEmail || context.customerMobile
+                p
+                  strong #{context.customerName}
+                p #{context.customerEmail}
+                p #{context.customerMobile}
             td
-              p
-                strong Billing Address
-              p Green Soft Solutions
-              p 24 Building Name
-              p 3rd Floor
-              p 5 A.B. Road
-              p Indore (M.P.) 452000
+              if context.label.billingAddress
+                p
+                  strong #{context.label.billingAddress}
+                p #{context.billingAddress[0]}
+                p #{context.billingAddress[1]}
+                p #{context.billingAddress[2]}
+                p #{context.billingAddress[3]}
+                p #{context.billingAddress[4]}
             td
-              p
-                strong Shipping Address
-              p Green Soft Solutions
-              p 24 Building Name
-              p 3rd Floor
-              p 5 A.B. Road
-              p Indore (M.P.) 452000
+              if context.label.shippingAddress
+                p
+                  strong #{context.label.shippingAddress}
+                p #{context.shippingAddress[0]}
+                p #{context.shippingAddress[1]}
+                p #{context.shippingAddress[2]}
+                p #{context.shippingAddress[3]}
+                p #{context.shippingAddress[4]}
           tr
             td
-              p
-                strong Due Date
-              p 30/06/2017
+              if context.showDueDate
+                p
+                  strong #{context.label.dueDate}
+                p #{context.dueDate}
             td
-              p
-                strong GSTIN
-              p 22BBBBBB000A1Z0
+              if context.label.billingGstin
+                p
+                  strong #{context.label.billingGstin}
+                p #{context.billingGstin}
             td
-              p
-                strong GSTIN
-              p 22BBBBBB000A1Z0
+              if context.label.shippingGstin
+                p
+                  strong #{context.label.shippingGstin}
+                p #{context.shippingGstin}
       table.meta
         tbody
           tr
             td
-              strong Ship Date
-              p 30/06/2017
+              if context.label.shippingDate
+                strong #{context.label.shippingDate}
+                p #{context.shippingDate}
             td
-              strong Ship Via
-              p 30/06/2017
+              strong #{context.label.shippedVia}
+              p #{context.shippedVia}
             td
-              strong Tracking No.
-              p 323443242342
+              strong #{context.label.trackingNumber}
+              p #{context.trackingNumber}
             td
-              strong Custom Field 1
-              p Hello this is custom field
+              strong #{context.label.customField1}
+              p #{context.customField1}
             td
-              strong Custom Field 2
-              p 2324342424432
+              strong #{context.label.customField2}
+              p #{context.customField2}
             td
-              strong Custom Field 3
-              p Field 3
+              strong #{context.label.customField3}
+              p #{context.customField3}
       div(style='display: none;') 
         img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
       #Template-table
@@ -436,143 +444,154 @@ html#default
             table.item(cellpadding='0' cellspacing='0')
               thead
                 tr
-                  th(style="width: 110px;") S no.
-                  th(colspan='2') Item
-                  th HSN/SAC
-                  th Qty.
-                  th Rate/ Item
-                  th Dis./ Item
-                  th Taxable Value
-                  //- th SGST (&#x20B9;)
-                  //- th CGST (&#x20B9;)
-                  //- th CESS (&#x20B9;)
-                  th(colspan='2') Total
+                  if context.label.sNo
+                    th(style="width: 110px;") #{context.label.sNo}
+                  if context.label.date
+                    th #{context.label.date}
+                  if context.label.item
+                    th(colspan='2') #{context.label.item}
+                  if context.label.hsnSac
+                    th #{context.label.hsnSac}
+                  if context.label.quantity
+                    th #{context.label.quantity}
+                  if context.label.rate
+                    th #{context.label.rate}
+                  if context.label.discount
+                    th #{context.label.discount}
+                  if context.label.taxableValue
+                    th #{context.label.taxableValue}
+                  if context.label.taxes
+                    th #{context.label.gstTaxesTotal}
+                  if context.label.total
+                    th(colspan='2') #{context.label.total}
               tbody
                 each el, index in a
                   tr
-                    td= index + 1
-                    td(colspan='2')= el.transactions[0].accountName
-                    td= el.transactions[0].hsnNumber ? el.transactions[0].hsnNumber : '-'
-                    td= el.transactions[0].quantity ? el.transactions[0].quantity : '-'
-                    td= el.transactions[0].rate ? el.transactions[0].rate : '-'
-                    td= el.transactions.discountTotal ? el.transactions.discountTotal : '-'
-                    td= el.transactions[0].taxableValue ? el.transactions[0].taxableValue : '-'
-                    //- td= el.transactions[0].accountName
-                    //- td= el.transactions[0].accountName
-                    //- td= el.transactions[0].accountName
-                    td(colspan='2')= el.transactions[0].amount ? el.transactions[0].amount : '-'
-              //- tbody 
-              //-   tr
-              //-     td
-              //-     td(colspan='2')
-              //-     td
-              //-     td
-              //-     td
-              //-     td
-              //-     td
-              //-     td(colspan='2')
-              //- div
-              //- tbody 
-              //-   tr
-              //-     td(style='height:100vh;width:100%;background:red;page-break-after:always;')
-                    //- div)
-              //- tr
-              //-   td 1
-              //-   td(colspan='2') Dummy Product Edition 2
-              //-   td 123456
-              //-   td 10 No.
-              //-   td 1000.00
-              //-   td 30.00
-              //-   td 9700.00
-              //-   td
-              //-     | 9700.00
-              //-     p @10%
-              //-   td
-              //-     | 970.00
-              //-     p @10%
-              //-   td
-              //-     | 970.00
-              //-     p @10%
-              //-   td(colspan='2') 11000344640.00
+                    if context.label.sNo
+                      td= index + 1
+                    if context.label.date
+                      td= el.entryDate
+                    if context.label.item
+                      td(colspan='2')= el.transactions[0].accountName
+                    if context.label.hsnSac && el.transactions[0].hsnNumber
+                      td= el.transactions[0].hsnNumber
+                      br
+                      small (H)
+                    if context.label.hsnSac && el.transactions[0].sacNumber
+                      td= el.transactions[0].sacNumber
+                      br
+                      small (S)
+                    if context.label.quantity
+                      td= el.transactions[0].quantity
+                    if context.label.rate
+                      td= el.transactions[0].rate
+                    if context.label.discount
+                      td= el.transactions.discountTotal
+                    if context.label.taxableValue
+                      td= el.transactions[0].taxableValue
+                    if context.label.total
+                      td(colspan='2')= el.transactions[0].amount
               tfoot
-                tr
-                  th(colspan='5')  &nbsp;
-                  th 30100.00
-                  th 30100.00
-                  th 30100.00
-                  th 30100.00
-                  th(colspan='2') 30100.00
-              //- if index != a.length-1 && index != 0
+                if context.label.sNo
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.date
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.item
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.hsnSac
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.quantity
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.rate
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.discount
+                  th.text-right(style='white-space: normal !important;')
+                if context.label.taxableValue
+                  th.text-right
+                if context.label.taxes
+                  th #{context.gstTaxesTotal}
+                if context.label.total
+                  th(colspan='2') #{context.total}
             if idx != context.entries.length-1
               div.pagebreak
       #Template-footer
         aside
           table.balance
+            if context.label.taxableAmount
+              tr
+                th
+                  strong #{context.label.taxableAmount}
+                td
+                  span &#x20B9; #{context.taxableAmount}
+            if context.label.totalTax
+              tr
+                th
+                  strong #{context.label.totalTax}
+                td
+                  span &#x20B9; #{context.totalTax}
+            //- each val in context.commonDiscountEntries
+            //-   tr
+            //-     th
+            //-       strong #{val.AccountName}
+            //-     td
+            //-       span &#x20B9; #{val.Amount}
+            if context.roundOff
+              tr
+                th
+                  strong Round Off
+                td
+                  span &#x20B9; #{context.roundOff}
+            if context.label.grandTotal
+              tr
+                th
+                  strong #{context.label.grandTotal}
+                td
+                  span &#x20B9; #{context.grandTotal}
+            if context.paidAmount > 0
+              tr
+                th
+                  strong Paid
+                td
+                  span &#x20B9; #{context.paidAmount}
+              tr
+                th
+                  strong Due Amount
+                td
+                  span &#x20B9; #{context.balance}
+            if context.totalInWords
             tr
               th
-                strong Taxable Amount (INR)
-              td
-                span &#x20B9; 30100.00
-            tr
-              th
-                strong Total Tax*
-              td
-                span &#x20B9; 5920.00
-            tr
-              th
-                strong Invoice Total (INR)
-              td
-                span &#x20B9; 36020.00
-            tr
-              th
-                strong Invoice Total (In words)
-              td Thirty Six Thousand Twenty Only
-      //- table.subfooter(cellpadding='0' cellspacing='0')
-      //-           tbody
-      //-             tr
-      //-               td(colspan='2')
-      //-                 p(style='margin-bottom: 15px;')
-      //-                   strong *Tax to be paid on Reverse Charge
-      //-                 section
-      //-                   strong
-      //-                     h2 Notes
-      //-                   p All payments to be made in cash
-      //-                   p Contact us for queries on these quotations.
-      //-               td(style='text-align: center;vertical-align: bottom;')
-      //-                 hr
-      //-                 strong
-      //-                   h3 Walkover Web Solutions Private Limited
-      //-                 strong
-      //-                   small (Signature)
-      //-             tr
-      //-               td
-      //-                 strong
-      //-                   h4 Thank You for your business.
+                strong #{context.label.totalInWords}
+              td #{context.totalInWords}
 
       table.subfooter(cellpadding='0' cellspacing='0')
                 tbody
                   tr
                     td(colspan='2')
                       p(style='margin-bottom: 15px;')
-                        strong *Tax to be paid on Reverse Charge
+                        if context.message1
+                          strong *Tax to be paid on Reverse Charge
                       section
-                        strong
-                          h2 Notes
-                        p All payments to be made in cash
-                        p Contact us for queries on these quotations.
+                        if context.message2
+                          strong
+                            h2 Notes
+                          p #{context.message2}
                     td(style='text-align: center;vertical-align: bottom;')
                       hr
                       strong
-                        h3 Walkover Web Solutions Private Limited
+                        h3 #{context.companyName}
                       strong
-                        small (Signature)
+                        if context.slogan
+                          small (#{context.slogan})
                   tr
                     td
                       strong
-                        h4 Thank You for your business.
+                        if context.thanks
+                          h4 Thank You for your business.
       #pageFooter
         footer(style='text-align: center;')
           p(style='float: left;') {{page}} / {{pages}}
-          p Walkover Web Solutions Private Limited
-          p
-            | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)
+          if context.companyName
+            p #{context.companyName}
+          if context.companyAddress
+            p #{context.companyAddress}

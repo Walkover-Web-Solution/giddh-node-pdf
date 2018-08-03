@@ -35,6 +35,8 @@ router.get('/', function(req, res, next) {
     const compiledFunction = pug.compileFile('views/gst_template_b.pug');
     // const data = req.body;
     const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
+    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     let merged = {...data, ...gst_template_a_data };
     const html = compiledFunction(merged);
 
@@ -45,7 +47,7 @@ router.get('/', function(req, res, next) {
     //   // res.send(result);
     //   res.download('./businesscard.pdf', 'A new name.pdf'); // { filename: '/app/businesscard.pdf' }
     // });
-    console.log(html);
+    // console.log(html);
     pdf.create(html, config).toStream((err, stream) => {
         if (err) return res.end(err.stack);
         res.setHeader('Content-type', 'application/pdf');

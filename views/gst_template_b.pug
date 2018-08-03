@@ -1,7 +1,7 @@
 doctype html
 html#template2(lang='en')
   head
-    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700', rel='stylesheet')
+    link(href=fontFamilyPath, rel='stylesheet')
     //- font-family: 'Open Sans', sans-serif;
     style(type='text/css').
       /* reset */
@@ -192,6 +192,9 @@ html#template2(lang='en')
       .text-center {
         text-align: center;
       }
+      * {
+        font-family: !{fontFamilyName}, sans-serif !important;
+      }
   body
     div
       #pageHeader
@@ -200,306 +203,125 @@ html#template2(lang='en')
             tbody
               tr
                 td
-                  h1 INVOICE
+                  h1 #{context.label.formNameTaxInvoice}
                   figure
                     p
-                      span Number: 201770323-64
-                      span.mrL2 Date: 22/08/2017
+                      if context.label.invoiceNumber
+                        span #{context.label.invoiceNumber}: #{context.invoiceNumber}
+                      if context.label.invoiceDate
+                      span.mrL2 #{context.label.invoiceDate}: #{context.invoiceDate}
                     p
-                      span GSTIN: 11AAAAAA000A1Z0
-                      span.mrL2 PAN: AAACW9768L
+                      if context.label.gstin
+                        span #{context.label.gstin}: #{context.gstin}
+                      if context.label.pan
+                        span.mrL2 #{context.label.pan}: #{context.pan}
                 td.text-right.vmiddle
                   .pos-rel
-                    img.logo(src='https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg' alt='')
+                    img.logo(src=context.logoPath alt='')
       table.meta.pdRL3
         tbody
           tr
             td
-              p
-                strong Billing Address
-              p
-                | Green Soft Solutions 24 Buidling Name 3rd Floor, 15 A.B. Road Indore (M.P.) 452000
-              p
-                strong GSTIN: 22BBBBBB000A1Z0
+              if context.label.billingAddress
+                p
+                  strong #{context.label.billingAddress}
+                p #{context.billingAddress[0]}
+                p #{context.billingAddress[1]}
+                p #{context.billingAddress[2]}
+                p #{context.billingAddress[3]}
+                p #{context.billingAddress[4]}
+
+              if context.label.billingGstin
+                p
+                  strong #{context.label.billingGstin}: #{context.billingGstin}
             td(colspan='2')
             td.text-right.vmiddle.total-amount
-              h2.amt.text-center 10,000/-
+              h2.amt.text-center #{context.total}/-
       table.cargo-Detail.pdRL3
         tr
           td
             span
-              strong Attention to:
-              span   Mr. Alok Gangrade
+              if context.customerName
+                strong Attention to:
+                span    #{context.customerName}
             span.mrL2
-              strong Due Date:
-              span   22/08/2017
+              if context.showDueDate
+                strong #{context.label.dueDate}:
+                span   #{context.dueDate}
         tr
           td
             span
-              strong Shipping Date:
-              span   22/08/2017
+              if context.label.shippingDate
+                strong #{context.label.shippingDate}:
+                span   #{context.shippingDate}
             span.mrL2
-              strong Ship Via:
-              span  FedEx
+              if context.label.shippedVia
+                strong #{context.label.shippedVia}:
+                span  #{context.shippedVia}
             span.mrL2
-              strong Tracking No:
-              span  213456
+              if context.label.trackingNumber
+                strong #{context.label.trackingNumber}:
+                span  #{context.trackingNumber}
       br
       br
       #Template-table.pos-rel
         span.arrow-down
-        table.item.product-table.pdRL3(cellspacing='0', cellpadding='0')
-          thead
-            tr
-              th.text-left S.No
-              th.text-left Description
-              th HSN/SAC
-              th Tax Rate
-              th Qty.
-              th Rate
-              th Amount
-          tbody
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-            tr
-              td.text-left 1
-              td.text-left Transactional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td.text-left 2
-              td.text-left Promotional Route
-              td 123456
-              td 18%
-              td 5
-              td 5000.00
-              td 25000.00
-            tr
-              td(colspan='7')
-          tfoot
-            tr
-              th(colspan='5')
-              th.text-left Sub Total
-              th.text-right 32500.00
-            tr
-              th(colspan='5')
-              th.text-left Discount
-              th.text-right 00.00
-            tr
-              th(colspan='5')
-              th.text-left IGST
-              th.text-right 5250.00
-            tr
-              th.text-left.inwords(colspan='5') Thirty Seven Thousand Seven Hundred Fifty Only
-              th.text-left
-                strong Total
-              th.text-right
-                strong 37750.00
+        each a, idx in context.entries
+          table.item.product-table.pdRL3(cellspacing='0', cellpadding='0')
+            thead
+              tr
+                if context.label.sNo
+                  th.text-left #{context.label.sNo}
+                if context.label.item
+                  th.text-left #{context.label.item}
+                if context.label.hsnSac
+                  th #{context.label.hsnSac}
+                if context.label.taxes
+                  th #{context.label.gstTaxesTotal}
+                if context.label.quantity
+                  th #{context.label.quantity}
+                if context.label.rate
+                  th #{context.label.rate}
+                if context.label.total
+                  th #{context.label.total}
+            tbody
+              each el, index in a
+                tr
+                  if context.label.sNo
+                    td.text-left= index + 1
+                  if context.label.item
+                    td.text-left= el.transactions[0].accountName
+                  if context.label.hsnSac
+                    td #{el.transactions[0].hsnNumber ? el.transactions[0].hsnNumber : el.transactions[0].sacNumber}
+                  if context.label.taxes
+                    td #{el.transactions[0].taxableValue}%
+                  if context.label.quantity
+                    td #{el.transactions[0].quantity}
+                  if context.label.rate
+                    td #{el.transactions[0].rate}
+                  if context.label.total
+                    td #{el.transactions[0].amount}
+              tr
+                td(colspan='5')
+            tfoot
+              tr
+                th(colspan='3')
+                th.text-left Sub Total
+                th.text-right 32500.00
+              tr
+                th(colspan='3')
+                th.text-left Discount
+                th.text-right 00.00
+              tr
+                th(colspan='3')
+                th.text-left IGST
+                th.text-right 5250.00
+              tr
+                th.text-left.inwords(colspan='3') Thirty Seven Thousand Seven Hundred Fifty Only
+                th.text-left
+                  strong Total
+                th.text-right
+                  strong 37750.00
         table.item.pdRL3(cellspacing='0', cellpadding='0')
           thead
             tr
@@ -521,7 +343,6 @@ html#template2(lang='en')
               td 7500.00
               td 10%
               td 750.00
-              
           tfoot
             tr
               th.bdrB(colspan='2')
@@ -536,6 +357,7 @@ html#template2(lang='en')
           tbody
             tr
               td(style='vertical-align: bottom;')
+              if context.thanks
                 h1 THANK YOU
                 h4 FOR YOUR BUSINESS.
               td
@@ -546,12 +368,14 @@ html#template2(lang='en')
                 p (Signature)
             tr
               td(colspan='3')
-                ul.note
-                  li Tax to be paid on reverse charge
-                  li All payments to be made in cash. Contact us for queries on these quotations. 
+                if context.message2
+                  ul.note
+                    li #{context.message2}
       #pageFooter
         footer(style='text-align: center;')
-          p
-            strong Walkover Web Solutions Private Limited
-          p
-            | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)
+          if context.companyName
+            p 
+              strong #{context.companyName}
+          if context.companyAddress
+            p 
+              strong #{context.companyAddress}

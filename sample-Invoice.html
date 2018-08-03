@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html id="default">
+
+<head>
+    <title></title>
+    <style type="text/css">
+        /* reset */
+
+        * {
+            border: 0;
+            color: #262626;
+            font-family: ‘Lato’, sans-serif;
+            font-size: 12px;
+            font-style: inherit;
+            font-weight: lighter;
+            line-height: inherit;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            vertical-align: top;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* heading */
+
+        #default header h1 {
+            font-size: 16px;
+        }
+
+        #default header h2 {
+            color: $pirmaryColor;
+            text-transform: capitalize;
+            font-size: 18px;
+            float: left;
+            display: block;
+        }
+
+        /* table */
+
+        #default table {
+            font-size: 12px;
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: inherit;
+        }
+
+        #default .item th,
+        #default tfoot tr th {
+            background: $secondryColor;
+            border: 0;
+        }
+
+        /* page */
+
+        #default {
+            font-family: $font;
+            font-size: 12px;
+            overflow: auto;
+            min-height: 100%;
+            position: relative;
+            padding: 0;
+        }
+
+        #default body {
+            margin: 0 auto;
+            letter-spacing: 0;
+            width: 100%;
+            position: relative;
+            min-height: 100%;
+            background: #FFF;
+        }
+
+        /* header */
+
+        #default header {
+            background: #fff;
+            width: 100%;
+            position: relative;
+        }
+
+        .pull-right tr td {
+            text-align: right !important;
+        }
+
+        #default header .numDetail strong {
+            width: 50px;
+            display: inline-block;
+        }
+
+        #default .meta {
+            padding: 0 0.23in 0.03in;
+            margin-bottom: 10px;
+        }
+
+        #default .meta tbody tr td {
+            padding: 7px 0;
+            line-height: 19px;
+        }
+
+        #default header figure {
+            float: left;
+            font-style: normal;
+            margin: 0 0 0.3em 0;
+        }
+
+        #default header figure p {
+            margin: 0 0 0.25em;
+        }
+
+        #default header span,
+        header img {
+            display: block;
+            float: right;
+        }
+
+        #default header span {
+            margin: 0 0 1em 1em;
+            max-height: 25%;
+            max-width: 60%;
+            position: relative;
+        }
+
+        #default header img {
+            max-width: 160px;
+            max-height: 100px;
+            height: 100px;
+        }
+
+        #default header table tr td {
+            border: 0;
+            padding: 4px 0;
+        }
+
+        /* article */
+
+        #default article {
+            margin-bottom: 10px;
+        }
+
+        #default article:after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* table items */
+
+        #default table.item {
+            clear: both;
+            width: 100%;
+            table-layout: auto;
+        }
+
+        #default table.item th,
+        #default table.item tfoot tr th {
+            position: relative;
+            padding: 14px 7px;
+            line-height: 19px;
+            font-weight: 500;
+            text-transform: capitalize;
+            background: $secondryColor;
+        }
+
+        #default table.item tfoot tr th {
+            border-top: 1px solid #9b9b9b;
+        }
+
+        #default table.item td {
+            border-radius: 0;
+            padding: 7px;
+            border-top: 1px solid #9b9b9b;
+            line-height: 19px;
+            text-transform: capitalize;
+        }
+
+        #default table.item td p {
+            color: #595959;
+        }
+
+        /* table balance */
+
+        #default table.balance {
+            width: 75%;
+            float: right;
+            margin: 20px 7px 40px;
+        }
+
+        #default table.balance th,
+        #default table.balance td {
+            width: 50%;
+            text-align: right;
+            padding: 4px;
+        }
+
+        /* aside */
+
+        /*footer*/
+
+        #default footer {
+            border-top: 2px solid;
+            border-color: $pirmaryColor;
+            padding: 15px 0;
+            margin: 8px $rightMargin $bottomMargin $leftMargin;
+            background: #fff;
+        }
+
+        #default aside {
+            line-height: 19px;
+        }
+
+        #default .subfooter {
+            padding: 0;
+        }
+
+        #default .signature hr {
+            width: 300px;
+            margin-top: 50px;
+            border-bottom: 1px solid #000;
+            margin: 3px 0;
+        }
+
+        #default .subfooter h4 {
+            font-size: 17px;
+            color: $pirmaryColor;
+            margin: 10px 0 0
+        }
+
+        #default p {
+            margin: 0;
+        }
+
+        #default h2 {
+            margin: 0;
+            font-size: inherit
+        }
+
+        strong {
+            font-weight: 200;
+        }
+
+        /* common template css  */
+
+        .disabled-area {
+            position: relative
+        }
+
+        .disabled-area:after {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(204, 204, 204, 0.5);
+            border: 1px dashed #808080;
+        }
+
+        .edit-template {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px;
+            height: 15px;
+            background: #fff;
+        }
+
+        .edit-template i {
+            color: #000;
+            font: normal normal normal 14px/1 FontAwesome;
+        }
+
+        #default .docTitle {
+            width: 100%;
+            line-height: 30px;
+            text-align: center;
+            height: 60px;
+            bottom: 0;
+            position: relative;
+            float: left;
+            z-index: 9;
+
+        }
+
+        #default .docTitle h2 {
+            text-align: center;
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 9;
+        }
+
+        #default .docTitle h2:after {
+            content: attr(title);
+            width: auto;
+            position: relative;
+            background: #fff;
+            margin: 0 auto;
+            padding: 6px 16px;
+            right: 0;
+            line-height: 40px;
+            vertical-align: middle;
+            z-index: 99;
+            left: 0;
+            bottom: 22px;
+        }
+
+        .page {
+            page-break-after: always;
+        }
+
+        .entryDiv {
+            width: 100% !important;
+            min-height: 100%;
+            position: relative;
+        }
+
+        .meta_header {
+            width: 100%;
+            overflow: hidden;
+            float: left;
+        }
+
+        #Template-header,
+        .cargoDetail,
+        .meta {
+            width: 100%;
+            overflow: hidden;
+            float: left;
+            position: relative;
+        }
+
+        @page {
+            /* margin: 30px 30px 20px 30px; */
+            margin: 0;
+            padding: 0px 0px 20px 0px;
+            size: A4 portrait;
+            @top-center {
+                content: element(pageHeader);
+            }
+        }
+
+        @media print {
+            #default table.item th,
+            #default table.item tfoot tr th {
+                position: relative;
+                padding: 14px 7px;
+                line-height: 19px;
+            }
+            #default footer {
+                position: fixed;
+                bottom: 0px;
+                right: 0;
+                left: 0;
+            }
+
+
+            #default header table {
+                margin-top: 10px;
+            }
+            #if($entries.size() !=1) footer:after {
+                counter-increment: page;
+                content: "Page " counter(page) " of  " counter(pages);
+                float: right;
+                top: 100%;
+            }
+            #end
+            /* #default .signature {
+         position: fixed;
+         padding-top: 60px;
+         top: 840px;
+         width: 100px;
+         height: 100px;
+         left: 450px;
+         text-align: center;
+         }*/
+            #default .subfooter {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                margin: 0 $rightMargin 0 $leftMargin;
+                width: 100%;
+            }
+            #content_wrap {
+                position: relative;
+                min-height: $minHeight;
+                padding: $topMargin $rightMargin 0 $leftMargin;
+                /* margin: 100px; */
+            }
+        }
+
+        .docTitle hr {
+            border: 1px solid $pirmaryColor;
+            margin-top: 20px;
+
+        }
+
+        .docTitle .txt {
+            background: #fff;
+            width: 100px;
+
+        }
+
+        .company_name {
+            width: 100%
+        }
+
+        .clogo_figure {
+            overflow: hidden;
+            float: left;
+            margin-bottom: 10px;
+        }
+
+        .clogo {
+            float: left;
+            max-width: 160px;
+        }
+
+        /*      
+        .meta_header {
+            display: table;
+            width: 100%;
+        }*/
+    </style>
+</head>
+
+<body>
+    #set($serial = 0) #set($tableCount = 0) #set($discountCount = 0) #foreach ($entryss in $entries) #set($tableCount = $tableCount
+    +1)
+    <!--class="disabled-area"-->
+    <div id="content_wrap">
+        <div class="clogo_figure"> #if($showlogo)
+            <img class="clogo" src="$logopath" /> #end</div>
+        <div id="Template-header">
+
+            <header id="pageHeader">
+                <figure class="company_name">
+                    #if($companyName)
+                    <strong>
+                        <h2>$companyName</h2>
+                    </strong>
+                    #end
+                </figure>
+                <table cellspacing="0" cellpadding="0" class="meta_header">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table class="numDetail">
+                                    <tbody>
+                                        #if($label.gstin)
+                                        <tr>
+                                            <td>
+                                                <strong>$label.gstin</strong>$gstin
+                                            </td>
+                                        </tr>
+                                        #end #if($label.pan)
+                                        <tr>
+                                            <td>
+                                                <strong>$label.pan</strong>$pan
+                                            </td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td colspan="1"></td>
+                            <td class="pull-right">
+                                <table>
+                                    <tbody>
+                                        #if($label.typeOfInvoice)
+                                        <tr>
+                                            <td>
+                                                <strong>$label.typeOfInvoice</strong>
+                                            </td>
+                                            <td>$typeOfInvoice</td>
+                                        </tr>
+                                        #end #if($label.invoiceDate)
+                                        <tr>
+                                            <td>
+                                                <strong>$label.invoiceDate</strong>
+                                            </td>
+                                            <td>$invoiceDate</td>
+                                        </tr>
+                                        #end #if($label.invoiceNumber)
+                                        <tr>
+                                            <td>
+                                                <strong>$label.invoiceNumber</strong>
+                                            </td>
+                                            <td>$invoiceNumber</td>
+                                        </tr>
+                                        #end #if($label.dueDate)
+                                        <tr>
+                                            <td>
+                                                <strong>$label.dueDate</strong>
+                                            </td>
+                                            <td>$dueDate</td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                #if($label.formNameInvoice || $label.formNameTaxInvoice)
+                <div class="docTitle">
+                    #if($label.formNameInvoice)
+                    <h2 title="$label.formNameInvoice">
+                        <hr/>
+                    </h2>
+                    #elseif($label.formNameTaxInvoice)
+                    <h2 title="$label.formNameTaxInvoice">
+                        <hr/>
+                    </h2>
+                    #end
+                </div>
+                #end
+
+            </header>
+            #if($tableCount == 1)
+            <table id="client" class="meta cargoDetail" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        #if($customerName || $customerEmail || $cutomerMobileNumber || $attentionTo)
+                        <td>
+                            #if($customerName)
+                            <p>
+                                <strong>$customerName</strong>
+                            </p>
+                            #end #if($attentionTo)
+                            <p>$attentionTo</p>
+                            #end #if($customerEmail)
+                            <p>$customerEmail</p>
+                            #end #if($customerMobileNumber)
+                            <p>$customerMobileNumber</p>
+                            #end
+                        </td>
+                        #end #if($label.billingAddress)
+                        <td>
+                            <p>
+                                <strong>$label.billingAddress</strong>
+                            </p>
+                            #foreach($address in $billingAddress) #if($address)
+                            <p>$address</p>
+                            #end #end #if($billingState)
+                            <p>$billingState</p>
+                            #end
+                        </td>
+                        #end #if($label.shippingAddress)
+                        <td>
+                            <p>
+                                <strong>$label.shippingAddress</strong>
+                            </p>
+                            #foreach($address in $shippingAddress) #if($address)
+                            <p>$address</p>
+                            #end #end #if($shippingState)
+                            <p>$shippingState</p>
+                            #end
+                        </td>
+                        #end
+                    </tr>
+                    <tr>
+                        #if($customerName || $customerEmail || $cutomerMobileNumber)
+                        <td style="white-space: normal !important;"></td>
+                        #end #if($label.billingGstin)
+                        <td>
+                            <p>
+                                <strong>$label.billingGstin</strong>
+                            </p>
+                            <p>$billingGstin</p>
+                        </td>
+                        #end #if($label.shippingGstin)
+                        <td>
+                            <p>
+                                <strong>$label.shippingGstin</strong>
+                            </p>
+                            <p>$shippingGstin</p>
+                        </td>
+                        #end
+                    </tr>
+                </tbody>
+            </table>
+            <table class="meta">
+                <tbody>
+                    <tr>
+                        #if($label.shippingDate)
+                        <td>
+                            <strong>$label.shippingDate</strong>
+                            <p>$shippingDate</p>
+                        </td>
+                        #end #if($label.shippedVia)
+                        <td>
+                            <strong>$label.shippedVia</strong>
+                            <p>$shippedVia</p>
+                        </td>
+                        #end #if($label.trackingNumber)
+                        <td>
+                            <strong>$label.trackingNumber</strong>
+                            <p>$trackingNumber</p>
+                        </td>
+                        #end #if($label.customField1)
+                        <td>
+                            <strong>$label.customField1</strong>
+                            <p>$customField1</p>
+                        </td>
+                        #end #if($label.customField2)
+                        <td>
+                            <strong>$label.customField2</strong>
+                            <p>$customField2</p>
+                        </td>
+                        #end #if($label.customField3)
+                        <td>
+                            <strong>$label.customField3</strong>
+                            <p>$customField3</p>
+                        </td>
+                        #end
+                    </tr>
+                </tbody>
+            </table>
+            #end
+        </div>
+        <div id="Template-table" #if($tableCount !=1 ) class="entryDiv" #end>
+            <article>
+                <table class="item" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            #if($label.sNo)
+                            <th class="text-right">$label.sNo</th>
+                            #end #if($label.date)
+                            <th class="text-left">$label.date</th>
+                            #end #if($label.item)
+                            <th class="text-left">$label.item</th>
+                            #end #if($label.hsnSac)
+                            <th class="text-right">$label.hsnSac</th>
+                            #end #if($label.quantity)
+                            <th class="text-right">$label.quantity</th>
+                            #end #if($label.rate)
+                            <th class="text-right">$label.rate</th>
+                            #end #if($label.discount)
+                            <th class="text-right">$label.discount</th>
+                            #end #if($label.taxableValue)
+                            <th class="text-right">$label.taxableValue</th>
+                            #end #if($label.taxes) #foreach($tax in $gstTaxesTotal)
+                            <th class="text-right" style="text-transform: uppercase;">$tax.name</th>
+                            #end #end #if($label.total)
+                            <th colspan="2" class="text-right">$label.total</th>
+                            #end
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #foreach ($entry in $entryss) #foreach ($tr in $entry.transactions) #set($serial = $serial + 1)
+                        <tr>
+                            #if($label.sNo)
+                            <td class="text-right">$serial</td>
+                            #end #if($label.date)
+                            <td class="text-left">$entry.entryDate</td>
+                            #end #if($label.item)
+                            <td class="text-left" style="max-width:150px;">
+                                #if($tr.stockDetails.name)
+                                <p>$tr.stockDetails.name</p>
+                                #elseif($tr.accountName)
+                                <p>$tr.accountName</p>
+                                #end #if($tr.description!=$tr.stockDetails.name && $tr.description!=$tr.accountName)
+                                <p>$tr.description</p>
+
+                                #end
+
+                            </td>
+                            #end #if($label.hsnSac) #if($manageInventory) #if($tr.hsnNumber)
+                            <td class="text-right">$tr.hsnNumber
+                                <small> (H)</small>
+                            </td>
+                            #end #elseif($tr.sacNumber)
+                            <td class="text-right">$tr.sacNumber
+                                <br/>
+                                <small>(S)</small>
+                            </td>
+                            #else
+                            <td></td>
+                            #end #end #if($label.quantity)
+                            <td class="text-right">#if($tr.quantity) $tr.quantity $tr.stockUnit #end</td>
+                            #end #if($label.rate)
+                            <td class="text-right">#if($tr.rate) $tr.rate #end</td>
+                            #end #if($label.discount && $entry.Discounts.size()
+                            < 1 ) <td class="text-right">
+                                </td>
+                                #end #set($distTotal = 0) #set($category = "other") #foreach($discount in $entry.Discounts) #if($tr.category != $category)
+                                #set($discountAmount = $discount.amount * -1)
+                                <td class="text-right">$discountAmount</td>
+                                #set($distTotal = $distTotal + $discount.amount) #else
+                                <td></td>
+                                #end #end #set($txTotal = 0) #set($category = "other") #if($label.taxableValue) #if($tr.category != $category) #set($trWithDist
+                                = $tr.amount - $distTotal)
+                                <td class="text-right">$trWithDist</td>
+                                #else
+                                <td></td>
+                                #end #end #if($label.taxes) #foreach($taxWithTotal in $gstTaxesTotal) #set($foundTax = 0) #set($tempTax = 0) #set($taxRate
+                                = 0) #foreach($tax in $entry.taxes) #if($taxWithTotal.uniqueName == $tax.accountUniqueName)
+                                #set($foundTax = 1) #set($tempTax = $tax.amount) #set($taxRate = $tax.rate) #set($txTotal
+                                = $txTotal + $tempTax) #end #end #if($foundTax == 1 && $tr.category != $category)
+                                <td class="text-right">
+                                    $tempTax
+                                    <br/>
+                                    <p>@$taxRate%</p>
+                                </td>
+                                #else
+                                <td class="text-right"></td>
+                                #end #end #end #if($label.total) #if($tr.category != $category) #set($txTotal = $tr.amount + $txTotal - $distTotal)
+                                <td colspan="2" class="text-right">$txTotal</td>
+                                #else
+                                <td colspan="2" class="text-right">$tr.amount</td>
+                                #end #end
+                        </tr>
+                        #end #end
+                    </tbody>
+                    #if($tableCount == $entries.size() )
+                    <tfoot>
+                        <tr>
+                            #if($label.sNo)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.date)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.item)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.hsnSac)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.quantity)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.rate)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.discount)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.taxableValue)
+                            <th class="text-right"> $taxableTotal</th>
+                            #end #if($label.taxes) #foreach($taxWithTotal in $gstTaxesTotal)
+                            <th class="text-right">$taxWithTotal.total</th>
+                            #end #end #if($label.total)
+                            <th class="text-right" colspan="2">$gstEntriesTotal</th>
+                            #end
+                        </tr>
+                    </tfoot>
+                    #else
+                    <tfoot>
+                        <tr>
+                            #if($label.sNo)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.date)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.item)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.hsnSac)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.quantity)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.rate)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.discount)
+                            <th class="text-right" style="white-space: normal !important;"></th>
+                            #end #if($label.taxableValue)
+                            <th class="text-right"></th>
+                            #end #if($label.taxes) #foreach($taxWithTotal in $gstTaxesTotal)
+                            <th class="text-right"></th>
+                            #end #end #if($label.total)
+                            <th class="text-right" colspan="2"></th>
+                            #end
+                        </tr>
+                    </tfoot>
+                    #end
+                </table>
+                #if($tableCount != $entries.size() )
+                <div style="float:right; margin:20px; font-size: 16px; ">
+                    <strong>Continued...</strong>
+                </div>
+                #end
+            </article>
+        </div>
+        #if($tableCount == $entries.size() )
+        <table class="balance" style="">
+            #if($label.taxableAmount)
+            <tr>
+                <th>
+                    <strong>$label.taxableAmount</strong>
+                </th>
+                <td>
+                    <span>$taxableAmount</span>
+                </td>
+            </tr>
+            #end #if($label.totalTax)
+            <tr>
+                <th>
+                    <strong>$label.totalTax</strong>
+                </th>
+                <td>
+                    <span>$totalTax</span>
+                </td>
+            </tr>
+            #end #foreach($commonDiscountEntry in $commonDiscountEntries )
+            <tr>
+                <th>
+                    <strong>$commonDiscountEntry.AccountName</strong>
+                </th>
+                <td>
+                    <span>$commonDiscountEntry.Amount</span>
+                </td>
+            </tr>
+            #end #if($roundOff)
+            <tr>
+                <th>
+                    <strong>Round Off</strong>
+                </th>
+                <td>
+                    <span>$roundOff</span>
+                </td>
+            </tr>
+            #end #if($label.grandTotal)
+            <tr>
+                <th>
+                    <strong>$label.grandTotal #if($currency) ($currency) #end</strong>
+                </th>
+                <td>
+                    <span>$grandTotal</span>
+                </td>
+            </tr>
+            #end #if($paidAmount > 0)
+            <tr>
+                <th>
+                    <strong>Paid</strong>
+                </th>
+                <td>
+                    <span>$paidAmount</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>Due Amount</strong>
+                </th>
+                <td>
+                    <span>$balance</span>
+                </td>
+            </tr>
+            #end #if($label.totalInWords)
+            <tr>
+                <th>
+                    <strong>$label.totalInWords</strong>
+                </th>
+                <td>$totalInWords</td>
+            </tr>
+            #end
+        </table>
+
+        <!-- note & thank you section  start -->
+        <table cellpadding="0" cellspacing="0" class="subfooter" style="text-align: left;height: auto;vertical-align: bottom;">
+            <tbody>
+                <tr>
+                    <td style="vertical-align: bottom;padding-right: 70px;text-align:left">
+                        <div style="margin-bottom: 25px;">
+                            #if($message1)
+                            <h3>
+                                <p>$message1</p>
+                            </h3>
+
+                            #end #if($name)
+                            <p> Name : $name</p>
+                            #end #if($virtualBankAcc)
+                            <p>A/C No : $virtualBankAcc </p>
+                            #end #if($ifscCode)
+                            <p> Ifsc : $ifscCode</p>
+                            #end
+
+
+                        </div>
+                        <section>
+                            #if($message2)
+                            <p>$message2</p>
+                            #end
+                        </section>
+                        <strong>
+                            <h4>#if($thanks) Thank you for your business #end</h4>
+                        </strong>
+                    </td>
+                    <td style="vertical-align: bottom;">
+                        <div class="signature" style="text-align:center;float:right;width: 300px;margin-bottom: 15px;padding-top:70px;">
+                            <hr/>
+                            <h3>#if($slogan) $slogan #end</h3>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- note & thank you section  end -->
+
+        <!-- footer start -->
+        <div id="Template-footer">
+            <a href="javascript:void(0);" class="edit-template">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <footer style="text-align: center;">
+                <p>#if($companyName) $companyName #end</p>
+                <p>#if($companyAddress) $companyAddress #end</p>
+            </footer>
+        </div>
+        #end
+    </div>
+    #if($tableCount != $entries.size())
+    <div class="page"></div>
+    #end #end
+</body>
+
+</html>

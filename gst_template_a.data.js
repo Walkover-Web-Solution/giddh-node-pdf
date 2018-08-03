@@ -8,7 +8,7 @@ module.exports = {
     "innerContext": null,
     "context": {
         "dueDateYear": null,
-        "companyName": "default",
+        "companyName": "Walkover Web Solutions PVT LTD",
         "invoiceDateInt": "09",
         "taxes": [],
         "totalTax": 0.00,
@@ -663,6 +663,7 @@ module.exports = {
             "description": "Some label",
             "taxes": false,
             "gstin": "GSTIN",
+            "pan": "PAN",
             "totalTax": "Total Tax*",
             "total": "Total",
             "sNo": "S. No.",
@@ -686,7 +687,7 @@ module.exports = {
             "billingAddress": "Billing Address"
         },
         "invoiceDate": "09-07-2018",
-        "showDueDate": false,
+        "showDueDate": true,
         "showlogo": true,
         "gstTaxesTotal": [],
         "companyAddress": "Address 121212",
