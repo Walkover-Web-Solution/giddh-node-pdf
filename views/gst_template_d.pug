@@ -1,0 +1,558 @@
+doctype html
+html
+  head
+    title
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700', rel='stylesheet')
+    style(type='text/css').
+      /* reset */
+      * {
+        border: 0;
+        box-sizing: content-box;
+        color: #262626;
+        font-family: inherit;
+        font-size: 9px;
+        font-style: none;
+        font-weight: none;
+        line-height: 14px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: top;
+        font-family: 'Open Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        padding-top: 10px;
+      }
+      header h1 {
+      /* margin-bottom: 10px; */
+        font-size: 12px;
+        color: #DF4927;
+      }
+       header p {
+      font-size: 10px;
+      color: #262626;
+      }
+      h1.invoice{
+        font-size:16px;
+        color:#DF4927;
+      }
+      .invoice-table{
+        border-top:1px solid #B3B3B3;
+        border-bottom:1px solid #B3B3B3;
+        padding:7px 15px;
+      }
+       header .sub_head {
+      font-size: 15px;
+      margin-left: 5px;
+      }
+       .text-right {
+      text-align: right;
+      }
+       .text-left {
+      text-align: left !important;
+      }
+       .pull-right {
+      float: right;
+      }
+       .pull-left {
+      float: left;
+      }
+       table {
+        width: 100%;
+        table-layout: fixed;
+        line-height: 20px;
+        border-collapse: inherit
+      }
+       .logo {
+      max-width: 120px;
+      width: 100%;
+      }
+       strong {
+      font-weight: bold;
+      }
+       .total-amount {
+      text-align: center;
+      vertical-align: bottom;
+      padding-bottom: 10px
+      }
+       .total-amount h2 {
+      font-size: 24px;
+      padding: 0 0;
+      display: inline-block;
+      float: right;
+      }
+       .address th{
+      /* text-align:left; */
+      }
+       .mrL2 {
+      margin-left: 20px;
+      }
+       .mrB2 {
+      margin-bottom: 20px;
+      }
+       .mrB1 {
+      margin-bottom: 10px;
+      }
+       .meta {
+        padding: 0 15px;
+        position: relative;
+        margin-bottom: 10px;
+      }
+      .meta tbody tr td {
+        padding: 4px 0;
+        line-height: 14px;
+      }
+      .meta tbody tr td, .meta tbody tr th {
+          border: 0;
+      }
+       .meta h4 {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 19px;
+      }
+       .product-table {
+        background: #df49270d;
+        position: relative;
+        /* padding-bottom: 10px; */
+      }
+      .item {
+        table-layout: auto !important;
+        clear: both;
+        width: 100%;
+        table-layout: auto;
+        padding: 0 5px;
+        margin-bottom: 10px
+      }
+       .item thead tr th{
+      padding: 14px 5px;
+      border-bottom: 1px solid #666666;
+      line-height: 1.2rem;
+      font-weight: bold;
+      }
+       .item th{
+      text-align: right;
+      padding: 14px 7px;
+      line-height: 1.2rem;
+      }
+       table.item tr th,  table.item tr td{
+      padding-right:10px;
+      vertical-align: middle;
+      }
+       table.item tr th:nth-child(2) {
+      text-align: left;
+      }
+       table.item tr th:nth-child(1),   table.item tr td:nth-child(1){
+      text-align: center;
+      }
+       table.item tr th:nth-child(1),  table.item tr th:nth-child(2),  table.item tr th:nth-child(3) {
+      vertical-align: middle;
+      }
+       table.item td:nth-child(2) {
+      width: 38%;
+      text-align: left;
+      }
+       table.item td:nth-child(3),  table.item th:nth-child(3) {
+      width: 18%;
+      text-align: left;
+      }
+       table.item td:nth-child(1) {
+      width: 26%;
+      }
+       .item td{
+      border-radius: 0;
+      padding: 7px;
+      /* border-top: 1px solid rgba(89, 89, 89, 0.6); */
+      text-align: right;
+      line-height: 1.2rem;
+      }
+       .item thead{
+      background: rgba(223, 73, 39,0.05);
+      }
+       .item thead tr th {
+      padding: 14px 5px;
+      border-bottom: 1px solid #666666;
+      line-height: 1.2rem;
+      font-weight: bold;
+      }
+       .item tfoot tr{
+      background: rgba(223, 73, 39,0.05);
+      }
+       .item tfoot tr th,
+       .item tbody tr td {
+      padding: 5px 5px;
+      }
+       .item tbody tr:nth-child(even){
+      background:#fff;
+      }
+       .item tbody tr:nth-child(odd){
+      background:#FAFAFA;
+      }
+       .item tfoot tr:last-child th {
+      border-top: 1px solid #666666;
+      padding: 14px 0px;
+      line-height: 1.2rem;
+      vertical-align: middle
+      }
+       table.item td:nth-child(5), #silver table.item th:nth-child(5) {
+      width: 13%;
+      text-align: right;
+      }
+      /* table balance */
+      table.balance {
+        width: 75%;
+        float: right;
+        margin: 0px 7px 40px;
+      }
+      table.balance th,
+      table.balance td {
+        width: 50%;
+        text-align: right;
+        padding: 2px;
+      }
+       article{
+      margin: 0 0 3em;
+      }
+       .total-row {
+      border-top: 1px solid #000000;
+      }
+       .tax-table p {
+      color: #595959;
+      }
+       .tax-table tfoot th {
+      font-weight: bold
+      }
+       .bdrB {
+      border-bottom: 1px solid#666;
+      }
+
+      .subfooter {
+        padding: 0 10px;
+      }
+      .subfooter hr {
+        width: 100%;
+        border-bottom: 1px solid #000;
+        margin: 3px 0;
+      }
+      .subfooter h4 {
+        font-size: 14px;
+        color: #df4927;
+        margin: 10px 0 0
+      }
+       .vmiddle {
+      vertical-align: middle;
+      }
+       .note {
+      margin-top: 20px;
+      padding-left: 15px;
+      }
+       .note li {
+      list-style-type: none;
+      font-size:10px;
+      }
+      #pageFooter {
+        margin-top: 7px;
+        border-top: 1px solid #DF4927;
+        padding: 8px 5px;
+        background: #F5F5F5;
+        height: 100%;
+        vertical-align: middle;
+      }
+      .pos-rel {
+        position: relative;
+      }
+       .primary-clr {
+      color: #df4927;
+      }
+       .text-center {
+      text-align: center
+      }
+       .mrB {
+      margin-bottom: 10px;
+      }
+       .secondry_clr {
+      color: #4b4c4f;
+      }
+      @page {
+      margin: 0;
+      size: A4 portrait;
+      }
+  body
+    div
+      #pageHeader
+        header
+          table
+            tbody
+              tr
+                td.text-center
+                  img.clogo(style='max-width: 80px;', src='https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg', alt='')
+              tr
+                td.text-center
+                  h1 Walkover Web Solutions Private Limited
+                  p 
+                    span GSTIN: 11AAAAAA000A1Z0
+                    span PAN: AAACW9768L
+      table.invoice-table(cellspacing='0', cellpadding='0')
+        tbody
+          tr
+            td
+              h1.invoice TAX INVOICE
+            td.pull-right
+              table
+                tbody
+                  tr
+                    td.text-right Invoice Date: 23/06/2017
+                    td.text-right Invoice No.: 201770323-64
+      table.meta.cargoDetail(cellspacing='0' cellpadding='0')
+        tbody
+          tr
+            td
+              p
+                strong Mr. Alok Gangrade
+              p alokgangrade@gmail.com
+              p +91 9876543210
+            td
+              p
+                strong Billing Address
+              p Green Soft Solutions
+              p 24 Building Name
+              p 3rd Floor
+              p 5 A.B. Road
+              p Indore (M.P.) 452000
+            td
+              p
+                strong Shipping Address
+              p Green Soft Solutions
+              p 24 Building Name
+              p 3rd Floor
+              p 5 A.B. Road
+              p Indore (M.P.) 452000
+          tr
+            td
+              p
+                strong Due Date
+              p 30/06/2017
+            td
+              p
+                strong GSTIN
+              p 22BBBBBB000A1Z0
+            td
+              p
+                strong GSTIN
+              p 22BBBBBB000A1Z0
+      table.meta
+        tbody
+          tr
+            td
+              strong Ship Date
+              p 30/06/2017
+            td
+              strong Ship Via
+              p 30/06/2017
+            td
+              strong Tracking No.
+              p 323443242342
+            td
+              strong Custom Field 1
+              p Hello this is custom field
+            td
+              strong Custom Field 2
+              p 2324342424432
+            td
+              strong Custom Field 3
+              p Field 3
+      article
+        table.item(cellpadding='0', cellspacing='0')
+          thead
+            tr
+              th HSN/SAC
+              th(colspan='2') Item
+              th Qty.
+              th Rate/ Item
+              th Dis./ Item
+              th Taxable Value
+              th SGST
+              th CGST
+              th CESS
+              th(colspan='2') Total
+          tbody
+            tr
+              td 123456
+              td(colspan='2') Dummy Product Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+            tr
+              td 123456
+              td(colspan='2') Dummy Product Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+            tr
+              td 123456
+              td(colspan='2') Dummy Product Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+            tr
+              td 123456
+              td(colspan='2') Dummy Product Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+            tr
+              td 123456
+              td(colspan='2') Dummy Product Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+            tr
+              td 123456
+              td(colspan='2') Dummy Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+            tr
+              td 123456
+              td(colspan='2') Dummy Edition 2
+              td 10 No.
+              td 1000.00
+              td 30.00
+              td 9700.00
+              td
+                | 9700.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td
+                | 970.00
+                p @10%
+              td(colspan='2') 11000344640.00
+          tfoot
+            tr
+              td(colspan='6')   
+              td 30100.00
+              td 30100.00
+              td 30100.00
+              td 30100.00
+              td(colspan='2') 30100.00
+        table.balance
+          tr
+            th
+              strong Taxable Amount
+            td
+              span
+                strong ₹30100.00
+          tr
+            th
+              strong Total Tax*
+            td
+              span
+                strong ₹5920.00
+          tr
+            th
+              strong Invoice Total
+            td
+              span
+                strong ₹36020.00
+          tr
+            th
+              strong Invoice Total (In words)
+            td
+              strong Thirty Six Thousand Twenty Only
+    #Template-footer
+      table.subfooter(cellpadding='0' cellspacing='0')
+                tbody
+                  tr
+                    td(colspan='2')
+                      p(style='margin-bottom: 15px;')
+                        strong *Tax to be paid on Reverse Charge
+                      section
+                        strong
+                          h2 Notes
+                        p All payments to be made in cash
+                        p Contact us for queries on these quotations.
+                    td(style='text-align: center;vertical-align: bottom;')
+                      hr
+                      strong
+                        h3 Walkover Web Solutions Private Limited
+                      strong
+                        small (Signature)
+                  tr
+                    td
+                      strong
+                        h4 Thank You for your business.
+      #pageFooter      
+        footer(style='text-align: center;')
+          p(contenteditable='true')
+            strong Walkover Web Solutions Private Limited
+          p(contenteditable='true')
+            | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)

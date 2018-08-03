@@ -1,0 +1,325 @@
+doctype html
+html
+  head
+    title
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700', rel='stylesheet')
+    style(type='text/css').
+      /* reset */
+      * {
+        border: 0;
+        box-sizing: content-box;
+        color: #262626;
+        font-family: inherit;
+        font-size: 9px;
+        font-style: none;
+        font-weight: none;
+        line-height: 14px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: top;
+        font-family: 'Open Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      header {
+        border-bottom: 1px solid #000;
+        margin: 15px;
+      }
+      .text-right {
+        text-align: right;
+      }
+      .text-left {
+        text-align: left !important;
+      }
+      .pull-right {
+        float: right;
+      }
+      .pull-left {
+        float: left;
+      }
+      table {
+        width: 100%;
+        table-layout: fixed;
+        line-height: 20px;
+        border-collapse: inherit
+      }
+      .logo {
+        max-width: 80px;
+        width: 100%;
+      }
+      strong {
+        font-weight: bold;
+      }
+      .item {
+        table-layout: auto !important;
+      }
+      .item tbody tr td,
+      .item thead tr th {
+        text-align: right;
+      }
+      .mrL2 {
+        margin-left: 20px;
+      }
+      .mrB2 {
+        margin-bottom: 20px;
+      }
+      .mrB1 {
+        margin-bottom: 10px;
+      }
+      .meta {
+        padding: 14px 15px;
+      }
+      .meta h4 {
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .product-table {
+        background: #f1eae8;
+        position: relative;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .item thead tr th {
+        padding: 10px 0px;
+        border-bottom: 1px solid #666666;
+        line-height: 1.2rem;
+        font-weight: bold;
+      }
+      .product-table tbody tr:last-child td {
+        padding-bottom: 50px;
+      }
+
+      .inwords {
+        color: #939393
+      }
+      .item tfoot tr th,
+      .item tbody tr td {
+        padding: 3px 0;
+      }
+      .item tfoot tr:last-child th {
+        border-top: 1px solid #666666;
+        padding: 7px 0px;
+        vertical-align: middle
+      }
+      .product-table tfoot tr:last-child th {
+        border-top: 0;
+      }
+      .product-table tfoot tr:last-child th:last-child {
+        border-top: 1px solid #666;
+        border-bottom: 4px double #666;
+      }
+      .tax-table {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .tax-table p {
+        color: #595959;
+      }
+      .tax-table tfoot th {
+        font-weight: bold
+      }
+      .bdrB {
+        border-bottom: 1px solid#666;
+      }
+      .subfooter {
+        margin-top: 100px;
+        padding: 0 15px;
+      }
+      .subfooter h1 {
+        font-size: 18px;
+        margin: 10px 0 0;
+        font-weight: 600;
+      }
+      .subfooter h1 span {
+        margin-left: 5px;
+      }
+      .subfooter .normal {
+        font-size: 10px;
+        vertical-align: baseline;
+        font-weight: normal;
+      }
+      .vmiddle {
+        vertical-align: middle;
+      }
+      .note {
+        margin-top: 20px;
+        padding-left: 15px;
+      }
+      .note li {
+        list-style-type: initial;
+      }
+      footer {
+        margin-top: 7px;
+        border-top: 2px solid #df4927;
+        padding: 10px 0 0;
+        line-height: 20px;
+      }
+      .pos-rel {
+        position: relative;
+      }
+      .primary-clr {
+        color: #df4927;
+      }
+      .pagebreak {
+        page-break-before: always;
+      }
+      .item tr td, .item tr th {
+        page-break-inside: avoid;
+      }
+      .item thead { 
+        display: table-header-group;
+      }
+      .item tfoot {
+        display: table-row-group;
+      }
+      .item thead tr th .fa {
+        font-size: 8px !important;
+      }
+  body
+    div
+      #pageHeader
+        header
+          table.mrB1
+            tbody
+              tr
+                td.text-left.vmiddle
+                  img.logo(src='https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg' alt='')
+                td.text-right
+                  figure
+                    p August 09, 2017
+                    p GSTIN: 11AAAAAA000A1Z0
+                    p PAN: AAACW9768L
+      table.meta
+        tbody
+          tr
+            td
+              h4.mrB1 Hello Shubhendra Agrawal,
+              p
+                | This is a system generated 
+                strong.primary-clr INVOICE #201770323-64
+                |  due on September 15, 2017 for 
+                strong.primary-clr Insta car Technologies Private Limited
+                |  at 24 Building Name, 3rd Floor, 15
+                |                             A.B. Road, Indore (M.P.) 452000 [GSTIN:22BBBBBB000A1Z0] and the total amount is 
+                strong.primary-clr INR 945
+                | .
+    #Template-table.pos-rel
+      table.item.product-table(cellspacing='0', cellpadding='0')
+        thead
+          tr
+            th.text-left S. No.
+            th.text-left Description
+            th HSN/SAC
+            th Tax Rate
+            th Qty.
+            th Rate
+            th Amount
+        tbody
+          tr
+            td.text-left 1
+            td.text-left Transactional Route
+            td 12345678
+            td 18%
+            td 2
+            td 5000.00
+            td 10000.00
+          tr
+            td.text-left 2
+            td.text-left Promotional Route
+            td 45484848
+            td 10%
+            td 5
+            td 2500.00
+            td 12500.00
+          tr
+            td.text-left 3
+            td.text-left Transactional Route
+            td 12345678
+            td 18%
+            td 2
+            td 5000.00
+            td 10000.00
+          tr
+            td.text-left 4
+            td.text-left Promotional Route
+            td 45484848
+            td 10%
+            td 5
+            td 2500.00
+            td 12500.00
+        tfoot
+          tr
+            th(colspan='5')
+            th.text-left Sub Total
+            th.text-right 32500.00
+          tr
+            th(colspan='5')
+            th.text-left Discount
+            th.text-right 00.00
+          tr
+            th(colspan='5')
+            th.text-left CGST
+            th.text-right 5250.00
+          tr
+            th(colspan='5')
+            th.text-left SGST
+            th.text-right 5250.00
+          tr
+            th.text-left.inwords(colspan='5') Thirty Seven Thousand Seven Hundred Fifty Only
+            th.text-left
+              strong Total
+            th.text-right
+              strong 37750.00
+      table.tax-table.item(cellspacing='0', cellpadding='0')
+        thead
+          tr
+            th.text-left HSN/SAC
+            th Taxable Amt.
+            th CGST
+            th SGST
+        tbody
+          tr
+            td.text-left 12345678
+            td 10000.00
+            td
+              | 900.00
+              p @9%
+            td
+              | 900.00
+              p @9%
+        tfoot
+          tr
+            th(colspan='1')
+            th.text-right
+              | Total 
+              span(style='margin-left:20px;') 25550.00
+            th.text-right 1525.00
+            th.text-right 1525.00
+    #Template-footer
+      table.subfooter
+        tbody
+          tr
+            td(colspan='2', style='vertical-align: bottom;')
+              h1.primary-clr
+                | THANK YOU
+                span.normal FOR YOUR BUSINESS.
+            td(style='text-align: center;vertical-align: bottom;')
+              p.bdrB
+              p
+                strong Walkover Web Solutions Private Limited
+              p (Signature)
+          tr
+            td(colspan='3')
+              ul.note
+                li Tax to be paid on reverse charge
+                li All payments to be made in cash. Contact us for queries on these quotations. 
+      #pageFooter
+        footer(style='text-align: center;')
+          p
+            strong Walkover Web Solutions Private Limited
+          p
+            | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)

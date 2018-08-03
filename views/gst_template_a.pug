@@ -70,7 +70,6 @@ html#default
         position: relative;
         margin-bottom: 10px;
         float: left;
-        display: block;
       }
       .meta tbody tr td {
         padding: 4px 0;
@@ -565,29 +564,26 @@ html#default
               td #{context.totalInWords}
 
       table.subfooter(cellpadding='0' cellspacing='0')
-                tbody
-                  tr
-                    td(colspan='2')
-                      p(style='margin-bottom: 15px;')
-                        if context.message1
-                          strong *Tax to be paid on Reverse Charge
-                      section
-                        if context.message2
-                          strong
-                            h2 Notes
-                          p #{context.message2}
-                    td(style='text-align: center;vertical-align: bottom;')
-                      hr
-                      strong
-                        h3 #{context.companyName}
-                      strong
-                        if context.slogan
-                          small (#{context.slogan})
-                  tr
-                    td
-                      strong
-                        if context.thanks
-                          h4 Thank You for your business.
+        tbody
+          tr
+            td(colspan='2')
+              p(style='margin-bottom: 15px;')
+                strong *Tax to be paid on Reverse Charge
+              section
+                strong
+                  h2 Notes
+                p All payments to be made in cash
+                p Contact us for queries on these quotations.
+            td(style='text-align: center;vertical-align: bottom;')
+              hr
+              strong
+                h3 Walkover Web Solutions Private Limited
+              strong
+                small (Signature)
+          tr
+            td
+              strong
+                h4 Thank You for your business.
       #pageFooter
         footer(style='text-align: center;')
           p(style='float: left;') {{page}} / {{pages}}
