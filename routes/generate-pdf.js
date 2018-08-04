@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     // let merged = {...data, ...gst_template_a_data };
     
-    // gst_template_a_data = formatData(gst_template_a_data);
+    gst_template_a_data = formatData(gst_template_a_data);
     
     let merged = Object.assign({}, data, gst_template_a_data);
     const html = compiledFunction(merged);
@@ -71,8 +71,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    const compiledFunction = pug.compileFile('views/gst_template_c.pug');
-    const data = req.body;
+    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
+
+    // const data = req.body;
     data.fontFamilyName = 'Roboto';
     data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
     gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
@@ -98,8 +100,20 @@ router.post('/', function(req, res, next) {
     // });
 
     pdf.create(html).toBuffer(function(err, buffer) {
-        var base64 = buffer.toString('base64');
-        res.send(base64);
+        if (err) {
+            res.send({
+                status: 'error',
+                data: err
+            });
+        } else {
+
+            var base64 = buffer.toString('base64');
+
+            res.send({
+                status: 'success',
+                data: base64
+            });
+        }
     });
 
 });
@@ -212,10 +226,10 @@ function formatData(inputJson) {
 
     var category = 'other';
 
-    data.txTotal = 0;
-    data.discountTotal = 0;
-    data.totalTaxRate = 0;
-    data.category = 'other';
+    var foundTax = 0;
+    var tempTax = 0;
+    var taxRate = 0;
+    var txTotal = 0;
 
     data.context.entries.forEach((function(entry, indx) {
         entry.transactions.forEach(function(trxn, trxnIndx) {
@@ -252,9 +266,31 @@ function formatData(inputJson) {
             }
 
             // Taxes
-            // if () {
-                
-            // }
+            if (data.context.label.taxes) {
+
+                foundTax = 0;
+                tempTax = 0;
+                taxRate = 0;
+                txTotal = 0;
+
+                data.context.gstTaxesTotal.forEach(function(taxWithTotal) {
+
+                    data.context.taxes.forEach(function(tax) {
+                        if (taxWithTotal.uniqueName == tax.accountUniqueName) {
+                            foundTax = 1;
+                            tempTax = tax.amount;
+                            taxRate = tax.rate;
+                            txTotal = txTotal + tempTax;
+                        }
+                    });
+
+                });
+
+                if (foundTax == 1 && trxn.category != category) {
+
+                }
+
+            }
             
 
             trxn.amountToShow = trxn.amount;
