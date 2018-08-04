@@ -6,11 +6,11 @@ files:
 
 hooks:
   AfterInstall:
-   - location: /home/ec2-user/install-pkgs
+   - location: install-pkgs
      timeout: 1200
      runas: root
 
   ApplicationStart:
-   - location: /home/ec2-user/app-start.sh
+   - location: app-start
      timeout: 120
      runas: root
