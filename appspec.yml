@@ -6,11 +6,11 @@ files:
 
 hooks:
   AfterInstall:
-   - location: install-pkgs
+   - location: codedeploy/install-pkgs.sh
      timeout: 1200
      runas: root
 
   ApplicationStart:
-   - location: app-start
+   - location: codedeploy/app-start.sh
      timeout: 120
      runas: root
