@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     // let merged = {...data, ...gst_template_a_data };
     
-    gst_template_a_data = formatData(gst_template_a_data);
+    // gst_template_a_data = formatData(gst_template_a_data);
     
     let merged = Object.assign({}, data, gst_template_a_data);
     const html = compiledFunction(merged);
@@ -287,7 +287,7 @@ function formatData(inputJson) {
                 });
 
                 if (foundTax == 1 && trxn.category != category) {
-
+                    
                 }
 
             }
