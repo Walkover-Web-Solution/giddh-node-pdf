@@ -635,7 +635,7 @@ module.exports = {
             }],
         ],
         "topMargin": "10.0px",
-        "logopath": "http://localhost/company/hubspace/image/1528356600726i1hnjya3jv",
+        "logopath": "https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg",
         "bottomMargin": "10.0px",
         "shippingState": "Kerala",
         "sumOfTaxes": [],

@@ -197,7 +197,7 @@ html
                     if context.invoiceDate
                       p #{context.invoiceDate}
                     if context.label.gstin
-                      p #{context.gstin}: #{context.gstin}
+                      p #{context.label.gstin}: #{context.gstin}
                     if context.label.pan
                       p #{context.label.pan}: #{context.pan}
       table.meta
@@ -296,7 +296,8 @@ html
 
                   if context.label.total
                     if trxn.category != category
-                      txTotal = trxn.amount + txTotal - discountTotal
+                      script
+                        | txTotal=trxn.amount + txTotal - discountTotal
                         td= txTotal
                     else 
                       trxn.amount
@@ -339,12 +340,12 @@ html
                   th.text-right
                     strong= context.gstEntriesTotal
 
-      if context.label.hsnSac
-        hsnserial = 0
-        taxableTotal = 0
-        totalAmount = 0
-        footercolumn = 2
-        distTotal = 0
+            if context.label.hsnSac
+              hsnserial = 0
+              taxableTotal = 0
+              totalAmount = 0
+              footercolumn = 2
+              distTotal = 0
 
         table.tax-table.item(cellspacing='0', cellpadding='0')
           each el, index in a
@@ -359,33 +360,88 @@ html
 
                     each tax, trxnIndx in context.gstTaxesTotal
                       th
-                        span= tax.name Rate
+                        span #{tax.name} Rate
                       th Amt.
                 tbody
                   tr
                     if context.label.hsnSac
-                      if context.label.hsnNumber
+                      if trxn.hsnNumber
                         td.text-left
+                          #{trxn.hsnNumber}
+                          small (H)
+                      else if trxn.sacNumber
+                        td.text-left
+                          #{trxn.sacNumber}
+                          small (S)
+                      else 
+                        td
 
-                    td.text-left 12345678
-                    td 10000.00
-                    td
-                      | 900.00
-                      p @9%
-                    td
-                      | 900.00
-                      p @9%
+                    each discount in el.Discounts
+                      if trxn.category != $category
+                          var discountAmount = discount.amount * -1
+                          var distTotal = distTotal + discount.amount
+
+                      if context.label.taxableValue
+                        if trxn.category != category
+                          var trWithDist = trxn.amount - distTotal
+                          taxableTotal = taxableTotal + trWithDist
+                            td.text-right= trWithDist
+                        else
+                          td
+                    
+                    each taxWithTotal in context.gstTaxesTotal
+                      var foundTax = 0
+                      var tempTax = 0
+                      var taxRate = 0
+                      each tax in entry.taxes
+                        if taxWithTotal.uniqueName == tax.accountUniqueName
+                          foundTax = 1
+                          tempTax = tax.amount
+                          taxRate = tax.rate
+                          txTotal = txTotal + tempTax
+
+                          if foundTax == 1 && trxn.category != category
+                            footercolumn = footercolumn + 2
+                              td.text-right
+                                p= taxRate
+                              td= tempTax
+                          else
+                            td.text-right 0.00
+                            td.text-right 0.00
+
                 tfoot
                   tr
                     th(colspan='1')
                     th.text-right
                       | Total 
-                      span(style='margin-left:20px;') 25550.00
-                    th.text-right 1525.00
-                    th.text-right 1525.00
+                      span(style='margin-left:20px;') #{taxableTotal}
+
+                    if context.sumOfTaxes.length > 0
+                      each sum in context.sumOfTaxes
+                        th.text-right
+                        th.text-right= sum
+                    else
+                      each tax in context.gstTaxesTotal
+                        th.text-right
+                        th.text-right
+
     #Template-footer
       table.subfooter
         tbody
+          if context.name
+            tr
+              td
+                p Name: ${context.name}
+          if context.virtualBankAcc
+            tr
+              td
+                p A/C No: ${context.virtualBankAcc}
+
+          if context.ifscCode
+            tr
+              td
+                p Ifsc: ${context.ifscCode}
+
           tr
             td(colspan='2', style='vertical-align: bottom;')
               h1.primary-clr
@@ -394,16 +450,21 @@ html
             td(style='text-align: center;vertical-align: bottom;')
               p.bdrB
               p
-                strong Walkover Web Solutions Private Limited
+                strong
+                  if context.slogan
+                    context.slogan
               p (Signature)
           tr
             td(colspan='3')
               ul.note
-                li Tax to be paid on reverse charge
-                li All payments to be made in cash. Contact us for queries on these quotations. 
+                if context.message2
+                  li= context.message2
       #pageFooter
         footer(style='text-align: center;')
           p
-            strong Walkover Web Solutions Private Limited
+            strong
+              if context.companyName
+                #{context.companyName}
           p
-            | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)
+            if context.companyAddress
+              #{context.companyAddress}
