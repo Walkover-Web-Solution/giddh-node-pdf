@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-    link(href=fontFamilyPath, rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700', rel='stylesheet')
     style(type='text/css').
       /* reset */
       * {
@@ -278,9 +278,6 @@ html
       margin: 0;
       size: A4 portrait;
       }
-      * {
-      font-family: !{fontFamilyName}, sans-serif !important;
-      }
   body
     div
       #pageHeader
@@ -289,90 +286,82 @@ html
             tbody
               tr
                 td.text-center
-                  if context.logopath
-                    img.clogo(style='max-width: 80px;', src=context.logopath, alt='')
+                  img.clogo(style='max-width: 80px;', src='https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg', alt='')
               tr
                 td.text-center
-                  h1 #{context.companyName}
+                  h1 Walkover Web Solutions Private Limited
                   p 
-                    span #{context.label.gstin}: #{context.gstin}
-                    span #{context.pan}: #{context.pan}
+                    span GSTIN: 11AAAAAA000A1Z0
+                    span PAN: AAACW9768L
       table.invoice-table(cellspacing='0', cellpadding='0')
         tbody
           tr
             td
-              h1.invoice #{context.label.formNameTaxInvoice}
+              h1.invoice TAX INVOICE
             td.pull-right
               table
                 tbody
                   tr
-                    td.text-right #{context.label.invoiceDate}: #{context.invoiceDate}
-                    td.text-right #{context.label.invoiceNumber}: #{context.invoiceNumber}
+                    td.text-right Invoice Date: 23/06/2017
+                    td.text-right Invoice No.: 201770323-64
       table.meta.cargoDetail(cellspacing='0' cellpadding='0')
         tbody
           tr
             td
               p
-                if context.customerName
-                  strong #{context.customerName}
-              p #{context.customerEmail}
-              p #{context.customerMobile}
+                strong Mr. Alok Gangrade
+              p alokgangrade@gmail.com
+              p +91 9876543210
             td
-              if context.label.billingAddress
-                p
-                  strong #{context.label.billingAddress}
-                p #{context.billingAddress[0]}
-                p #{context.billingAddress[1]}
-                p #{context.billingAddress[2]}
-                p #{context.billingAddress[3]}
-                p #{context.billingAddress[4]}
+              p
+                strong Billing Address
+              p Green Soft Solutions
+              p 24 Building Name
+              p 3rd Floor
+              p 5 A.B. Road
+              p Indore (M.P.) 452000
             td
-              if context.label.shippingAddress
-                p
-                  strong #{context.label.shippingAddress}
-                p #{context.shippingAddress[0]}
-                p #{context.shippingAddress[1]}
-                p #{context.shippingAddress[2]}
-                p #{context.shippingAddress[3]}
-                p #{context.shippingAddress[4]}
+              p
+                strong Shipping Address
+              p Green Soft Solutions
+              p 24 Building Name
+              p 3rd Floor
+              p 5 A.B. Road
+              p Indore (M.P.) 452000
           tr
             td
-              if context.showDueDate
-                p
-                  strong #{context.label.dueDate}
-                p #{context.dueDate}
+              p
+                strong Due Date
+              p 30/06/2017
             td
-              if context.label.billingGstin
-                p
-                  strong #{context.label.billingGstin}
-                p #{context.billingGstin}
+              p
+                strong GSTIN
+              p 22BBBBBB000A1Z0
             td
-              if context.label.shippingGstin
-                p
-                  strong #{context.label.shippingGstin}
-                p #{context.shippingGstin}
+              p
+                strong GSTIN
+              p 22BBBBBB000A1Z0
       table.meta
         tbody
           tr
             td
-              if context.label.shippingDate
-                strong #{context.label.shippingDate}
-                p #{context.shippingDate}
+              strong Ship Date
+              p 30/06/2017
             td
-              strong #{context.label.shippedVia}
-              p #{context.shippedVia}
+              strong Ship Via
+              p 30/06/2017
             td
-              strong #{context.label.trackingNumber}
-              p #{context.trackingNumber}
+              strong Tracking No.
+              p 323443242342
             td
-              strong #{context.label.customField1}
-              p #{context.customField1}
+              strong Custom Field 1
+              p Hello this is custom field
             td
-              strong #{context.label.customField2}
-              p #{context.customField2}
+              strong Custom Field 2
+              p 2324342424432
             td
-              strong #{context.label.customField3}
-              p #{context.customField3}
+              strong Custom Field 3
+              p Field 3
       article
         table.item(cellpadding='0', cellspacing='0')
           thead
@@ -521,19 +510,19 @@ html
               strong Taxable Amount
             td
               span
-                strong 30100.00
+                strong ₹30100.00
           tr
             th
               strong Total Tax*
             td
               span
-                strong 5920.00
+                strong ₹5920.00
           tr
             th
               strong Invoice Total
             td
               span
-                strong 36020.00
+                strong ₹36020.00
           tr
             th
               strong Invoice Total (In words)
@@ -541,29 +530,29 @@ html
               strong Thirty Six Thousand Twenty Only
     #Template-footer
       table.subfooter(cellpadding='0' cellspacing='0')
-        tbody
-          tr
-            td(colspan='2')
-              p(style='margin-bottom: 15px;')
-                strong *Tax to be paid on Reverse Charge
-              section
-                if context.message2
-                  strong
-                    h2 Notes
-                  p #{context.message2}
-            td(style='text-align: center;vertical-align: bottom;')
-              hr
-              strong
-                h3 #{context.slogan}
-              strong
-                small (Signature)
-          tr
-            td
-              strong
-                h4 Thank You for your business.
+                tbody
+                  tr
+                    td(colspan='2')
+                      p(style='margin-bottom: 15px;')
+                        strong *Tax to be paid on Reverse Charge
+                      section
+                        strong
+                          h2 Notes
+                        p All payments to be made in cash
+                        p Contact us for queries on these quotations.
+                    td(style='text-align: center;vertical-align: bottom;')
+                      hr
+                      strong
+                        h3 Walkover Web Solutions Private Limited
+                      strong
+                        small (Signature)
+                  tr
+                    td
+                      strong
+                        h4 Thank You for your business.
       #pageFooter      
         footer(style='text-align: center;')
-          if context.companyName
-            p #{context.companyName}
-          if context.companyAddress
-            p #{context.companyAddress}
+          p(contenteditable='true')
+            strong Walkover Web Solutions Private Limited
+          p(contenteditable='true')
+            | 405-406, Capt. C. S. Naydu Arcade, 10/2, Old Palasia, near Greater Kailash Hospital, Indore 452001(M. P.)

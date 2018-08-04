@@ -32,12 +32,15 @@ function getByteArray(filePath) {
 
 router.get('/', function(req, res, next) {
     // { fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:100' }
-    const compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
     // const data = req.body;
     const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
     gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     // let merged = {...data, ...gst_template_a_data };
+    
+    // gst_template_a_data = formatData(gst_template_a_data);
+    
     let merged = Object.assign({}, data, gst_template_a_data);
     const html = compiledFunction(merged);
 
@@ -48,143 +51,7 @@ router.get('/', function(req, res, next) {
     //   // res.send(result);
     //   res.download('./businesscard.pdf', 'A new name.pdf'); // { filename: '/app/businesscard.pdf' }
     // });
-    console.log(html);
-    pdf.create(html, config).toStream((err, stream) => {
-        if (err) return res.end(err.stack);
-        res.setHeader('Content-type', 'application/pdf');
-        stream.pipe(res);
-    });
-
-    // pdf.create(html).toStream(function(err, stream){
-    //   res.send(stream);
-    // });
-
-    // pdf.create(html).toBuffer(function(err, buffer){
-    //   res.send(buffer);
-    // });
-
-});
-
-router.post('/', function(req, res, next) {
-
-    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
-    const data = req.body;
-    data.fontFamilyName = 'Roboto';
-    data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
-    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
-    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
-
-    let merged = Object.assign({}, data, gst_template_a_data);
-    const html = compiledFunction(merged);
-
-    pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
-      if (err) return console.log(err);
-      result = getByteArray('./invoice.pdf');
-      res.send(result);
-    });
-    
-    // pdf.create(html, config).toStream((err, stream) => {
-    //     if (err) return res.end(err.stack);
-    //     res.setHeader('Content-type', 'application/pdf');
-    //     stream.pipe(res);
-    // });
-
-    // pdf.create(html).toStream(function(err, stream){
-    //   res.send(stream);
-    // });
-
-    // pdf.create(html).toBuffer(function(err, buffer){
-    //   res.send(buffer);
-    // });
-
-});
-
-router.post('/two', function(req, res, next) {
-
-    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
-    const data = req.body;
-    data.fontFamilyName = 'Roboto';
-    data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
-    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
-    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
-
-    let merged = Object.assign({}, data, gst_template_a_data);
-    const html = compiledFunction(merged);
-
-    // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
-    //   if (err) return console.log(err);
-    //   result = getByteArray('./invoice.pdf');
-    //   res.send(result);
-    // });
-    
-    pdf.create(html, config).toStream((err, stream) => {
-        if (err) return res.end(err.stack);
-        res.setHeader('Content-type', 'application/pdf');
-        stream.pipe(res);
-    });
-
-    // pdf.create(html).toStream(function(err, stream){
-    //   res.send(stream);
-    // });
-
-    // pdf.create(html).toBuffer(function(err, buffer){
-    //   res.send(buffer);
-    // });
-
-});
-
-router.post('/three', function(req, res, next) {
-
-    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
-    const data = req.body;
-    data.fontFamilyName = 'Roboto';
-    data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
-    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
-    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
-
-    let merged = Object.assign({}, data, gst_template_a_data);
-    const html = compiledFunction(merged);
-
-    // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
-    //   if (err) return console.log(err);
-    //   result = getByteArray('./invoice.pdf');
-    //   res.send(result);
-    // });
-    
-    // pdf.create(html, config).toStream((err, stream) => {
-    //     if (err) return res.end(err.stack);
-    //     res.setHeader('Content-type', 'application/pdf');
-    //     stream.pipe(res);
-    // });
-
-    pdf.create(html).toStream(function(err, stream){
-      res.send(stream);
-    });
-
-    // pdf.create(html).toBuffer(function(err, buffer){
-    //   res.send(buffer);
-    // });
-
-});
-
-router.post('/four', function(req, res, next) {
-
-    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
-    const data = req.body;
-    data.fontFamilyName = 'Roboto';
-    data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
-    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
-    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
-
-    let merged = Object.assign({}, data, gst_template_a_data);
-    const html = compiledFunction(merged);
-
-    // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
-    //   if (err) return console.log(err);
-    //   result = getByteArray('./invoice.pdf');
-    //   res.send(result);
-    // });
-    
+    // console.log(html);
     // pdf.create(html, config).toStream((err, stream) => {
     //     if (err) return res.end(err.stack);
     //     res.setHeader('Content-type', 'application/pdf');
@@ -196,9 +63,208 @@ router.post('/four', function(req, res, next) {
     // });
 
     pdf.create(html).toBuffer(function(err, buffer){
-      res.send(buffer);
+      var base64 = buffer.toString('base64');
+      res.send(base64);
     });
 
 });
+
+router.post('/', function(req, res, next) {
+
+    const compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    const data = req.body;
+    data.fontFamilyName = 'Roboto';
+    data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
+
+    let merged = Object.assign({}, data, gst_template_a_data);
+    const html = compiledFunction(merged);
+
+    // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
+    //   if (err) return console.log(err);
+    //   result = getByteArray('./invoice.pdf');
+    //   res.send(result);
+    // });
+    
+    // pdf.create(html, config).toStream((err, stream) => {
+    //     if (err) return res.end(err.stack);
+    //     res.setHeader('Content-type', 'application/pdf');
+    //     stream.pipe(res);
+    // });
+
+    // pdf.create(html).toStream(function(err, stream){
+    //   res.send(stream);
+    // });
+
+    pdf.create(html).toBuffer(function(err, buffer) {
+        var base64 = buffer.toString('base64');
+        res.send(base64);
+    });
+
+});
+
+// router.post('/two', function(req, res, next) {
+
+//     const compiledFunction = pug.compileFile('views/gst_template_a.pug');
+//     const data = req.body;
+//     data.fontFamilyName = 'Roboto';
+//     data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+//     gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+//     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
+
+//     let merged = Object.assign({}, data, gst_template_a_data);
+//     const html = compiledFunction(merged);
+
+//     // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
+//     //   if (err) return console.log(err);
+//     //   result = getByteArray('./invoice.pdf');
+//     //   res.send(result);
+//     // });
+    
+//     pdf.create(html, config).toStream((err, stream) => {
+//         if (err) return res.end(err.stack);
+//         res.setHeader('Content-type', 'application/pdf');
+//         stream.pipe(res);
+//     });
+
+//     // pdf.create(html).toStream(function(err, stream){
+//     //   res.send(stream);
+//     // });
+
+//     // pdf.create(html).toBuffer(function(err, buffer){
+//     //   res.send(buffer);
+//     // });
+
+// });
+
+// router.post('/three', function(req, res, next) {
+
+//     const compiledFunction = pug.compileFile('views/gst_template_a.pug');
+//     const data = req.body;
+//     data.fontFamilyName = 'Roboto';
+//     data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+//     gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+//     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
+
+//     let merged = Object.assign({}, data, gst_template_a_data);
+//     const html = compiledFunction(merged);
+
+//     // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
+//     //   if (err) return console.log(err);
+//     //   result = getByteArray('./invoice.pdf');
+//     //   res.send(result);
+//     // });
+    
+//     // pdf.create(html, config).toStream((err, stream) => {
+//     //     if (err) return res.end(err.stack);
+//     //     res.setHeader('Content-type', 'application/pdf');
+//     //     stream.pipe(res);
+//     // });
+
+//     pdf.create(html).toStream(function(err, stream){
+//       res.send(stream);
+//     });
+
+//     // pdf.create(html).toBuffer(function(err, buffer){
+//     //   res.send(buffer);
+//     // });
+
+// });
+
+// router.post('/four', function(req, res, next) {
+
+//     const compiledFunction = pug.compileFile('views/gst_template_a.pug');
+//     const data = req.body;
+//     data.fontFamilyName = 'Roboto';
+//     data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+//     gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+//     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
+
+//     let merged = Object.assign({}, data, gst_template_a_data);
+//     const html = compiledFunction(merged);
+
+//     // pdf.create(html, config).toFile('./invoice.pdf', function(err, response) {
+//     //   if (err) return console.log(err);
+//     //   result = getByteArray('./invoice.pdf');
+//     //   res.send(result);
+//     // });
+    
+//     // pdf.create(html, config).toStream((err, stream) => {
+//     //     if (err) return res.end(err.stack);
+//     //     res.setHeader('Content-type', 'application/pdf');
+//     //     stream.pipe(res);
+//     // });
+
+//     // pdf.create(html).toStream(function(err, stream){
+//     //   res.send(stream);
+//     // });
+
+//     pdf.create(html).toBuffer(function(err, buffer){
+//       res.send(buffer);
+//     });
+
+// });
+
+function formatData(inputJson) {
+
+    var data = inputJson;
+
+    var category = 'other';
+
+    data.txTotal = 0;
+    data.discountTotal = 0;
+    data.totalTaxRate = 0;
+    data.category = 'other';
+
+    data.context.entries.forEach((function(entry, indx) {
+        entry.transactions.forEach(function(trxn, trxnIndx) {
+            
+            // Serial number
+            trxn.srNumber = indx + 1;
+
+            // Item
+            if (data.context.label.item) {
+                if (trxn.stockDetails && trxn.stockDetails.name) {
+                    trxn.itemToShow = trxn.stockDetails.name;
+                }
+                if (trxn.accountName) {
+                    trxn.accountNameToShow = trxn.accountName;
+                }
+                if (trxn.stockDetails && trxn.description != trxn.stockDetails.name && trxn.description != trxn.accountName) {
+                    trxn.showDescription = true;
+                } else {
+                    trxn.showDescription = false;
+                }
+            }
+
+            // HSN/SAC
+            if (data.context.label.hsnSac) {
+                if (data.context.manageInventory) {
+                    if (trxn.hsnNumber) {
+                        trxn.hsnSacToShow = trxn.hsnNumber;
+                        trxn.hsnSacType = 'H';
+                    } else if (trxn.sacNumber) {
+                        trxn.hsnSacToShow = trxn.sacNumber;
+                        trxn.hsnSacType = 'S';
+                    }
+                }
+            }
+
+            // Taxes
+            // if () {
+                
+            // }
+            
+
+            trxn.amountToShow = trxn.amount;
+
+            console.log('the trxn is :', trxn);
+
+        });
+    }));
+
+    return data;
+}
 
 module.exports = router;

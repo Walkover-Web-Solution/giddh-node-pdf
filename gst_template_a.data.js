@@ -24,7 +24,7 @@ module.exports = {
         "billingState": "Kerala",
         "customerName": "Akhil S. Panicker",
         "entries": [
-            [{
+            {
                 "uniqueName": "rse1531139207418",
                 "discounts": [],
                 "taxes": [],
@@ -36,7 +36,7 @@ module.exports = {
                     "hsnNumber": null,
                     "sacNumber": null,
                     "description": "",
-                    "quantity": null,
+                    "quantity": 12,
                     "stockUnit": "",
                     "category": "income",
                     "taxableValue": 40.18,
@@ -68,6 +68,70 @@ module.exports = {
                     "hsnNumber": null,
                     "sacNumber": null,
                     "description": "",
+                    "quantity": 33,
+                    "stockUnit": "",
+                    "category": "other",
+                    "taxableValue": null,
+                    "date": null,
+                    "isStockTxn": null,
+                    "stockDetails": {
+                        "name": null,
+                        "uniqueName": null
+                    },
+                    "rate": 12
+                }],
+                "description": "Gift Wrap Price",
+                "taxableValue": 0.00,
+                "discountTotal": 0,
+                "nonTaxableValue": 0.00,
+                "entryDate": "09-07-2018",
+                "taxList": [],
+                "voucherType": null,
+                "entryTotal": 0.00
+            }, {
+                "uniqueName": "rse1531139207418",
+                "discounts": [],
+                "taxes": [],
+                "transactions": [{
+                    "accountName": "Shipping price",
+                    "accountUniqueName": "shippingprice",
+                    "type": "DEBIT",
+                    "amount": 40.18,
+                    "hsnNumber": null,
+                    "sacNumber": null,
+                    "description": "",
+                    "quantity": null,
+                    "stockUnit": "",
+                    "category": "income",
+                    "taxableValue": 40.18,
+                    "date": null,
+                    "isStockTxn": null,
+                    "stockDetails": {
+                        "name": null,
+                        "uniqueName": null
+                    },
+                    "rate": 33
+                }],
+                "description": "Shipping price",
+                "taxableValue": 40.18,
+                "discountTotal": 0,
+                "nonTaxableValue": 0,
+                "entryDate": "09-07-2018",
+                "taxList": [],
+                "voucherType": null,
+                "entryTotal": 40.18
+            }, {
+                "uniqueName": "y0u1531139207571",
+                "discounts": [],
+                "taxes": [],
+                "transactions": [{
+                    "accountName": "Gift Wrap Price",
+                    "accountUniqueName": "giftwrapprice",
+                    "type": "DEBIT",
+                    "amount": 0.00,
+                    "hsnNumber": null,
+                    "sacNumber": null,
+                    "description": "",
                     "quantity": null,
                     "stockUnit": "",
                     "category": "other",
@@ -78,7 +142,7 @@ module.exports = {
                         "name": null,
                         "uniqueName": null
                     },
-                    "rate": null
+                    "rate": 66
                 }],
                 "description": "Gift Wrap Price",
                 "taxableValue": 0.00,
@@ -129,7 +193,7 @@ module.exports = {
                     "accountUniqueName": "giftwrapprice",
                     "type": "DEBIT",
                     "amount": 0.00,
-                    "hsnNumber": null,
+                    "hsnNumber": 123,
                     "sacNumber": null,
                     "description": "",
                     "quantity": null,
@@ -161,71 +225,7 @@ module.exports = {
                     "accountUniqueName": "shippingprice",
                     "type": "DEBIT",
                     "amount": 40.18,
-                    "hsnNumber": null,
-                    "sacNumber": null,
-                    "description": "",
-                    "quantity": null,
-                    "stockUnit": "",
-                    "category": "income",
-                    "taxableValue": 40.18,
-                    "date": null,
-                    "isStockTxn": null,
-                    "stockDetails": {
-                        "name": null,
-                        "uniqueName": null
-                    },
-                    "rate": null
-                }],
-                "description": "Shipping price",
-                "taxableValue": 40.18,
-                "discountTotal": 0,
-                "nonTaxableValue": 0,
-                "entryDate": "09-07-2018",
-                "taxList": [],
-                "voucherType": null,
-                "entryTotal": 40.18
-            }, {
-                "uniqueName": "y0u1531139207571",
-                "discounts": [],
-                "taxes": [],
-                "transactions": [{
-                    "accountName": "Gift Wrap Price",
-                    "accountUniqueName": "giftwrapprice",
-                    "type": "DEBIT",
-                    "amount": 0.00,
-                    "hsnNumber": null,
-                    "sacNumber": null,
-                    "description": "",
-                    "quantity": null,
-                    "stockUnit": "",
-                    "category": "other",
-                    "taxableValue": null,
-                    "date": null,
-                    "isStockTxn": null,
-                    "stockDetails": {
-                        "name": null,
-                        "uniqueName": null
-                    },
-                    "rate": null
-                }],
-                "description": "Gift Wrap Price",
-                "taxableValue": 0.00,
-                "discountTotal": 0,
-                "nonTaxableValue": 0.00,
-                "entryDate": "09-07-2018",
-                "taxList": [],
-                "voucherType": null,
-                "entryTotal": 0.00
-            }, {
-                "uniqueName": "rse1531139207418",
-                "discounts": [],
-                "taxes": [],
-                "transactions": [{
-                    "accountName": "Shipping price",
-                    "accountUniqueName": "shippingprice",
-                    "type": "DEBIT",
-                    "amount": 40.18,
-                    "hsnNumber": null,
+                    "hsnNumber": 234,
                     "sacNumber": null,
                     "description": "",
                     "quantity": null,
@@ -632,7 +632,7 @@ module.exports = {
                 "taxList": [],
                 "voucherType": null,
                 "entryTotal": 250.00
-            }],
+            }
         ],
         "topMargin": "10.0px",
         "logopath": "https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg",
@@ -658,6 +658,7 @@ module.exports = {
         "leftMargin": "10.0px",
         "manageInventory": true,
         "label": {
+            "hsnSac": "hsnSac",
             "date": "Date",
             "companyName": "",
             "description": "Some label",
@@ -679,7 +680,7 @@ module.exports = {
             "billingState": "State",
             "invoiceDate": "Invoice Date",
             "customerName": "",
-            "formNameTaxInvoice": "TAX INVOICE",
+            "formNameTaxInvoice": "TAX INVOICE 1",
             "taxableValue": "Taxable Amt.",
             "companyAddress": "",
             "shippingAddress": "Shipping Address",
