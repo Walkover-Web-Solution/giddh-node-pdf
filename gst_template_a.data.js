@@ -640,7 +640,7 @@ module.exports = {
         "shippingState": "Kerala",
         "sumOfTaxes": [],
         "taxableTotal": 290.18,
-        "slogan": "",
+        "slogan": "Hello slogan",
         "paidAmount": 0.00,
         "dueDateInt": null,
         "gstin": "242323232323232",

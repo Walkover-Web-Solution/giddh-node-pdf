@@ -317,32 +317,28 @@ html#template2(lang='en')
                 th.text-left IGST
                 th.text-right 5250.00
               tr
-                th.text-left.inwords(colspan='3') Thirty Seven Thousand Seven Hundred Fifty Only
+                th.text-left.inwords(colspan='3') #{context.totalInWords}
                 th.text-left
                   strong Total
                 th.text-right
-                  strong 37750.00
+                  strong= context.balance
         table.item.pdRL3(cellspacing='0', cellpadding='0')
           thead
             tr
-              th.text-left S.No
-              th.text-left HSN/SAC
-              th Taxable Amt.
-              th IGST Rate
-              th Amt.
+              th.text-left #{context.label.sNo}
+              th.text-left #{context.label.hsnSac}
+              th #{context.label.taxableAmount}
+              th #{context.label.gstin}
+              th #{context.label.amount}
           tbody
-            tr
-              td.text-left 1
-              td.text-left 123456
-              td 25000.00
-              td 18%
-              td 4500.00
-            tr
-              td.text-left 2
-              td.text-left 654321
-              td 7500.00
-              td 10%
-              td 750.00
+            each a, idx in context.entries
+              each el, index in a
+                tr
+                  td.text-left= index + 1
+                  td.text-left #{el.transactions[0].hsnNumber ? el.transactions[0].hsnNumber : el.transactions[0].sacNumber}
+                  td #{el.transactions[0].taxableValue}
+                  td #{el.transactions[0].gstin}
+                  td #{el.transactions[0].amount}
           tfoot
             tr
               th.bdrB(colspan='2')
@@ -364,8 +360,9 @@ html#template2(lang='en')
               td(style='text-align: center;vertical-align: bottom;')
                 p.bdrB
                 p
-                  strong Walkover Web Solutions Private Limited
-                p (Signature)
+                  strong #{context.companyName}
+                if context.slogan
+                  p (#{context.slogan})
             tr
               td(colspan='3')
                 if context.message2
