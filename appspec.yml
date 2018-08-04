@@ -12,7 +12,7 @@ permissions:
 
 hooks:
   AfterInstall:
-   - location: /home/ec2-user/install-pkgs.sh
+   - location: /home/ec2-user/install-pkgs
      timeout: 1200
      runas: root
 
