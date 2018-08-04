@@ -354,7 +354,7 @@ html#default
                         td
                           if context.label.pan
                             strong #{context.label.pan}
-                            |  231323123323136
+                            |  #{context.pan}
                 td(colspan='2')
                 td.pull-right
                   table
@@ -472,14 +472,15 @@ html#default
                       td= el.entryDate
                     if context.label.item
                       td(colspan='2')= el.transactions[0].accountName
-                    if context.label.hsnSac && el.transactions[0].hsnNumber
-                      td= el.transactions[0].hsnNumber
-                      br
-                      small (H)
-                    if context.label.hsnSac && el.transactions[0].sacNumber
-                      td= el.transactions[0].sacNumber
-                      br
-                      small (S)
+                    if context.label.hsnSac
+                      if el.transactions[0].hsnNumber
+                        td= el.transactions[0].hsnNumber
+                        br
+                        small (H)
+                      if el.transactions[0].sacNumber
+                        td= el.transactions[0].sacNumber
+                        br
+                        small (S)
                     if context.label.quantity
                       td= el.transactions[0].quantity
                     if context.label.rate

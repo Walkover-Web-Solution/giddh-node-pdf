@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700', rel='stylesheet')
+    link(href=fontFamilyPath, rel='stylesheet')
     style(type='text/css').
       /* reset */
       * {
@@ -179,6 +179,9 @@ html
       .item thead tr th .fa {
         font-size: 8px !important;
       }
+      * {
+      font-family: !{fontFamilyName}, sans-serif !important;
+      }
   body
     div
       #pageHeader
@@ -187,118 +190,199 @@ html
             tbody
               tr
                 td.text-left.vmiddle
-                  img.logo(src='https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg' alt='')
+                  if context.logopath
+                    img.logo(src=context.logopath alt='')
                 td.text-right
                   figure
-                    p August 09, 2017
-                    p GSTIN: 11AAAAAA000A1Z0
-                    p PAN: AAACW9768L
+                    if context.invoiceDate
+                      p #{context.invoiceDate}
+                    if context.label.gstin
+                      p #{context.gstin}: #{context.gstin}
+                    if context.label.pan
+                      p #{context.label.pan}: #{context.pan}
       table.meta
         tbody
           tr
             td
-              h4.mrB1 Hello Shubhendra Agrawal,
+              if context.customerName
+                h4.mrB1 #{context.customerName},
               p
                 | This is a system generated 
-                strong.primary-clr INVOICE #201770323-64
-                |  due on September 15, 2017 for 
-                strong.primary-clr Insta car Technologies Private Limited
-                |  at 24 Building Name, 3rd Floor, 15
-                |                             A.B. Road, Indore (M.P.) 452000 [GSTIN:22BBBBBB000A1Z0] and the total amount is 
-                strong.primary-clr INR 945
+                strong.primary-clr INVOICE ##{context.invoiceNumber}
+                |  due on #{context.dueDate} for 
+                strong.primary-clr #{context.companyName}
+                |  at #{context.billingAddress[0]},
+                |                             #{context.billingAddress[1]} [GSTIN:#{context.gstin}] and the total amount is 
+                strong.primary-clr INR #{context.grandTotal}
                 | .
     #Template-table.pos-rel
-      table.item.product-table(cellspacing='0', cellpadding='0')
-        thead
-          tr
-            th.text-left S. No.
-            th.text-left Description
-            th HSN/SAC
-            th Tax Rate
-            th Qty.
-            th Rate
-            th Amount
-        tbody
-          tr
-            td.text-left 1
-            td.text-left Transactional Route
-            td 12345678
-            td 18%
-            td 2
-            td 5000.00
-            td 10000.00
-          tr
-            td.text-left 2
-            td.text-left Promotional Route
-            td 45484848
-            td 10%
-            td 5
-            td 2500.00
-            td 12500.00
-          tr
-            td.text-left 3
-            td.text-left Transactional Route
-            td 12345678
-            td 18%
-            td 2
-            td 5000.00
-            td 10000.00
-          tr
-            td.text-left 4
-            td.text-left Promotional Route
-            td 45484848
-            td 10%
-            td 5
-            td 2500.00
-            td 12500.00
-        tfoot
-          tr
-            th(colspan='5')
-            th.text-left Sub Total
-            th.text-right 32500.00
-          tr
-            th(colspan='5')
-            th.text-left Discount
-            th.text-right 00.00
-          tr
-            th(colspan='5')
-            th.text-left CGST
-            th.text-right 5250.00
-          tr
-            th(colspan='5')
-            th.text-left SGST
-            th.text-right 5250.00
-          tr
-            th.text-left.inwords(colspan='5') Thirty Seven Thousand Seven Hundred Fifty Only
-            th.text-left
-              strong Total
-            th.text-right
-              strong 37750.00
-      table.tax-table.item(cellspacing='0', cellpadding='0')
-        thead
-          tr
-            th.text-left HSN/SAC
-            th Taxable Amt.
-            th CGST
-            th SGST
-        tbody
-          tr
-            td.text-left 12345678
-            td 10000.00
-            td
-              | 900.00
-              p @9%
-            td
-              | 900.00
-              p @9%
-        tfoot
-          tr
-            th(colspan='1')
-            th.text-right
-              | Total 
-              span(style='margin-left:20px;') 25550.00
-            th.text-right 1525.00
-            th.text-right 1525.00
+      each a, idx in context.entries
+        table.item.product-table(cellspacing='0', cellpadding='0')
+          thead
+            tr
+              if context.label.sNo
+                th.text-left #{context.label.sNo}
+              if context.label.item
+                th.text-left #{context.label.item}
+              if context.label.hsnSac
+                th #{context.label.hsnSac}
+              if context.label.taxes
+                th Tax Rate
+              if context.label.quantity
+                th #{context.label.quantity}
+              if context.label.rate
+                th #{context.label.rate}
+              if context.label.total
+                  th #{context.label.total}
+          tbody
+            each el, index in a
+              each trxn, trxnIndx in el.transactions
+                tr
+                  if context.label.sNo
+                    td.text-left= trxnIndx + 1
+                  if context.label.item
+                    td.text-left
+                      if trxn.stockDetails.name
+                        p= trxn.stockDetails.name
+                      if trxn.accountName
+                        p= trxn.accountName
+                      if trxn.description!=trxn.stockDetails.name && trxn.description!=trxn.accountName
+                        p= trxn.description
+                  else 
+                    td.text-left
+                  if context.label.hsnSac
+                    if context.manageInventory
+                      if trxn.hsnNumber
+                        td= trxn.hsnNumber
+                          small (H)
+                      else if trxn.sacNumber
+                        td= trxn.sacNumber
+                          small (S)
+                      else
+                        td
+                    else
+                      td
+
+                    var txTotal = 0
+                    var discountTotal = 0
+                    var totalTaxRate = 0
+                    var category = "other"
+                  
+                  if context.label.taxes
+                    each taxWithTotal in context.gstTaxesTotal
+                      var foundTax = 0
+                      var tempTax = 0
+                      var taxRate = 0
+                      each tax in context.taxes
+                        if taxWithTotal.uniqueName == tax.accountUniqueName
+                          foundTax = 1
+                          tempTax = tax.amount
+                          taxRate = tax.rate
+                          txTotal = txTotal + tempTax
+                      if foundTax == 1 && trxn.category != category
+                        totalTaxRate = totalTaxRate + taxRate
+                    td
+                      p totalTaxRate
+
+                  if context.label.quantity
+                    td
+                      if trxn.quantity
+                        #{trxn.quantity} #{trxn.stockUnit}
+
+                  if context.label.rate
+                    td
+                      if trxn.rate
+                        #{trxn.rate}
+
+                  if context.label.total
+                    if trxn.category != category
+                      txTotal = trxn.amount + txTotal - discountTotal
+                        td= txTotal
+                    else 
+                      trxn.amount
+          tfoot
+            if context.label.taxableAmount
+              tr
+                th(colspan='5')
+                th.text-left #{context.label.taxableAmount}
+                th.text-right taxableAmount
+
+            if context.label.discount
+              tr
+                th(colspan='5')
+                th.text-left Discount
+                th.text-right discount.amount
+            if context.label.taxes
+              each taxmap in context.mapOfTaxes
+                tr
+                  th(colspan='5')
+                  th.text-left #{taxmap.name}
+                  th.text-right #{taxmap.total}
+            if context.paidAmount > 0
+              tr
+                th(colspan='5')
+                th.text-left Paid
+                th.text-right #{context.paidAmount}
+              tr
+                th(colspan='5')
+                th.text-left Due Amount
+                th.text-right #{context.balance}
+
+            if context.label.total
+              tr
+                if context.label.totalInWords
+                  th(colspan='5')= context.totalInWords
+                else 
+                  th
+                  th.text-left
+                    strong= context.label.total
+                  th.text-right
+                    strong= context.gstEntriesTotal
+
+      if context.label.hsnSac
+        hsnserial = 0
+        taxableTotal = 0
+        totalAmount = 0
+        footercolumn = 2
+        distTotal = 0
+
+        table.tax-table.item(cellspacing='0', cellpadding='0')
+          each el, index in a
+            each trxn, trxnIndx in el.transactions
+              if trxn.hsnNumber || trxn.sacNumber
+                thead
+                  tr
+                    if context.label.hsnSac
+                      th.text-left ${context.label.hsnSac}
+                    if context.label.taxableValue
+                      th= context.label.taxableValue
+
+                    each tax, trxnIndx in context.gstTaxesTotal
+                      th
+                        span= tax.name Rate
+                      th Amt.
+                tbody
+                  tr
+                    if context.label.hsnSac
+                      if context.label.hsnNumber
+                        td.text-left
+
+                    td.text-left 12345678
+                    td 10000.00
+                    td
+                      | 900.00
+                      p @9%
+                    td
+                      | 900.00
+                      p @9%
+                tfoot
+                  tr
+                    th(colspan='1')
+                    th.text-right
+                      | Total 
+                      span(style='margin-left:20px;') 25550.00
+                    th.text-right 1525.00
+                    th.text-right 1525.00
     #Template-footer
       table.subfooter
         tbody

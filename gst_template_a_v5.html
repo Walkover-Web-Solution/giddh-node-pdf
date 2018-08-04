@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" id="template3">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+    <style type="text/css">
+        /* reset */
+
+        #template3 * {
+            border: 0;
+            box-sizing: content-box;
+            color: #262626;
+            font-family: inherit;
+            font-size: inherit;
+            font-style: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            vertical-align: top;
+        }
+        /* NOTE:  comment padding, max-width, border in #template3 css for java */
+
+        #template3 {
+            font: 12px/1 'Open Sans', sans-serif;
+        }
+
+        #template3 header {
+            border-bottom: 1px solid #000;
+        }
+
+        #template3 .text-right {
+            text-align: right;
+        }
+
+        #template3 .text-left {
+            text-align: left !important;
+        }
+
+        #template3 .pull-right {
+            float: right;
+        }
+
+        #template3 .pull-left {
+            float: left;
+        }
+
+        #template3 table {
+            width: 100%;
+            table-layout: fixed;
+            line-height: 20px;
+            border-collapse: inherit
+        }
+
+        #template3 .logo {
+            max-width: 120px;
+            width: 100%;
+        }
+
+        #template3 strong {
+            font-weight: bold;
+        }
+
+        #template3 .item {
+            table-layout: auto !important;
+        }
+
+        #template3 .item tbody tr td,
+        #template3 .item thead tr th {
+            text-align: right;
+        }
+
+        #template3 .mrL2 {
+            margin-left: 20px;
+        }
+
+        #template3 .mrB2 {
+            margin-bottom: 20px;
+        }
+
+        #template3 .mrB1 {
+            margin-bottom: 10px;
+        }
+
+        #template3 .meta {
+            margin: 20px 0;
+        }
+
+        #template3 .meta h4 {
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 19px;
+        }
+
+        #template3 .product-table {
+            background: $secondaryColor;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        #template3 .item thead tr th {
+            padding: 14px 0px;
+            border-bottom: 1px solid #666666;
+            line-height: 1.2rem;
+            font-weight: bold;
+        }
+
+        #template3 .product-table tbody tr:last-child td {
+            padding-bottom: 50px;
+        }
+
+        #template3 .product-table:before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            content: ' ';
+            background: $secondaryColor;
+            left: -20px;
+            width: 105.1%;
+            z-index: -1;
+        }
+
+        #template3 .inwords {
+            color: #939393
+        }
+
+        #template3 .item tfoot tr th,
+        #template3 .item tbody tr td {
+            padding: 3px 0;
+        }
+
+        #template3 .item tfoot tr:last-child th {
+            border-top: 1px solid #666666;
+            padding: 14px 0px;
+            line-height: 1.2rem;
+            vertical-align: middle
+        }
+
+        #template3 .product-table tfoot tr:last-child th {
+            border-top: 0;
+        }
+
+        #template3 .product-table tfoot tr:last-child th:last-child {
+            border-top: 1px solid #666;
+            border-bottom: 4px double #666;
+        }
+
+        #template3 .tax-table p {
+            color: #595959;
+        }
+
+        #template3 .tax-table tfoot th {
+            font-weight: bold
+        }
+
+        #template3 .bdrB {
+            border-bottom: 1px solid#666;
+        }
+
+        #template3 .subfooter {
+            margin-top: 100px;
+            padding: 0 20px;
+        }
+
+        #template3 .subfooter h1 {
+            font-size: 24px;
+            margin: 10px 0 0;
+        }
+
+        #template3 .subfooter .normal {
+            font-size: 12px;
+            vertical-align: baseline
+        }
+
+        #template3 .vmiddle {
+            vertical-align: middle;
+        }
+
+        #template3 .note {
+            margin-top: 20px;
+            padding-left: 15px;
+        }
+
+        #template3 .note li {
+            list-style-type: initial;
+        }
+
+        #template3 footer {
+            border-top: 2px solid $primaryColor;
+            padding: 10px 0 0;
+            line-height: 20px;
+            margin: 0 20px;
+            margin-top: 7px;            
+        }
+
+        #template3 .pos-rel {
+            position: relative;
+        }
+
+        #template3 .primary-clr {
+            color: $primaryColor;
+        }
+
+         #Template-footer {
+                    position: fixed;
+                    left:0;
+                    right:0;
+                    width:100%;
+                    bottom:0;
+                 }
+
+
+               .page {
+                         page-break-after: always;
+                     }
+                .entryDiv {
+                    width: 100% !important;
+                    min-height: 100%;
+                    position: relative;
+                }
+                @page {
+                    /* margin: 30px 30px 20px 30px; */
+                    margin: 0;
+                    padding: 20px;
+                    size: A4 portrait;
+                    @top-center {
+                        content: element(pageHeader);
+                    }
+                }
+
+            @media print {
+                 #default table.item th,
+                 #default table.item tfoot tr th {
+                     position: relative;
+                     padding: 14px 7px;
+                     line-height: 19px;
+                 }
+                 #default footer {
+                     position: fixed;
+                     bottom: 0px;
+                     right: 0;
+                     left: 0;
+                 }
+
+                 #default header {
+                    position: relative;
+                 }
+
+                 #default header table {
+                    margin-top: 10px;
+                 }
+
+                 #if($entries.size() != 1)
+                 footer:after {
+                     counter-increment: page;
+                     content: "Page " counter(page) " of  " counter(pages);
+                     float: right;
+                     top: 100%;
+                 }
+                 #end
+
+                 default .docTitle {
+                    height: 60px !important;
+                 }
+
+                 /* #default .signature {
+                    position: fixed;
+                    padding-top: 60px;
+                    top: 840px;
+                    width: 100px;
+                    height: 100px;
+                    left: 450px;
+                    text-align: center;
+                 }*/
+
+                #default .subfooter {
+                    position: absolute;
+                    bottom: 0;
+                    right:0;
+                    left: 0;
+                    margin: 0 $rightMargin 0 $leftMargin;
+                    width: 100%;
+                 }
+
+                #content_wrap {
+                    position: relative;
+                    min-height: $minHeight;
+                    padding: $topMargin  $rightMargin  0 $leftMargin;
+                    /* margin: 100px; */
+                }
+}
+
+    #template3 .secondary-table thead tr th {
+        padding: 10px 8px;
+        border: 1px solid #ccc;
+        border-left: 0;
+        border-top: 0;            
+    }   
+    #template3 .secondary-table tbody tr td {
+        padding: 3px 8px;
+        border-right: 1px solid #ccc !important;
+    }   
+    #template3 .secondary-table tfoot tr th {
+        padding: 10px 8px !important;
+        border: 1px solid #ccc !important;
+        border-bottom-color: #ccc !important;
+        border-top-color: #ccc !important;
+        border-left: 0 !important;
+    }
+    .secondary-table {
+        margin-top: 10px;
+    }
+    #template3 .secondary-table thead tr th:last-child,  #template3 .secondary-table tbody tr td:last-child, #template3 .secondary-table tfoot tr th:last-child {
+        border-right:0 !important;            
+    }  
+
+    #template3{
+    padding:10px;
+    }
+
+    </style>
+</head>
+
+<body>
+
+    #set($serial = 0)
+    #set($tableCount = 0)
+    #set($discountCount = 0)
+
+#foreach ($entryss in $entries)
+    #set($tableCount = $tableCount +1)
+
+    <div id="template-header" id= "pageHeader">
+        <header>
+            <table class="mrB1">
+                <tbody>
+                    <tr>
+                        <td class="text-left vmiddle">
+                             #if($showlogo)    <img style="max-width: 160px;" class="clogo" src="$logopath"> </img>  #end
+                        </td>
+                        <td class="text-right">
+                            <figure>
+                                <p>#if($showSplittedDate)$invoiceDateMonth $invoiceDateInt, $invoiceDateYear #end </p>
+                              #if($label.gstin) <p>$label.gstin: $gstin</p> #end
+                              #if($label.pan) <p>$label.pan: $pan</p> #end
+                            </figure>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </header>
+
+        <table class="meta">
+            <tbody>
+                <tr>
+                    <td>
+                       #if($customerName)  <h4 class="mrB1">Hello $customerName,</h4> #end
+                        <p>This is a system generated <strong class="primary-clr">INVOICE #$invoiceNumber </strong> #if($showDueDate) due on  $dueDateMonth $dueDateInt, $dueDateYear #end for <strong>
+                        #if($customerName)$customerName #end</strong> #if($label.billingAddress)  #foreach($address in $billingAddress)  <span>$address </span> &nbsp;  #end  #end
+                       #if($label.billingGstin)  [$label.billingGstin: $billingGstin] #end and the total amount is <strong class="primary-clr">INR $grandTotal</strong>.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="Template-table" class="pos-rel">
+        <table class="item product-table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                
+                    #if($label.sNo)
+                        <th class="text-left">$label.sNo</th>
+                    #else
+                        <th class="text-left"></th>
+                    #end
+
+                    #if($label.item)
+                        <th class="text-left">$label.item</th>
+                    #else    
+                        <th class="text-left"></th>
+                    #end    
+
+                    #if($label.hsnSac)
+                        <th>$label.hsnSac</th>
+                    #else   
+                        <th></th>
+                    #end
+
+                     #if($label.taxes )
+                    <th >Tax Rate</th>
+                    #else
+                     <th></th>
+                    #end
+
+                    #if($label.quantity)
+                    <th>$label.quantity.</th>
+                    #else
+                     <th></th>
+                     #end
+
+                    #if($label.rate)
+                    <th>$label.rate</th>
+                    #else
+                    <th></th>
+                    #end
+
+                    #if($label.total)
+                    <th>$label.total</th>
+                    #else
+                    <th></th>
+                    #end
+
+                </tr>
+            </thead>
+            <tbody>
+                #foreach ($entry in $entryss)
+                #foreach ($tr in $entry.transactions)
+                #set($serial = $serial + 1)
+
+                <tr>
+                #if($label.sNo) 
+                    <td class="text-left">$serial.</td> 
+                #else  
+                    <td class="text-left"></td> 
+                #end
+
+                #if($label.item) 
+                    <td class="text-left">
+                        #if($tr.stockDetails.name)
+                            <p>$tr.stockDetails.name</p>
+                        #elseif($tr.accountName)
+                            <p>$tr.accountName</p>
+                        #end
+
+                        #if($tr.description!=$tr.stockDetails.name && $tr.description!=$tr.accountName)
+                            <p>$tr.description</p>
+                        #end
+                    </td> 
+                #else 
+                    <td class="text-left"></td>  
+                #end
+                
+                  #if($label.hsnSac)
+                 #if($manageInventory)
+                    #if($tr.hsnNumber)
+                        <td>$tr.hsnNumber
+                        <small> (H)</small>
+                        </td>
+                        #end
+                     #elseif($tr.sacNumber)
+                        <td>$tr.sacNumber
+                        <small> (S)</small>
+                        </td>
+                     #else
+                        <td></td>
+                     #end  
+                #else
+                <td></td>  
+                 #end   
+
+
+                    #set($txTotal = 0)
+                    #set($discountTotal = 0)
+                    #set($totalTaxRate = 0)
+                    #set($category = "other")
+                    #if($label.taxes )
+                        #foreach($taxWithTotal in $gstTaxesTotal)
+                            #set($foundTax = 0)
+                            #set($tempTax = 0)
+                            #set($taxRate = 0)
+                            #foreach($tax in $entry.taxes)
+                                #if($taxWithTotal.uniqueName == $tax.accountUniqueName)
+                                #set($foundTax = 1)
+                                #set($tempTax = $tax.amount)
+                                #set($taxRate = $tax.rate)
+                                #set($txTotal = $txTotal + $tempTax)
+                                #end
+                            #end
+
+                            #if($foundTax == 1 && $tr.category != $category)
+                            #set($totalTaxRate = $totalTaxRate + $taxRate )
+                            #end
+                        #end
+
+                        <td>
+                        <p>$totalTaxRate%</p>
+                        </td>
+                    #else
+                    <td></td>
+                    #end
+
+                    #if($label.quantity)
+                    <td> #if($tr.quantity) $tr.quantity $tr.stockUnit #end </td>
+                    #else
+                      <td></td>
+                    #end  
+
+                     #if($label.rate)
+                     <td class="text-right">#if($tr.rate) $tr.rate #end</td>
+                     #else
+                     <td></td>
+                     #end
+
+                    #if($label.total)
+                        #if($tr.category != $category)
+                            #set($txTotal = $tr.amount + $txTotal - $discountTotal)
+                            <td colspan="2" class="text-right"> $txTotal</td>
+                        #else
+                            <td colspan="2" class="text-right">$tr.amount</td>
+                        #end
+                    #else
+                        <td class="text-left"></td>
+                    #end
+
+                    </tr>
+                  #end
+                 #end 
+                </tr>
+            </tbody>
+            #if($tableCount == $entries.size())
+            <tfoot>
+
+               #if($label.taxableAmount)
+                <tr>
+                    <th colspan="5"></th>
+                    <th class="text-left">$label.taxableAmount</th>
+                    <th class="text-right">$taxableAmount</th>
+                </tr>
+                #end
+
+
+
+                #if($label.discount)
+                    <tr>
+                        <th colspan="5"></th>
+                        <th class="text-left">Discount</th>
+                        <th class="text-right">$discount.amount</th>
+                    </tr>
+                #end
+
+                #if($label.taxes)
+                     #foreach ($taxmap in $mapOfTaxes)
+                    <tr>
+                        <th colspan="5"></th>
+                        <th class="text-left" style="text-transform: uppercase;" >$taxmap.name</th>
+                        <th class="text-right">$taxmap.total</th>
+                    </tr>
+                    #end
+                #end
+
+                #if($paidAmount > 0)
+                    <tr>
+                        <th colspan="5"></th>
+                        <th class="text-left">Paid</th>
+                        <th class="text-right">$paidAmount</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5"></th>
+                        <th class="text-left">Due Amount</th>
+                        <th class="text-right">$balance</th>
+                    </tr>
+                #end
+
+                #if($label.total)
+                    <tr>
+                    #if($label.totalInWords)
+                        <th colspan="5" class="text-left inwords">$totalInWords</th>
+                    #else
+                    <th></th>
+                    #end
+                        <th class="text-left"><strong>$label.total</strong></th>
+                        <th class="text-right"><strong>$gstEntriesTotal</strong></th>
+                    </tr>
+                #end
+            
+            </tfoot>
+
+       
+            #end
+
+
+        </table>
+
+            #if($label.hsnSac)
+                #set($hsnserial = 0)
+                #set($taxableTotal = 0)
+                #set($totalAmount = 0)
+                #set($footercolumn = 2)
+                #set($distTotal =0)
+                <table class="item secondary-table" cellspacing="0" cellpadding="0">
+                #foreach ($entry in $entryss)
+                #foreach ($tr in $entry.transactions)
+              
+                #set($hsnserial = $hsnserial + 1)
+                #if($tr.hsnNumber || $tr.sacNumber)
+
+                 #if($hsnserial == 1)
+                <thead>
+                    <tr>
+                    #if($label.hsnSac)
+                        <th class="text-left">$label.hsnSac</th>
+                    #end
+
+                    #if($label.taxableValue)<th>$label.taxableValue</th>#end
+
+                   
+                        #foreach($tax in $gstTaxesTotal)
+                            <th><span style="text-transform: uppercase;">$tax.name</span> Rate</th>
+                            <th>Amt.</th>
+                        #end
+                  
+                    </tr>
+                </thead>
+
+                #end
+
+                <tbody>
+                <tr>
+
+                #if($label.hsnSac)
+                    #if($tr.hsnNumber)
+                        <td class="text-left">$tr.hsnNumber
+                        <small> (H)</small>
+                        </td>
+                    #elseif($tr.sacNumber)
+                        <td class="text-left">$tr.sacNumber <br/>
+                        <small>(S)</small>
+                        </td>
+                    #else
+                        <td></td>
+                    #end
+                #end
+
+
+                #foreach($discount in $entry.Discounts)
+                    #if($tr.category != $category)
+                        #set($discountAmount = $discount.amount * -1)
+                        #set($distTotal = $distTotal + $discount.amount)
+                    #end    
+                #end
+
+                #if($label.taxableValue)
+                    #if($tr.category != $category)
+                    #set($trWithDist = $tr.amount - $distTotal)
+                    #set($taxableTotal = $taxableTotal + $trWithDist )
+                        <td class="text-right">$trWithDist</td>
+                    #else
+                        <td></td>
+                    #end
+                #end
+
+                
+                    #foreach($taxWithTotal in $gstTaxesTotal)
+                        #set($foundTax = 0)
+                        #set($tempTax = 0)
+                        #set($taxRate = 0)
+                            #foreach($tax in $entry.taxes)
+                                #if($taxWithTotal.uniqueName == $tax.accountUniqueName)
+                                    #set($foundTax = 1)
+                                    #set($tempTax = $tax.amount)
+                                    #set($taxRate = $tax.rate)
+                                    #set($txTotal = $txTotal + $tempTax)
+                                #end
+                            #end
+                            #if($foundTax == 1 && $tr.category != $category)
+                                #set($footercolumn = $footercolumn + 2)
+                                <td class="text-right">
+                                <p>$taxRate%</p>
+                                </td>
+
+                                <td> $tempTax </td>
+                            #else
+                                <td class="text-right">0.00</td>
+                                <td class="text-right">0.00</td>
+                            #end
+                        #end
+              
+
+                </tr>
+
+                </tbody>
+
+                 #end
+                #end
+                #end
+ #if($taxableTotal != 0)
+                <tfoot>
+                    <tr>
+                    <th class="" ></th>
+                    <th class=" text-right"><strong>Total</strong><strong class="mrL2">$taxableTotal</strong></th>
+                    
+                     #if($sumOfTaxes.size() >0 )
+                    #foreach ($sum in $sumOfTaxes)
+                        <th  class=" text-right"></th>
+                        <th class=" text-right"><strong>$sum </strong></th>
+                    #end
+                    #else
+                        #foreach($tax in $gstTaxesTotal)
+                         <th  class=" text-right"></th>
+                        <th class=" text-right"><strong></strong></th>
+                        #end
+                    #end
+
+                        
+                    </tr>
+                </tfoot>
+               #end
+                </table>
+            #end
+        #if($tableCount != $entries.size() )
+            <div style="float:right; margin:20px; font-size: 16px; "><strong>Continued...</strong></div>
+        #end
+    </div>
+
+    <div id="Template-footer">
+        <table class="subfooter">
+            <tbody>
+#if($name)
+<tr>
+<td>
+<p> Name : $name</p></td>
+</tr>
+#end
+
+#if($virtualBankAcc)
+<tr>
+<td><p>A/C No : $virtualBankAcc </p></td>
+</tr>
+#end
+
+#if($ifscCode)
+<tr>
+<td><p> Ifsc : $ifscCode</p></td>
+</tr>
+#end
+                <tr>
+                    <td colspan="2" style="vertical-align: bottom;">
+                        <h1 class="primary-clr">THANK YOU
+                            <span class="normal primary-clr">FOR YOUR BUSINESS.</span>
+                        </h1>
+
+                    </td>
+                    <td style="text-align: center;vertical-align: bottom;">
+                        <p class="bdrB"></p>
+                        <p> <strong>#if($slogan) $slogan #end</strong></p>
+                        <p>(Signature)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <ul class="note">
+                            #if($message2)
+                                <li>$message2</li>
+                            #end
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer style="text-align: center;">
+            <p><strong>#if($companyName) $companyName #end</strong></p>
+            <p>#if($companyAddress) $companyAddress #end</p>
+            <p></p>
+        </footer>
+    </div>
+        #if($tableCount != $entries.size())
+            <div class="page"></div>
+        #end
+    #end
+</body>
+</html>

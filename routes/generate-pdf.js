@@ -32,12 +32,13 @@ function getByteArray(filePath) {
 
 router.get('/', function(req, res, next) {
     // { fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:100' }
-    const compiledFunction = pug.compileFile('views/gst_template_d.pug');
+    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
     // const data = req.body;
     const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
     gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
     gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
-    let merged = {...data, ...gst_template_a_data };
+    // let merged = {...data, ...gst_template_a_data };
+    let merged = Object.assign({}, data, gst_template_a_data);
     const html = compiledFunction(merged);
 
     // pdf.create(html, config).toFile('./businesscard.pdf', function(err, response) {
