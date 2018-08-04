@@ -4,12 +4,6 @@ files:
   - source: /
     destination: /home/ec2-user/giddh-node-pdf
 
-permissions:
-  - object: /
-     pattern: "**"
-     owner: root
-     group: root
-
 hooks:
   AfterInstall:
    - location: /home/ec2-user/install-pkgs
