@@ -188,6 +188,7 @@ function formatData(inputJson) {
     var taxRate = 0;
     var txTotal = 0;
     var totalTaxRateToShow = 0;
+    var taxableTotal = 0;
 
     data.context.entries.forEach((function(entry, indx) {
         entry.transactions.forEach(function(trxn, trxnIndx) {
@@ -251,6 +252,22 @@ function formatData(inputJson) {
                 trxn.totalTaxRateToShow = totalTaxRateToShow;
 
             }
+
+            // Discount total
+            if (trxn.discounts && trxn.discounts.length) {
+                trxn.discountTotal = 0;
+                trxn.discounts.forEach(function(discount) {
+                    if (trxn.category != category) {
+                        trxn.discountTotal = trxn.discountTotal.discountTotal + discount.amount
+                    }
+                });
+            }
+
+            // taxableValue
+            if (trxn.category != category) {
+                trxn.trWithDist = trxn.amount - trxn.discountTotal;
+                taxableTotal = taxableTotal + trxn.trWithDist;
+            }
             
 
             trxn.amountToShow = trxn.amount;
@@ -260,7 +277,7 @@ function formatData(inputJson) {
         });
     }));
 
-    data.numberOfCols = 2;
+    data.taxableTotal = taxableTotal;
 
     return data;
 }
