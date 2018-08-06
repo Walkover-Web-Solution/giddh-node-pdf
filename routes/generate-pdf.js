@@ -74,7 +74,7 @@ router.post('/', function(req, res, next) {
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     // const fontData = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
 
-    const gst_template_a_data = req.body;
+    // const gst_template_a_data = req.body;
 
     gst_template_a_data = formatData(gst_template_a_data);
 
