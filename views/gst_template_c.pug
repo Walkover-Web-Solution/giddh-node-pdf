@@ -10,7 +10,7 @@ html
         box-sizing: content-box;
         color: #262626;
         font-family: inherit;
-        font-size: 9px;
+        font-size: 11px;
         font-style: none;
         font-weight: none;
         line-height: 14px;
@@ -25,7 +25,7 @@ html
       
       header {
         border-bottom: 1px solid #000;
-        margin: 15px;
+        margin: 0 15px;
       }
       header h2 {
         font-size:16px;
@@ -76,7 +76,7 @@ html
         margin-bottom: 10px;
       }
       .meta {
-        padding: 14px 15px;
+        padding:0 14px 15px;
       }
       .meta h4 {
         font-weight: bold;
@@ -254,6 +254,9 @@ html
                   th #{context.label.total}
             tbody
               each a, idx in context.entries
+                - var taxRate = 0;
+                each tax in a.taxes
+                  - taxRate = taxRate + tax.rate
                 each trxn in a.transactions
                   tr
                     if context.label.sNo
@@ -267,42 +270,45 @@ html
                         if trxn.showDescription && trxn.description
                           p= trxn.description
                     if context.label.hsnSac
-                      if trxn.hsnSacToShow
-                        td= trxn.hsnSacToShow
-                          small (#{trxn.hsnSacType})
-                      else 
-                        td
+                      if trxn.hsnNumber
+                        td.text-right= trxn.hsnNumber
+                          span (H)
+                      else if trxn.sacNumber
+                        td.text-right= trxn.sacNumber
+                          span (S)
+                      else
+                        td.text-right -
+                    else
+                        td.text-left -
                     if context.label.taxes
-                      td= trxn.totalTaxRateToShow
+                      td= taxRate
                     if context.label.quantity
                       if trxn.quantity
                         td= trxn.quantity + trxn.stockUnit
                       else
                         td
                     if context.label.rate
-                      td.text-left= trxn.rate
+                      td.text-right= trxn.rate ? trxn.rate : '-'
                     if context.label.total
-                      td= trxn.amountToShow
+                      td= trxn.amount
             tfoot
-              if context.label.taxableAmount
-                tr
-                  th
-                  th(colspan=abc - 2)
-                  th.text-left #{context.label.taxableAmount}
-                  th.text-right #{context.taxableAmount}
+              tr
+                th
+                th(colspan=abc - 2)
+                th.text-right Sub Total
+                th.text-right #{subTotal}
               if context.label.discount
                 tr
                   th
                   th(colspan=abc - 2)
                   th.text-left Discount
                   th.text-right= context.discount.amount
-              if context.label.taxes && context.mapOfTaxes && context.mapOfTaxes.length
-                each taxmap in context.mapOfTaxes
-                  tr
+              each tax, trxnIndx in context.gstTaxesTotal
+                tr
                     th
                     th(colspan=abc - 2)
-                    th.text-left #{taxmap.name}
-                    th.text-right #{taxmap.total}
+                    th.text-right #{tax.name}
+                    th.text-right #{tax.total}
               if context.paidAmount > 0
                 tr
                   th
@@ -350,13 +356,13 @@ html
                           tr
                             if context.label.hsnSac
                               if trxn.hsnNumber
-                                td.text-left
-                                  #{trxn.hsnNumber}
-                                  small (H)
+                                td.text-left= trxn.hsnNumber
+                                  span (H)
                               else if trxn.sacNumber
-                                td.text-left
-                                  #{trxn.sacNumber}
-                                  small (S)
+                                td.text-left= trxn.sacNumber
+                                  span (S)
+                              else
+                                td.text-left -
                             else
                                 td.text-left -
 
@@ -365,33 +371,24 @@ html
                                   td.text-right= trxn.taxableValue
                               else
                                 td
-                            each taxWithTotal in context.gstTaxesTotal                            
-                              if taxWithTotal.name
-                                td.text-right= taxWithTotal.total
-                                  span %
-                                td.text-right= trxn.taxableValue*taxWithTotal.total/100
-                                if taxWithTotal.accountUniqueName == 'igst'
-                                  - igstTotal = igstTotal + trxn.taxableValue*taxWithTotal.total/100
-                                else if taxWithTotal.accountUniqueName == 'cgst'
-                                  - cgstTotal = cgstTotal = trxn.taxableValue*taxWithTotal.total/100
-                                else if taxWithTotal.accountUniqueName == 'sgst'
-                                  - sgstTotal = sgstTotal + trxn.taxableValue*taxWithTotal.total/100
+                            each tax in a.taxes
+                              each gstTax, trxnIndx in context.gstTaxesTotal
+                                if gstTax.name == tax.accountName
+                                  if tax.rate
+                                    td= tax.rate
+                                      span %
+                                    td= tax.amount
+                                  else
+                                    td -
+                                    td -
                 tfoot
                   tr
                     th.text-right total
                     th.text-right= taxableAmountTotal
-                    each taxWithTotal in context.gstTaxesTotal
-                      if taxWithTotal.accountUniqueName == 'igst'
+                      each gstTax, trxnIndx in context.gstTaxesTotal
                         th
-                        th.text-right= igstTotal
-                      else if taxWithTotal.accountUniqueName == 'cgst'
-                        th
-                        th.text-right= cgstTotal
-                      else if taxWithTotal.accountUniqueName == 'sgst'
-                        th
-                        th.text-right= sgstTotal
+                        th.text-right= gstTax.total
                                            
-
       #Template-footer
         table.subfooter
           tbody

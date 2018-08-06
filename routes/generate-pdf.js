@@ -30,7 +30,7 @@ function getByteArray(filePath) {
     // return fs.readFileSync(filePath);
 }
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     // { fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:100' }
     // const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     // // const data = req.body;
@@ -87,7 +87,7 @@ router.get('/', function(req, res, next) {
     //   // res.send(result);
     //   res.download('./businesscard.pdf', 'A new name.pdf'); // { filename: '/app/businesscard.pdf' }
     // });
-    // console.log(html);
+    console.log(html);
     pdf.create(html, config).toStream((err, stream) => {
         if (err) return res.end(err.stack);
         res.setHeader('Content-type', 'application/pdf');
@@ -105,7 +105,7 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
 
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     // const fontData = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
@@ -158,7 +158,7 @@ router.post('/', function(req, res, next) {
     //   res.send(stream);
     // });
 
-    pdf.create(html).toBuffer(function(err, buffer) {
+    pdf.create(html).toBuffer(function (err, buffer) {
         if (err) {
             res.send({
                 status: 'error',
@@ -189,9 +189,11 @@ function formatData(inputJson) {
     var txTotal = 0;
     var totalTaxRateToShow = 0;
     var taxableTotal = 0;
+    var subTotal = 0;
 
-    data.context.entries.forEach((function(entry, indx) {
-        entry.transactions.forEach(function(trxn, trxnIndx) {
+
+    data.context.entries.forEach((function (entry, indx) {
+        entry.transactions.forEach(function (trxn, trxnIndx) {
 
             // Serial number
             trxn.srNumber = indx + 1;
@@ -233,9 +235,9 @@ function formatData(inputJson) {
                 txTotal = 0;
                 totalTaxRateToShow = 0;
 
-                data.context.gstTaxesTotal.forEach(function(taxWithTotal) {
+                data.context.gstTaxesTotal.forEach(function (taxWithTotal) {
 
-                    data.context.taxes.forEach(function(tax) {
+                    data.context.taxes.forEach(function (tax) {
                         if (taxWithTotal.uniqueName == tax.accountUniqueName) {
                             foundTax = 1;
                             tempTax = tax.amount;
@@ -256,7 +258,7 @@ function formatData(inputJson) {
             // Discount total
             if (trxn.discounts && trxn.discounts.length) {
                 trxn.discountTotal = 0;
-                trxn.discounts.forEach(function(discount) {
+                trxn.discounts.forEach(function (discount) {
                     if (trxn.category != category) {
                         trxn.discountTotal = trxn.discountTotal.discountTotal + discount.amount
                     }
@@ -271,13 +273,14 @@ function formatData(inputJson) {
 
 
             trxn.amountToShow = trxn.amount;
-
+            subTotal += Number(trxn.amount);
             // console.log('the trxn is :', trxn);
 
         });
     }));
 
     data.taxableTotal = taxableTotal;
+    data.subTotal = subTotal;
 
     return data;
 }
