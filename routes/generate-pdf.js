@@ -32,17 +32,53 @@ function getByteArray(filePath) {
 
 router.get('/', function(req, res, next) {
     // { fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:100' }
+    // const compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    // // const data = req.body;
+    // const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
+    // gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+    // gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
+    // // let merged = {...data, ...gst_template_a_data };
+    
+    // gst_template_a_data = formatData(gst_template_a_data);
+    
+    // let merged = Object.assign({}, data, gst_template_a_data);
+    // const html = compiledFunction(merged);
+
+
+    // New start
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
-    // const data = req.body;
-    const data = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
-    gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
-    gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
-    // let merged = {...data, ...gst_template_a_data };
-    
+    // const fontData = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
+
+    console.log('the typeof data received form test server is :', gst_template_a_data);
+
+    if (gst_template_a_data && gst_template_a_data.invoice && gst_template_a_data.invoice[0]) {
+
+        console.log('before conversion the typeof data received form test server is :', typeof gst_template_a_data[0]);
+
+
+        gst_template_a_data = JSON.parse(gst_template_a_data.invoice[0]);
+
+        console.log('after conversion the typeof data received form test server is :', typeof gst_template_a_data);
+        console.log('after conversion the data received form test server is :', gst_template_a_data);
+    }
+
     gst_template_a_data = formatData(gst_template_a_data);
+
+    gst_template_a_data.fontFamilyName = 'Roboto';
+    gst_template_a_data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+
+    if (gst_template_a_data.context.billingAddress && gst_template_a_data.context.billingAddress.length) {
+        gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
+    }
+    if (gst_template_a_data.context.billingAddress && gst_template_a_data.context.billingAddress.length) {
+        gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
+    }
+
     
-    let merged = Object.assign({}, data, gst_template_a_data);
+
+    let merged = Object.assign({}, gst_template_a_data);
     const html = compiledFunction(merged);
+    // New end
 
     // pdf.create(html, config).toFile('./businesscard.pdf', function(err, response) {
     //   if (err) return console.log(err);
@@ -74,7 +110,7 @@ router.post('/', function(req, res, next) {
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     // const fontData = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
 
-    const gst_template_a_data = req.body;
+    var gst_template_a_data = req.body;
 
     console.log('the typeof data received form test server is :', gst_template_a_data);
 
@@ -223,6 +259,8 @@ function formatData(inputJson) {
 
         });
     }));
+
+    data.numberOfCols = 2;
 
     return data;
 }

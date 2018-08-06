@@ -218,21 +218,29 @@ html
       #Template-table.pos-rel
           table.item.product-table(cellspacing='0', cellpadding='0')
             thead
+              - var abc = 0;
               tr
                 if context.label.sNo
+                  - abc++
                   th.text-left #{context.label.sNo}
                 if context.label.item
+                  - abc++
                   th.text-left #{context.label.item}
                 if context.label.hsnSac
+                  - abc++
                   th #{context.label.hsnSac}
                 if context.label.taxes
+                  - abc++
                   th Tax Rate
                 if context.label.quantity
+                  - abc++
                   th #{context.label.quantity}
                 if context.label.rate
+                  - abc++
                   th #{context.label.rate}
                 if context.label.total
-                    th #{context.label.total}
+                  - abc++
+                  th #{context.label.total}
             tbody
               each a, idx in context.entries
                 each trxn in a.transactions
@@ -271,9 +279,10 @@ html
                       if context.label.total
                         td= trxn.amountToShow
             tfoot
+
               if context.label.taxableAmount
                 tr
-                  th(colspan='5')
+                  th(colspan=abc - 2)
                   th.text-left #{context.label.taxableAmount}
                   th.text-right #{context.taxableAmount}
 
@@ -282,12 +291,13 @@ html
                   th(colspan='5')
                   th.text-left Discount
                   th.text-right= context.discount.amount
-              if context.label.taxes
+              if context.label.taxes && context.mapOfTaxes && context.mapOfTaxes.length
                 each taxmap in context.mapOfTaxes
                   tr
                     th(colspan='5')
                     th.text-left #{taxmap.name}
                     th.text-right #{taxmap.total}
+
               if context.paidAmount > 0
                 tr
                   th(colspan='5')
@@ -412,9 +422,7 @@ html
               td(style='text-align: center;vertical-align: bottom;')
                 p.bdrB
                 p
-                  strong
-                    if context.slogan
-                      context.slogan
+                  strong= context.slogan
                 p (Signature)
             tr
               td(colspan='3')
