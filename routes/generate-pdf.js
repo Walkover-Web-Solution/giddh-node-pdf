@@ -24,8 +24,8 @@ const config = {
 function getByteArray(filePath) {
     let fileData = fs.readFileSync(filePath).toString('hex');
     let result = []
-    for (var i = 0; i < fileData.length; i+=2)
-      result.push('0x'+fileData[i]+''+fileData[i+1])
+    for (var i = 0; i < fileData.length; i += 2)
+        result.push('0x' + fileData[i] + '' + fileData[i + 1])
     return result;
     // return fs.readFileSync(filePath);
 }
@@ -38,9 +38,9 @@ router.get('/', function(req, res, next) {
     // gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
     // gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     // // let merged = {...data, ...gst_template_a_data };
-    
+
     // gst_template_a_data = formatData(gst_template_a_data);
-    
+
     // let merged = Object.assign({}, data, gst_template_a_data);
     // const html = compiledFunction(merged);
 
@@ -49,17 +49,17 @@ router.get('/', function(req, res, next) {
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     // const fontData = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
 
-    console.log('the typeof data received form test server is :', gst_template_a_data);
+    // console.log('the typeof data received form test server is :', gst_template_a_data);
 
     if (gst_template_a_data && gst_template_a_data.invoice && gst_template_a_data.invoice[0]) {
 
-        console.log('before conversion the typeof data received form test server is :', typeof gst_template_a_data[0]);
+        // console.log('before conversion the typeof data received form test server is :', typeof gst_template_a_data[0]);
 
 
         gst_template_a_data = JSON.parse(gst_template_a_data.invoice[0]);
 
-        console.log('after conversion the typeof data received form test server is :', typeof gst_template_a_data);
-        console.log('after conversion the data received form test server is :', gst_template_a_data);
+        // console.log('after conversion the typeof data received form test server is :', typeof gst_template_a_data);
+        // console.log('after conversion the data received form test server is :', gst_template_a_data);
     }
 
     gst_template_a_data = formatData(gst_template_a_data);
@@ -74,7 +74,7 @@ router.get('/', function(req, res, next) {
         gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     }
 
-    
+
 
     let merged = Object.assign({}, gst_template_a_data);
     const html = compiledFunction(merged);
@@ -137,7 +137,7 @@ router.post('/', function(req, res, next) {
         gst_template_a_data.context.shippingAddress = gst_template_a_data.context.shippingAddress[0].split(",");
     }
 
-    
+
 
     let merged = Object.assign({}, gst_template_a_data);
     const html = compiledFunction(merged);
@@ -147,7 +147,7 @@ router.post('/', function(req, res, next) {
     //   result = getByteArray('./invoice.pdf');
     //   res.send(result);
     // });
-    
+
     // pdf.create(html, config).toStream((err, stream) => {
     //     if (err) return res.end(err.stack);
     //     res.setHeader('Content-type', 'application/pdf');
@@ -192,7 +192,7 @@ function formatData(inputJson) {
 
     data.context.entries.forEach((function(entry, indx) {
         entry.transactions.forEach(function(trxn, trxnIndx) {
-            
+
             // Serial number
             trxn.srNumber = indx + 1;
 
@@ -245,7 +245,7 @@ function formatData(inputJson) {
                     });
 
                     if (foundTax == 1 && trxn.category != category) {
-                        totalTaxRateToShow = totalTaxRateToShow + taxRate; 
+                        totalTaxRateToShow = totalTaxRateToShow + taxRate;
                     }
                 });
 
@@ -266,9 +266,9 @@ function formatData(inputJson) {
             // taxableValue
             if (trxn.category != category) {
                 trxn.trWithDist = trxn.amount - trxn.discountTotal;
-                taxableTotal = taxableTotal + trxn.trWithDist;
+                taxableTotal = Number(taxableTotal) + Number(trxn.trWithDist);
             }
-            
+
 
             trxn.amountToShow = trxn.amount;
 
