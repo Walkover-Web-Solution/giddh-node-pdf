@@ -71,15 +71,25 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    console.log('the typeof data received form test server is :',typeof req.body);
-    console.log('the data received form test server is :', req.body);
-
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     // const fontData = { fontFamilyName: 'Roboto', fontFamilyPath: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' };
 
-    // const gst_template_a_data = req.body;
+    const gst_template_a_data = req.body;
+
+    console.log('the typeof data received form test server is :', gst_template_a_data);
 
     gst_template_a_data = formatData(gst_template_a_data);
+
+    if (gst_template_a_data && gst_template_a_data.invoice && gst_template_a_data.invoice[0]) {
+
+        console.log('before conversion the typeof data received form test server is :', typeof gst_template_a_data[0]);
+
+
+        gst_template_a_data = JSON.parse(gst_template_a_data.invoice[0]);
+
+        console.log('after conversion the typeof data received form test server is :', typeof gst_template_a_data);
+        console.log('after conversion the data received form test server is :', gst_template_a_data);
+    }
 
     gst_template_a_data.fontFamilyName = 'Roboto';
     gst_template_a_data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
