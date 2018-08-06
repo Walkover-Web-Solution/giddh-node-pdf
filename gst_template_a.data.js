@@ -24,7 +24,7 @@ module.exports = {
         "billingState": "Kerala",
         "customerName": "Akhil S. Panicker",
         "entries": [
-            [{
+            {
                 "uniqueName": "rse1531139207418",
                 "discounts": [],
                 "taxes": [],
@@ -632,7 +632,7 @@ module.exports = {
                 "taxList": [],
                 "voucherType": null,
                 "entryTotal": 250.00
-            }]
+            }
         ],
         "topMargin": "10.0px",
         "logopath": "https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg",
@@ -662,7 +662,7 @@ module.exports = {
             "date": "Date",
             "companyName": "",
             "description": "Some label",
-            "taxes": false,
+            "taxes": true,
             "gstin": "GSTIN",
             "pan": "PAN",
             "totalTax": "Total Tax*",

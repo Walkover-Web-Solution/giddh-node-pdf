@@ -216,7 +216,6 @@ html
                 strong.primary-clr INR #{context.grandTotal}
                 | .
       #Template-table.pos-rel
-        each a, idx in context.entries
           table.item.product-table(cellspacing='0', cellpadding='0')
             thead
               tr
@@ -228,73 +227,61 @@ html
                   th #{context.label.hsnSac}
                 if context.label.taxes
                   th Tax Rate
-                //- if context.label.quantity
-                //-   th #{context.label.quantity}
-                //- if context.label.rate
-                //-   th #{context.label.rate}
-                //- if context.label.total
-                //-     th #{context.label.total}
+                if context.label.quantity
+                  th #{context.label.quantity}
+                if context.label.rate
+                  th #{context.label.rate}
+                if context.label.total
+                    th #{context.label.total}
             tbody
-              each trxn in a.transactions
-                tr
-                  if context.label.sNo
-                    td.text-left= trxn.srNumber
-                  if context.label.item
-                    td.text-left
-                      if trxn.itemToShow
-                        p= trxn.itemToShow
-                      if trxn.accountNameToShow
-                          p= trxn.accountNameToShow
-                      if trxn.showDescription
-                        p= trxn.description
+              each a, idx in context.entries
+                each trxn in a.transactions
+                  tr
+                    if context.label.sNo
+                      td.text-left= trxn.srNumber
+                    if context.label.item
+                      td.text-left
+                        if trxn.itemToShow
+                          p= trxn.itemToShow
+                        if trxn.accountNameToShow
+                            p= trxn.accountNameToShow
+                        if trxn.showDescription
+                          p= trxn.description
 
-                    if context.label.hsnSac
-                      if trxn.hsnSacToShow
-                        td= trxn.hsnSacToShow
-                          small (#{trxn.hsnSacType})
-                      else 
+                      if context.label.hsnSac
+                        if trxn.hsnSacToShow
+                          td= trxn.hsnSacToShow
+                            small (#{trxn.hsnSacType})
+                        else 
+                          td
+
+                      if context.label.taxes
                         td
-                    
-                    //- if context.label.taxes
-                    //-   each taxWithTotal in context.gstTaxesTotal
-                    //-     var foundTax = 0
-                    //-     var tempTax = 0
-                    //-     var taxRate = 0
-                    //-     each tax in context.taxes
-                    //-       if taxWithTotal.uniqueName == tax.accountUniqueName
-                    //-         foundTax = 1
-                    //-         tempTax = tax.amount
-                    //-         taxRate = tax.rate
-                    //-         txTotal = txTotal + tempTax
-                    //-     if foundTax == 1 && trxn.category != category
-                    //-       totalTaxRate = totalTaxRate + taxRate
-                    //-   td
-                    //-     p totalTaxRate
+                          p= trxn.totalTaxRateToShow
 
-                    //- if context.label.quantity
-                    //-   td
-                    //-     if trxn.quantity
-                    //-       #{trxn.quantity} #{trxn.stockUnit}
+                      if context.label.quantity
+                        if trxn.quantity
+                          td= trxn.quantity + trxn.stockUnit
+                        else
+                          td
 
-                    //- if context.label.rate
-                    //-   td
-                    //-     if trxn.rate
-                    //-       #{trxn.rate}
+                      if context.label.rate
+                        td= trxn.rate
 
-                    //- if context.label.total
-                    //-   td= trxn.amountToShow
+                      if context.label.total
+                        td= trxn.amountToShow
             tfoot
               if context.label.taxableAmount
                 tr
-                  th(colspan='3')
+                  th(colspan='5')
                   th.text-left #{context.label.taxableAmount}
-                  th.text-right #{taxableAmount}
+                  th.text-right #{context.taxableAmount}
 
               if context.label.discount
                 tr
                   th(colspan='5')
                   th.text-left Discount
-                  th.text-right discount.amount
+                  th.text-right= context.discount.amount
               if context.label.taxes
                 each taxmap in context.mapOfTaxes
                   tr
@@ -321,13 +308,6 @@ html
                       strong= context.label.total
                     th.text-right
                       strong= context.gstEntriesTotal
-
-              //- if context.label.hsnSac
-              //-   hsnserial = 0
-              //-   taxableTotal = 0
-              //-   totalAmount = 0
-              //-   footercolumn = 2
-              //-   distTotal = 0
 
           //- table.tax-table.item(cellspacing='0', cellpadding='0')
           //-   each el, index in a
