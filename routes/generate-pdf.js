@@ -127,8 +127,8 @@ router.post('/', function(req, res, next) {
 
     gst_template_a_data = formatData(gst_template_a_data);
 
-    gst_template_a_data.fontFamilyName = 'Roboto';
-    gst_template_a_data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+    // gst_template_a_data.fontFamilyName = 'Roboto';
+    // gst_template_a_data.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
 
     if (gst_template_a_data.context.billingAddress && gst_template_a_data.context.billingAddress.length) {
         gst_template_a_data.context.billingAddress = gst_template_a_data.context.billingAddress[0].split(",");
