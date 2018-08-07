@@ -26,10 +26,6 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
     
-    if (invoiceData && invoiceData.invoice && invoiceData.invoice[0]) {
-        invoiceData = JSON.parse(invoiceData.invoice[0]);
-    }
-
     invoiceData = formatData(invoiceData);
 
     // invoiceData.fontFamilyName = 'Roboto';
@@ -72,6 +68,10 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
 }
 
 function getDataAndStartProcess(res, gst_template_data, request_method) {
+
+    if (gst_template_data && gst_template_data.invoice && gst_template_data.invoice[0]) {
+        gst_template_data = JSON.parse(gst_template_data.invoice[0]);
+    }
 
     if(gst_template_data.context.showlogo && gst_template_data.context.logopath) {
 
