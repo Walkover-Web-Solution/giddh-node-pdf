@@ -8,7 +8,7 @@ var request = require('request');
 
 const config = {
     header: {
-        height: '100px'
+        height: '130px'
     },
     footer: {
         height: '80px'
@@ -24,12 +24,12 @@ const config = {
 
 function processDataAndGenerateInvoice(res, invoiceData, method) {
 
-    const compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
 
     invoiceData = formatData(invoiceData);
 
-    // invoiceData.fontFamilyName = 'Roboto';
-    // invoiceData.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+    invoiceData.fontFamilyName = 'Roboto';
+    invoiceData.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
 
     if (invoiceData.context.billingAddress && invoiceData.context.billingAddress.length) {
         invoiceData.context.billingAddress = invoiceData.context.billingAddress[0].split(",");
@@ -59,6 +59,7 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
             }
         });
     } else if (method === 'GET') {
+        // console.log(html);
         pdf.create(html, config).toStream((err, stream) => {
             if (err) return res.end(err.stack);
             res.setHeader('Content-type', 'application/pdf');
@@ -80,11 +81,11 @@ function getDataAndStartProcess(res, gst_template_data, request_method) {
             if (err) {
                 console.log('the eerrrr is :', err);
             }
-            if (response.statusCode !== 200) {
+            if (response && response.statusCode !== 200) {
                 console.log('the response code erro is :', res);
             }
 
-            if (!err && response.statusCode === 200) {
+            if (!err && response && response.statusCode === 200) {
                 var base64data = body.toString('base64')
                 gst_template_data.context.logopath = base64data;
             }

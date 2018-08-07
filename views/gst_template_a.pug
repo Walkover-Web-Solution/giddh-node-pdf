@@ -59,7 +59,8 @@ html#default
       .docTitle {
         width: 100%;
         text-align: center;
-        height: 0px;
+        height: 15px;
+        float: left;
         position: relative;
       }
       .meta {
@@ -242,11 +243,10 @@ html#default
         margin: 0 auto;
         padding: 0px 8px;
         right: 0;
-        /* line-height: 40px; */
         vertical-align: middle;
         z-index: 0;
         left: 0;
-        top: -7px;
+        top: -13px;
       }
       p {
         margin: 0;
@@ -325,8 +325,8 @@ html#default
     div
       #pageHeader
         header
-          //- div.logo
-          //-   img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
+          div.logo
+            img.pull-left(src='data:image/png;base64,' + context.logopath)
           div
             strong
               h2 #{context.companyName}
