@@ -24,7 +24,17 @@ const config = {
 
 function processDataAndGenerateInvoice(res, invoiceData, method) {
 
-    const compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    var compiledFunction = null;
+    
+    if (invoiceData.templateUniqueName) {
+        if (invoiceData.templateUniqueName === 'gst_template_a') {
+            compiledFunction = pug.compileFile('views/gst_template_a.pug');
+        } else {
+            compiledFunction = pug.compileFile('views/gst_template_c.pug');
+        }
+    } else {
+        compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    }
 
     invoiceData = formatData(invoiceData);
 
