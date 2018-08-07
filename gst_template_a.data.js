@@ -67,7 +67,7 @@ module.exports = {
             "gstin": "GSTIN",
             "shippingGstin": "GSTIN",
             "totalTax": "Total Tax*",
-            "total": "total",
+            "total": "Total",
             "sNo": "S no.",
             "rate": "Rate/ Item",
             "totalInWords": "Invoice Total (In words)",
@@ -143,6 +143,556 @@ module.exports = {
             "taxList": [],
             "voucherType": null,
             "entryTotal": 34800.00
+        }, {
+            "uniqueName": "x2b1533574211270",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 4800.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 30000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "",
+                "quantity": 2000.00,
+                "stockUnit": "nos",
+                "category": "income",
+                "taxableValue": 30000.00,
+                "date": null,
+                "isStockTxn": true,
+                "stockDetails": {
+                    "name": "stock",
+                    "uniqueName": "stock1"
+                },
+                "rate": 15.00
+            }],
+            "description": "",
+            "taxableValue": 30000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 34800.00
+        }, {
+            "uniqueName": "x2b1533574211270",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 4800.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 30000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "",
+                "quantity": 2000.00,
+                "stockUnit": "nos",
+                "category": "income",
+                "taxableValue": 30000.00,
+                "date": null,
+                "isStockTxn": true,
+                "stockDetails": {
+                    "name": "stock",
+                    "uniqueName": "stock1"
+                },
+                "rate": 15.00
+            }],
+            "description": "",
+            "taxableValue": 30000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 34800.00
+        }, {
+            "uniqueName": "x2b1533574211270",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 4800.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 30000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "",
+                "quantity": 2000.00,
+                "stockUnit": "nos",
+                "category": "income",
+                "taxableValue": 30000.00,
+                "date": null,
+                "isStockTxn": true,
+                "stockDetails": {
+                    "name": "stock",
+                    "uniqueName": "stock1"
+                },
+                "rate": 15.00
+            }],
+            "description": "",
+            "taxableValue": 30000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 34800.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
+        }, {
+            "uniqueName": "xge1533574212004",
+            "discounts": [],
+            "taxes": [{
+                "rate": 0.00,
+                "accountName": "IGST",
+                "accountUniqueName": "igst",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 0.00,
+                "accountName": "t382",
+                "accountUniqueName": "t382",
+                "amount": 0.00,
+                "type": "DEBIT"
+            }, {
+                "rate": 16.00,
+                "accountName": "vat16",
+                "accountUniqueName": "vat16",
+                "amount": 1920.00,
+                "type": "DEBIT"
+            }],
+            "transactions": [{
+                "accountName": "Sales",
+                "accountUniqueName": "sales",
+                "type": "DEBIT",
+                "amount": 12000.00,
+                "hsnNumber": null,
+                "sacNumber": null,
+                "description": "Sales for description",
+                "quantity": null,
+                "stockUnit": "",
+                "category": "income",
+                "taxableValue": 12000.00,
+                "date": null,
+                "isStockTxn": null,
+                "stockDetails": {
+                    "name": null,
+                    "uniqueName": null
+                },
+                "rate": null
+            }],
+            "description": "Sales for description",
+            "taxableValue": 12000.00,
+            "discountTotal": 0,
+            "nonTaxableValue": 0,
+            "entryDate": "11-01-2018",
+            "taxList": [],
+            "voucherType": null,
+            "entryTotal": 13920.00
         }, {
             "uniqueName": "xge1533574212004",
             "discounts": [],

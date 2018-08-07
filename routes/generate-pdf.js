@@ -4,11 +4,11 @@ const pug = require('pug');
 var pdf = require('html-pdf');
 var fs = require('fs');
 var gst_template_a_data = require('../gst_template_a.data');
-var request=require('request');
+var request = require('request');
 
 const config = {
     header: {
-        height: '90px'
+        height: '100px'
     },
     footer: {
         height: '80px'
@@ -25,7 +25,7 @@ const config = {
 function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     const compiledFunction = pug.compileFile('views/gst_template_c.pug');
-    
+
     invoiceData = formatData(invoiceData);
 
     // invoiceData.fontFamilyName = 'Roboto';
@@ -49,9 +49,9 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
                     data: err
                 });
             } else {
-    
+
                 var base64 = buffer.toString('base64');
-    
+
                 res.send({
                     status: 'success',
                     data: base64
@@ -73,14 +73,14 @@ function getDataAndStartProcess(res, gst_template_data, request_method) {
         gst_template_data = JSON.parse(gst_template_data.invoice[0]);
     }
 
-    if(gst_template_data.context.showlogo && gst_template_data.context.logopath) {
+    if (gst_template_data.context.showlogo && gst_template_data.context.logopath) {
 
-        request.get(gst_template_data.context.logopath, {encoding: 'base64'},function(err, response, body){
+        request.get(gst_template_data.context.logopath, { encoding: 'base64' }, function(err, response, body) {
 
-            if(err) {
+            if (err) {
                 console.log('the eerrrr is :', err);
             }
-            if(response.statusCode !== 200) {
+            if (response.statusCode !== 200) {
                 console.log('the response code erro is :', res);
             }
 

@@ -33,13 +33,11 @@ html#default
       header {
         margin: 0;
         background: #fff;
-        padding: 10px 10px;
+        padding: 10px 10px 0;
       }
       header figure {
         float: left;
         font-style: normal;
-        line-height: 1.25;
-        margin: 0 0 0.3em 0;
       }
       header h2 {
         color: #df4927;
@@ -60,19 +58,18 @@ html#default
       }
       .docTitle {
         width: 100%;
-        line-height: 20px;
         text-align: center;
-        height: 30px;
+        height: 0px;
         position: relative;
       }
       .meta {
         padding: 0 10px;
         position: relative;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         float: left;
       }
       .meta tbody tr td {
-        padding: 4px 0;
+        padding: 2px 0;
         line-height: 14px;
       }
       .meta tbody tr td, .meta tbody tr th {
@@ -140,13 +137,9 @@ html#default
 
       table.item th,
       table.item tfoot tr th {
-        text-align: right;
         position: relative;
-        padding: 14px 7px;
+        padding: 10px 7px;
         line-height: 1.2rem;
-      }
-      table.item tr th:nth-child(2) {
-        text-align: left;
       }
       table.item tfoot tr th {
         padding-right: 7px;
@@ -162,35 +155,14 @@ html#default
         border-radius: 0;
         padding: 7px;
         border-top: 1px solid rgba(89, 89, 89, 0.6);
-        text-align: right;
         line-height: 1.2rem;
       }
       table.item td p {
         color: #595959;
       }
-      table.item td:nth-child(1) {
-        width: 10%;
-        text-align: right;
-      }
-      table.item td:nth-child(2) {
-        width: 38%;
-        text-align: left;
-      }
-      table.item td:nth-child(3) {
-        text-align: right;
-        width: 12%;
-      }
-      table.item td:nth-child(4) {
-        text-align: right;
-        width: 12%;
-      }
-      table.item td:nth-child(5) {
-        text-align: right;
-        width: 12%;
-      }
       /* table balance */
       table.balance {
-        width: 75%;
+        width: 100%;
         float: right;
         margin: 0px 7px 40px;
       }
@@ -221,6 +193,10 @@ html#default
         width: 100%;
         overflow: auto;
       }
+      footer h2 {
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
       
       aside {
         line-height: 1.5rem;
@@ -244,7 +220,7 @@ html#default
         right: 0;
         left: 0;
         width: 100%;
-        top: 7px;
+        top: 0;
       }
       /* .docTitle h2:before {
       content: " ";
@@ -266,11 +242,11 @@ html#default
         margin: 0 auto;
         padding: 0px 8px;
         right: 0;
-        bottom: 9px;
         /* line-height: 40px; */
         vertical-align: middle;
         z-index: 0;
         left: 0;
+        top: -7px;
       }
       p {
         margin: 0;
@@ -289,16 +265,13 @@ html#default
       .docTitle hr {
         position: absolute;
         height: 1px;
-        top: 5px;
+        top: 0px;
         width: 100%;
       }
       strong {
         font-weight: bold;
       }
       /* common template css  */
-      #pageHeader {
-        color: red;
-      }
       * {
       font-family: !{fontFamilyName}, sans-serif !important;
       }
@@ -320,7 +293,24 @@ html#default
       .item thead tr th .fa {
         font-size: 8px !important;
       }
-
+      [data-title="item"] {
+        width: calc(100% - 85%) !important;        
+      }
+      [data-title="sno"] {
+        width: 25px;
+      }
+      [data-title="date"] {
+        width: 50px;
+      }
+      .text-left {
+        text-align:left;
+      }
+      .sticky {
+        position: absolute;
+        left:0;
+        right:0;
+        bottom: 0;
+      }
       /* table { 
         page-break-inside:avoid;
         page-break-after:auto;
@@ -439,81 +429,121 @@ html#default
         img.pull-left(src='http://www.walkover.in/img/walkover-logo.png' alt='')
       #Template-table
         article
-          each a, idx in context.entries
-            table.item(cellpadding='0' cellspacing='0')
-              thead
-                tr
-                  if context.label.sNo
-                    th(style="width: 110px;") #{context.label.sNo}
-                  if context.label.date
-                    th #{context.label.date}
-                  if context.label.item
-                    th(colspan='2') #{context.label.item}
-                  if context.label.hsnSac
-                    th #{context.label.hsnSac}
-                  if context.label.quantity
-                    th #{context.label.quantity}
-                  if context.label.rate
-                    th #{context.label.rate}
-                  if context.label.discount
-                    th #{context.label.discount}
-                  if context.label.taxableValue
-                    th #{context.label.taxableValue}
-                  if context.label.taxes
-                    th #{context.label.gstTaxesTotal}
-                  if context.label.total
-                    th(colspan='2') #{context.label.total}
-              tbody
-                each el, index in a
+          table.item(cellpadding='0' cellspacing='0')
+            thead
+              tr
+                if context.label.sNo
+                  th.text-left(data-title='sno') #{context.label.sNo}
+                if context.label.date
+                  th.text-left(data-title='date') #{context.label.date}
+                if context.label.item
+                  th.text-left(data-title='item') #{context.label.item}
+                if context.label.hsnSac
+                  th.text-right(data-title='hsnsac') #{context.label.hsnSac}
+                if context.label.quantity
+                  th.text-right(data-title='quantity') #{context.label.quantity}
+                if context.label.rate
+                  th.text-right(data-title='rate') #{context.label.rate}
+                if context.label.discount
+                  th.text-right(data-title='discount') #{context.label.discount}
+                if context.label.taxableValue
+                  th.text-right(data-title='taxableValue') #{context.label.taxableValue}
+                if context.gstTaxesTotal && context.gstTaxesTotal.length
+                  each tax, trxnIndx in context.gstTaxesTotal
+                    th(data-title='tax') #{tax.name}
+                if context.label.total
+                  th.text-right(data-title='total') #{context.label.total}
+            tbody
+              each a, idx in context.entries
+                each trxn in a.transactions
                   tr
                     if context.label.sNo
-                      td= index + 1
+                      td.text-left= idx + 1
                     if context.label.date
-                      td= el.entryDate
+                      td.text-left= a.entryDate
                     if context.label.item
-                      td(colspan='2')= el.transactions[0].accountName
+                      td.text-left= trxn.accountName
                     if context.label.hsnSac
-                      if el.transactions[0].hsnNumber
-                        td= el.transactions[0].hsnNumber
-                        br
-                        small (H)
-                      if el.transactions[0].sacNumber
-                        td= el.transactions[0].sacNumber
-                        br
-                        small (S)
+                      if trxn.hsnNumber
+                        td.text-right= trxn.hsnNumber
+                          small (H)
+                      else if trxn.sacNumber
+                        td.text-right= trxn.sacNumber
+                          small (S)
+                      else
+                        td.text-right -
                     if context.label.quantity
-                      td= el.transactions[0].quantity
+                      if trxn.quantity
+                        td.text-right= trxn.quantity
+                      else
+                        td.text-right -
                     if context.label.rate
-                      td= el.transactions[0].rate
+                      if rate
+                        td.text-right= trxn.rate
+                      else
+                        td.text-right  -
                     if context.label.discount
-                      td= el.transactions.discountTotal
+                      if a.discountTotal
+                        td.text-right= a.discountTotal
+                      else
+                        td.text-right -
                     if context.label.taxableValue
-                      td= el.transactions[0].taxableValue
+                      if trxn.taxableValue
+                        td.text-right= trxn.taxableValue
+                      else
+                        td.text-right -
+                    each gstTax, trxnIndx in context.gstTaxesTotal
+                      - var taxIdx = null
+                        - taxIdx = a.taxes.findIndex(function(o){
+                          - return o.accountName == gstTax.name
+                        - });
+                      if taxIdx > -1
+                        td
+                          p.text-right #{a.taxes[taxIdx].amount}
+                          p.text-right @#{a.taxes[taxIdx].rate}%
+                      else
+                        td.text-right -
+
+                        
+                      //- if a.taxes && a.taxes.length
+                      //-   each tax in a.taxes                    
+                      //-     if gstTax.name == tax.accountName
+                      //-       if tax.rate
+                      //-         td= tax.amount
+                      //-           p
+                      //-             span @ 
+                      //-             span=tax.rate
+                      //-             span %
+                      //-       else
+                      //-         td -
+                      //- else
+                      //-   td= trxnIndx
                     if context.label.total
-                      td(colspan='2')= el.transactions[0].amount
-              tfoot
-                if context.label.sNo
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.date
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.item
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.hsnSac
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.quantity
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.rate
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.discount
-                  th.text-right(style='white-space: normal !important;')
-                if context.label.taxableValue
-                  th.text-right
-                if context.label.taxes
-                  th #{context.gstTaxesTotal}
-                if context.label.total
-                  th(colspan='2') #{context.total}
-            if idx != context.entries.length-1
-              div.pagebreak
+                      td.text-right= trxn.amount
+            tfoot
+              if context.label.sNo
+                th.text-right(style='white-space: normal !important;')
+              if context.label.date
+                th.text-right(style='white-space: normal !important;')
+              if context.label.item
+                th.text-left(style='white-space: normal !important;')
+              if context.label.hsnSac
+                th.text-right(style='white-space: normal !important;')
+              if context.label.quantity
+                th.text-right(style='white-space: normal !important;')
+              if context.label.rate
+                th.text-right(style='white-space: normal !important;')
+              if context.label.discount
+                th.text-right(style='white-space: normal !important;')
+              if context.label.taxableValue
+                th.text-right
+              if context.gstTaxesTotal && context.gstTaxesTotal.length
+                each tax, trxnIndx in context.gstTaxesTotal
+                  th.text-right #{tax.total}
+              if context.label.total
+                th #{context.total}
+          //- if idx != context.entries.length-1
+          //-   div.pagebreak
       #Template-footer
         aside
           table.balance
@@ -522,13 +552,13 @@ html#default
                 th
                   strong #{context.label.taxableAmount}
                 td
-                  span &#x20B9; #{context.taxableAmount}
+                  strong #{context.taxableAmount}
             if context.label.totalTax
               tr
                 th
                   strong #{context.label.totalTax}
                 td
-                  span &#x20B9; #{context.totalTax}
+                  strong #{context.totalTax}
             //- each val in context.commonDiscountEntries
             //-   tr
             //-     th
@@ -540,55 +570,77 @@ html#default
                 th
                   strong Round Off
                 td
-                  span &#x20B9; #{context.roundOff}
+                  strong #{context.roundOff}
             if context.label.grandTotal
               tr
                 th
                   strong #{context.label.grandTotal}
                 td
-                  span &#x20B9; #{context.grandTotal}
+                  strong #{context.grandTotal}
             if context.paidAmount > 0
               tr
                 th
                   strong Paid
                 td
-                  span &#x20B9; #{context.paidAmount}
+                  strong #{context.paidAmount}
               tr
                 th
                   strong Due Amount
                 td
-                  span &#x20B9; #{context.balance}
+                  strong #{context.balance}
             if context.totalInWords
             tr
               th
                 strong #{context.label.totalInWords}
-              td #{context.totalInWords}
-
-      table.subfooter(cellpadding='0' cellspacing='0')
-        tbody
-          tr
-            td(colspan='2')
-              p(style='margin-bottom: 15px;')
-                strong *Tax to be paid on Reverse Charge
-              section
+              td 
+                strong #{context.totalInWords}
+      if page == pages
+        table.subfooter(cellpadding='0' cellspacing='0', style='visibility: hidden')
+          tbody
+            tr
+              td(colspan='2')
+                p(style='margin-bottom: 15px;')
+                  strong *Tax to be paid on Reverse Charge
+                section
+                  strong
+                    h2 Notes
+                  if context.message1
+                    p= context.message1
+              td(style='text-align: center;vertical-align: bottom;')
+                hr
                 strong
-                  h2 Notes
-                p All payments to be made in cash
-                p Contact us for queries on these quotations.
-            td(style='text-align: center;vertical-align: bottom;')
-              hr
-              strong
-                h3 Walkover Web Solutions Private Limited
-              strong
-                small (Signature)
-          tr
-            td
-              strong
-                h4 Thank You for your business.
+                  h3 #{context.slogan}
+                strong
+                  small (Signature)
+            tr
+              td
+                strong
+                  h4 Thank You for your business.
+        table.subfooter.sticky(cellpadding='0' cellspacing='0')
+          tbody
+            tr
+              td(colspan='2')
+                p(style='margin-bottom: 15px;')
+                  strong *Tax to be paid on Reverse Charge
+                section
+                  strong
+                    h2 Notes
+                  if context.message1
+                    p= context.message1
+              td(style='text-align: center;vertical-align: bottom;')
+                hr
+                strong
+                  h3 #{context.slogan}
+                strong
+                  small (Signature)
+            tr
+              td
+                strong
+                  h4 Thank You for your business.
       #pageFooter
         footer(style='text-align: center;')
           p(style='float: left;') {{page}} / {{pages}}
           if context.companyName
-            p #{context.companyName}
+            h2 #{context.companyName}
           if context.companyAddress
             p #{context.companyAddress}
