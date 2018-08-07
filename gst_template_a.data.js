@@ -7,6 +7,7 @@ module.exports = {
     "macroLibraries": null,
     "innerContext": null,
     "context": {
+        "logopath": "https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg",
         "companyName": "New SN Corp",
         "dueDate": "07-08-2018",
         "taxes": [{
@@ -91,7 +92,7 @@ module.exports = {
         },
         "invoiceDate": "06-08-2018",
         "customerName": "mustafa",
-        "showlogo": false,
+        "showlogo": true,
         "entries": [{
             "uniqueName": "x2b1533574211270",
             "discounts": [],
@@ -225,44 +226,6 @@ module.exports = {
             "voucherType": null,
             "entryTotal": 2760.00
         }, {
-            "uniqueName": "3ww1533574212407",
-            "discounts": [],
-            "taxes": [{
-                "rate": 0.00,
-                "accountName": "IGST",
-                "accountUniqueName": "igst",
-                "amount": 0.00,
-                "type": "DEBIT"
-            }],
-            "transactions": [{
-                "accountName": "Arpit123",
-                "accountUniqueName": "arpit123o2v",
-                "type": "DEBIT",
-                "amount": 25000.00,
-                "hsnNumber": null,
-                "sacNumber": null,
-                "description": "Sale computer to Arpit",
-                "quantity": null,
-                "stockUnit": "",
-                "category": "income",
-                "taxableValue": 25000.00,
-                "date": null,
-                "isStockTxn": null,
-                "stockDetails": {
-                    "name": null,
-                    "uniqueName": null
-                },
-                "rate": null
-            }],
-            "description": "Sale computer to Arpit",
-            "taxableValue": 25000.00,
-            "discountTotal": 0,
-            "nonTaxableValue": 0,
-            "entryDate": "11-01-2018",
-            "taxList": [],
-            "voucherType": null,
-            "entryTotal": 25000.00
-        }, {
             "uniqueName": "7t11533574212523",
             "discounts": [],
             "taxes": [{
@@ -316,14 +279,14 @@ module.exports = {
         }],
         "topMargin": "10.0px",
         "bottomMargin": "10.0px",
-        "companyAddress": "",
+        "companyAddress": "WALKOVER, 405-406, Capt. C. S. Naidu Arcade, Near Greater Kailash Hospital<br />10/2 Old Palasia",
         "companyMobileNo": "9199773812",
         "shippingAddress": ["WALKOVER, 405-406, Capt. C. S. Naidu Arcade, Near Greater Kailash Hospital<br />10/2 Old Palasia"],
         "billingAddress": ["WALKOVER, 405-406, Capt. C. S. Naidu Arcade, Near Greater Kailash Hospital<br />10/2 Old Palasia"],
         "taxableTotal": 244760.00,
-        "slogan": "",
+        "slogan": "New SN Corp",
         "paidAmount": 0.00,
-        "message1": "",
+        "message1": "All payments to be made in cash. Contact us for queries on these quota ons.",
         "font": "open sans"
     },
     "chainedContext": null,

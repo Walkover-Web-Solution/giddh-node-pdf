@@ -25,7 +25,7 @@ html
       
       header {
         border-bottom: 1px solid #000;
-        margin: 0 15px;
+        margin:15px;
       }
       header h2 {
         font-size:16px;
@@ -65,7 +65,10 @@ html
       }
       .item tbody tr td:nth-child(1) {
         width: 50px;
-      }      
+      }
+      .item tbody tr td:nth-child(2) {
+        min-width: 150px;
+      }   
       .mrL2 {
         margin-left: 20px;
       }
@@ -97,7 +100,7 @@ html
         font-weight: bold;
       }
       .product-table tbody tr:last-child td {
-        padding-bottom: 50px;
+        padding-bottom: 20px;
       }
 
       .inwords {
@@ -105,12 +108,14 @@ html
       }
       .item tfoot tr th,
       .item tbody tr td {
-        padding: 3px 0;
+        padding: 2px 0;
+        font-weight: normal;
       }
       .item tfoot tr:last-child th {
-        border-top: 1px solid #666666;
+        border-top: 1px solid #666;
         padding: 7px 0px;
-        vertical-align: middle
+        vertical-align: middle;
+        border-bottom: 1px solid #666;
       }
       .product-table tfoot tr:last-child th {
         border-top: 0;
@@ -197,12 +202,11 @@ html
             tbody
               tr
                 td.text-left.vmiddle
-                  if context.logopath
-                    img.logo(src=context.logopath alt='')
+                  if context.logopath && context.showlogo
+                    img.logo(src=context.logopath)
                   else
                     strong
                       h2.primary-clr= context.companyName
-
                 td.text-right
                   figure
                     if context.invoiceDate
@@ -211,6 +215,7 @@ html
                       p #{context.label.gstin}: #{context.gstin}
                     if context.label.pan
                       p #{context.label.pan}: #{context.pan}
+      img.logo(src=context.logopath alt='', style='display:none;') 
       table.meta
         tbody
           tr
@@ -221,7 +226,7 @@ html
                 | This is a system generated 
                 strong.primary-clr INVOICE ##{context.invoiceNumber}
                 |  due on #{context.dueDate} for 
-                strong.primary-clr #{context.companyName}
+                strong #{context.companyName}
                 |  at #{context.billingAddress[0]},
                 |                             #{context.billingAddress[1]} [GSTIN:#{context.gstin}] and the total amount is 
                 strong.primary-clr INR #{context.grandTotal}
@@ -293,8 +298,8 @@ html
               tr
                 th
                 th(colspan=abc - 2)
-                th.text-right Sub Total
-                th.text-right #{subTotal}
+                th.text-left.inwords Sub Total
+                th.text-right.inwords #{subTotal}
               if context.label.discount
                 tr
                   th
@@ -305,23 +310,24 @@ html
                 tr
                     th
                     th(colspan=abc - 2)
-                    th.text-right #{tax.name}
-                    th.text-right #{tax.total}
+                    th.text-left.inwords #{tax.name}
+                    th.text-right.inwords #{tax.total}
               if context.paidAmount > 0
                 tr
                   th
                   th(colspan=abc - 2)
-                  th.text-left Paid
-                  th.text-right #{context.paidAmount}
+                  th.text-left.inwords Paid
+                  th.text-right.inwords #{context.paidAmount}
                 tr
                   th
                   th(colspan=abc - 2)
-                  th.text-left Due Amount
-                  th.text-right #{context.balance}
+                  th.text-left.inwords Due Amount
+                  th.text-right.inwords #{context.balance}
               if context.label.total
                 tr
                   if context.label.totalInWords
-                    th.text-left(colspan=abc)= context.totalInWords
+                    th.text-left.inwords(colspan=abc-1)= context.totalInWords
+                    th.text-left Total
                     th.text-right= context.grandTotal
                   else 
                     th
@@ -408,7 +414,7 @@ html
               td(colspan='2', style='vertical-align: bottom;')
                 h1.primary-clr
                   | THANK YOU
-                  span.normal FOR YOUR BUSINESS.
+                  span.normal.primary-clr FOR YOUR BUSINESS.
               td(style='text-align: center;vertical-align: bottom;')
                 p.bdrB
                 p
@@ -417,15 +423,12 @@ html
             tr
               td(colspan='3')
                 ul.note
-                  if context.message2
-                    li= context.message2
-    if context.companyName || context.companyAddress
+                  if context.message1
+                    li= context.message1
       #pageFooter
-        footer(style='text-align: center;')
-          p
-            strong
-              if context.companyName
-                #{context.companyName}
-          p
-            if context.companyAddress
-              #{context.companyAddress}
+        footer(style='text-align: center')
+          if context.companyName
+            p 
+              strong #{context.companyName}
+          if context.companyAddress
+            p #{context.companyAddress}
