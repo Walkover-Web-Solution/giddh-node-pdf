@@ -203,7 +203,7 @@ html
               tr
                 td.text-left.vmiddle
                   if context.logopath && context.showlogo
-                    img.logo(src=context.logopath)
+                    img.logo(src='data:image/png;base64,' + context.logopath)
                   else
                     strong
                       h2.primary-clr= context.companyName

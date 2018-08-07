@@ -7,7 +7,7 @@ module.exports = {
     "macroLibraries": null,
     "innerContext": null,
     "context": {
-        "logopath": "https://d1qb2nb5cznatu.cloudfront.net/startups/i/149029-007ec86f42919835fa589669ea04c9e6-medium_jpg.jpg",
+        "logopath": "http://apitest.giddh.com/company/newsncindore15000172022770ygv88/image/1533616588042fdme18dezf",
         "companyName": "New SN Corp",
         "dueDate": "07-08-2018",
         "taxes": [{
