@@ -38,8 +38,8 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     invoiceData = formatData(invoiceData);
 
-    invoiceData.fontFamilyName = 'Roboto';
-    invoiceData.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+    invoiceData.fontFamilyName = 'Titillium Web' + ', sans-serif';
+    invoiceData.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Titillium+Web';
 
     if (invoiceData.context.billingAddress && invoiceData.context.billingAddress.length) {
         invoiceData.context.billingAddress = invoiceData.context.billingAddress[0].split(",");
