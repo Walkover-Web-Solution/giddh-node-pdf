@@ -27,13 +27,13 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
     var compiledFunction = null;
     
     if (invoiceData.templateUniqueName) {
-        if (invoiceData.templateUniqueName === 'gst_template_a') {
-            compiledFunction = pug.compileFile('views/gst_template_a.pug');
-        } else {
+        if (invoiceData.templateUniqueName === 'gst_template_c') {
             compiledFunction = pug.compileFile('views/gst_template_c.pug');
+        } else {
+            compiledFunction = pug.compileFile('views/gst_template_a.pug');
         }
     } else {
-        compiledFunction = pug.compileFile('views/gst_template_c.pug');
+        compiledFunction = pug.compileFile('views/gst_template_a.pug');
     }
 
     invoiceData = formatData(invoiceData);
