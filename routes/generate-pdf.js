@@ -5,10 +5,12 @@ var pdf = require('html-pdf');
 var fs = require('fs');
 var gst_template_a_data = require('../gst_template_a.data');
 var request = require('request');
+var path = require('path');
+
 
 const config = {
     header: {
-        height: '130px'
+        // height: '130px'
     },
     footer: {
         height: '80px'
@@ -25,7 +27,7 @@ const config = {
 function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     var compiledFunction = null;
-    
+
     if (invoiceData.templateUniqueName) {
         if (invoiceData.templateUniqueName === 'gst_template_c') {
             compiledFunction = pug.compileFile('views/gst_template_c.pug');
@@ -38,13 +40,17 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     invoiceData = formatData(invoiceData);
 
-    invoiceData.fontFamilyName = 'Titillium Web' + ', sans-serif';
-    invoiceData.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Titillium+Web';
+    invoiceData.fontFamilyName = 'Roboto' + ', serif';
+    invoiceData.lightFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-regular-webfont.ttf';
+    invoiceData.mediumFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf';
+    invoiceData.boldFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf';
 
     if (invoiceData.context.billingAddress && invoiceData.context.billingAddress.length) {
+        invoiceData.context.billingAddress[0] = invoiceData.context.billingAddress[0].replace(/<br\s*[\/]?>/gi, '\n');
         invoiceData.context.billingAddress = invoiceData.context.billingAddress[0].split(",");
     }
     if (invoiceData.context.billingAddress && invoiceData.context.billingAddress.length) {
+        invoiceData.context.shippingAddress[0] = invoiceData.context.shippingAddress[0].replace(/<br\s*[\/]?>/gi, '\n');
         invoiceData.context.shippingAddress = invoiceData.context.shippingAddress[0].split(",");
     }
 
@@ -84,6 +90,11 @@ function getDataAndStartProcess(res, gst_template_data, request_method) {
         gst_template_data = JSON.parse(gst_template_data.invoice[0]);
     }
 
+    if (gst_template_data.context.showlogo && !gst_template_data.context.logopath) {
+        gst_template_data.context.logopath = 'https://raw.githubusercontent.com/Walkover-Web-Solution/giddh-node-pdf/master/public/images/dummy_logo.png';
+    }
+    // gst_template_data.context.logoSize = gst_template_data.context.logoSize ? gst_template_data.context.logoSize + 'px' : '70px';
+
     if (gst_template_data.context.showlogo && gst_template_data.context.logopath) {
 
         request.get(gst_template_data.context.logopath, { encoding: 'base64' }, function(err, response, body) {
@@ -92,7 +103,7 @@ function getDataAndStartProcess(res, gst_template_data, request_method) {
                 console.log('the eerrrr is :', err);
             }
             if (response && response.statusCode !== 200) {
-                console.log('the response code erro is :', res);
+                // console.log('the response code erro is :', res);
             }
 
             if (!err && response && response.statusCode === 200) {
@@ -108,7 +119,8 @@ function getDataAndStartProcess(res, gst_template_data, request_method) {
 }
 
 router.get('/', function(req, res, next) {
-    getDataAndStartProcess(res, gst_template_a_data, 'GET');
+    var inputData = JSON.parse(JSON.stringify(gst_template_a_data));
+    getDataAndStartProcess(res, inputData, 'GET');
 });
 
 router.post('/', function(req, res, next) {
@@ -219,6 +231,8 @@ function formatData(inputJson) {
 
     data.taxableTotal = taxableTotal;
     data.subTotal = subTotal;
+    data.fontSrc = path.join(__dirname);
+    data.context.companyAddress = data.context.companyAddress.replace(/<br\s*[\/]?>/gi, '\n');
 
     return data;
 }

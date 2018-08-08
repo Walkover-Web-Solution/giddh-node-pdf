@@ -7,7 +7,8 @@ module.exports = {
     "macroLibraries": null,
     "innerContext": null,
     "context": {
-        "logopath": "http://apitest.giddh.com/company/newsncindore15000172022770ygv88/image/1533616588042fdme18dezf",
+        "logopath": "",
+        "logoSize": "",
         "companyName": "New SN Corp",
         "dueDate": "07-08-2018",
         "taxes": [{
@@ -39,7 +40,7 @@ module.exports = {
         "gstEntriesTotal": 251480.00,
         "shippingGstin": "231456987211200",
         "totalTax": 6720.00,
-        "thanks": "",
+        "thanks": "Thank you for your business",
         "minHeight": "940.0px",
         "total": 251480.00,
         "balance": 251480.00,
@@ -87,7 +88,7 @@ module.exports = {
             "customerName": "",
             "formNameTaxInvoice": "TAX INVOICE",
             "taxableValue": "Taxable Value",
-            "shippingAddress": "Shipping Addresssd",
+            "shippingAddress": "Shipping Addresss",
             "billingAddress": "Billing Address"
         },
         "invoiceDate": "06-08-2018",

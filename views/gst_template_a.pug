@@ -1,7 +1,11 @@
 html#default
   head
     title
-    link(href=fontFamilyPath, rel='stylesheet')
+    link(href=lightFont, rel='stylesheet')
+    link(href=mediumFont, rel='stylesheet')
+    link(href=boldFont, rel='stylesheet')
+
+
     style(type='text/css').
       /* reset */
       html {
@@ -11,7 +15,6 @@ html#default
         border: 0;
         box-sizing: content-box;
         color: #262626;
-        font-family: inherit;
         font-size: 9px;
         font-style: none;
         font-weight: none;
@@ -310,6 +313,9 @@ html#default
         right:0;
         bottom: 0;
       }
+      @page {
+        margin: #{topMargin} #{rightMargin} #{bottomMargin} #{leftMargin};
+      }
       /* table { 
         page-break-inside:avoid;
         page-break-after:auto;
@@ -598,8 +604,6 @@ html#default
           tbody
             tr
               td(colspan='2')
-                p(style='margin-bottom: 15px;')
-                  strong *Tax to be paid on Reverse Charge
                 section
                   strong
                     h2 Notes
@@ -614,13 +618,11 @@ html#default
             tr
               td
                 strong
-                  h4 Thank You for your business.
+                  h4 #{context.thanks}
         table.subfooter.sticky(cellpadding='0' cellspacing='0')
           tbody
             tr
               td(colspan='2')
-                p(style='margin-bottom: 15px;')
-                  strong *Tax to be paid on Reverse Charge
                 section
                   strong
                     h2 Notes
@@ -635,10 +637,11 @@ html#default
             tr
               td
                 strong
-                  h4 Thank You for your business.
+                  h4 #{context.thanks}
       #pageFooter
         footer(style='text-align: center;')
-          p(style='float: left;') {{page}} / {{pages}}
+          if pages != '1'
+            p(style='float: left;') {{page}} / {{pages}}
           if context.companyName
             h2 #{context.companyName}
           if context.companyAddress
