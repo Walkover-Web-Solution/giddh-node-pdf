@@ -41,9 +41,9 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
     invoiceData = formatData(invoiceData);
 
     invoiceData.fontFamilyName = 'Roboto' + ', serif';
-    invoiceData.lightFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-regular-webfont.ttf';
-    invoiceData.mediumFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf';
-    invoiceData.boldFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf';
+    invoiceData.lightFont = 'https://fonts.googleapis.com/css?family=Roboto';
+    // invoiceData.mediumFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf';
+    // invoiceData.boldFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf';
 
     if (invoiceData.context.billingAddress && invoiceData.context.billingAddress.length) {
         invoiceData.context.billingAddress[0] = invoiceData.context.billingAddress[0].replace(/<br\s*[\/]?>/gi, '\n');
@@ -75,7 +75,7 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
             }
         });
     } else if (method === 'GET') {
-        // console.log(html);
+        console.log(html);
         pdf.create(html, config).toStream((err, stream) => {
             if (err) return res.end(err.stack);
             res.setHeader('Content-type', 'application/pdf');
