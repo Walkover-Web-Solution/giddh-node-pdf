@@ -40,7 +40,7 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     invoiceData = formatData(invoiceData);
 
-    invoiceData.fontFamilyName = 'Roboto';
+    // invoiceData.fontFamilyName = 'Roboto' + ', sans-serif';
     invoiceData.lightFont = 'https://fonts.googleapis.com/css?family=Roboto';
     // invoiceData.mediumFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf';
     // invoiceData.boldFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf';
