@@ -86,7 +86,7 @@ html#template2(lang='en')
         padding-bottom: 50px;
       }
       .inwords {
-        color: #939393
+        color: #222;
       }
       .item tfoot tr th,
       .item tbody tr td {
@@ -94,26 +94,29 @@ html#template2(lang='en')
         font-weight: normal;
       }
       .item tfoot tr:last-child th {
-      border-top: 1px solid #666666;
-      padding: 8px 0px;
+        border-top: 1px solid #666;
+        padding: 7px 0px;
+        vertical-align: middle;
+      }
+      .tax-table tr:last-child th {
+        border-bottom: 1px solid #666;
       }
       .bdrB {
       border-bottom: 1px solid#666;
       }
       .subfooter {
-      margin-top: 60px;
-      padding: 0 10px;
+        margin-top: 100px;
+        padding: 0 10px;
+      }
+      .subfooter hr {
+        width: 100%;
+        border-bottom: 1px solid #000;
+        margin: 3px 0;
       }
       .subfooter h1 {
-      font-size: 18px;
-      color: #df4927;
-      margin: 10px 0 0;
-      font-weight:  600;
-      }
-      .subfooter h4 {
-      font-size: 10px;
-      color: #df4927;
-      font-weight:  600;
+        font-size: 16px;
+        color: #df4927;
+        text-transform: uppercase;
       }
       .vmiddle {
       vertical-align: middle;
@@ -193,7 +196,10 @@ html#template2(lang='en')
         text-align: center;
       }
       * {
-        font-family: !{fontFamilyName}, sans-serif !important;
+        font-family: !{fontFamilyName} !important;
+      }
+      .tax-table {
+        margin-top: 10px;
       }
   body
     div
@@ -217,7 +223,7 @@ html#template2(lang='en')
                         span.mrL2 #{context.label.pan}: #{context.pan}
                 td.text-right.vmiddle
                   .pos-rel
-                    img.logo(src=context.logoPath alt='')
+                    img.logo(src='data:image/png;base64,' + context.logopath)
       table.meta.pdRL3
         tbody
           tr
@@ -262,117 +268,203 @@ html#template2(lang='en')
               if context.label.trackingNumber
                 strong #{context.label.trackingNumber}:
                 span  #{context.trackingNumber}
-      br
-      br
       #Template-table.pos-rel
-        span.arrow-down
-        each a, idx in context.entries
-          table.item.product-table.pdRL3(cellspacing='0', cellpadding='0')
+          table.item.product-table(cellspacing='0', cellpadding='0')
             thead
+              - var abc = 0;
               tr
                 if context.label.sNo
-                  th.text-left #{context.label.sNo}
+                  - abc++
+                  th.text-left(style='width:50px;') #{context.label.sNo}
                 if context.label.item
-                  th.text-left #{context.label.item}
+                  - abc++
+                  th.text-left(colspan=2) #{context.label.item}
                 if context.label.hsnSac
+                  - abc++
                   th #{context.label.hsnSac}
                 if context.label.taxes
-                  th #{context.label.gstTaxesTotal}
+                  - abc++
+                  th Tax Rate
                 if context.label.quantity
+                  - abc++
                   th #{context.label.quantity}
                 if context.label.rate
+                  - abc++
                   th #{context.label.rate}
                 if context.label.total
+                  - abc++
                   th #{context.label.total}
             tbody
-              each el, index in a
-                tr
-                  if context.label.sNo
-                    td.text-left= index + 1
-                  if context.label.item
-                    td.text-left= el.transactions[0].accountName
-                  if context.label.hsnSac
-                    td #{el.transactions[0].hsnNumber ? el.transactions[0].hsnNumber : el.transactions[0].sacNumber}
-                  if context.label.taxes
-                    td #{el.transactions[0].taxableValue}%
-                  if context.label.quantity
-                    td #{el.transactions[0].quantity}
-                  if context.label.rate
-                    td #{el.transactions[0].rate}
-                  if context.label.total
-                    td #{el.transactions[0].amount}
-              tr
-                td(colspan='5')
+              each a, idx in context.entries
+                - var taxRate = 0;
+                each tax in a.taxes
+                  - taxRate = taxRate + tax.rate
+                each trxn in a.transactions
+                  tr
+                    if context.label.sNo
+                      td.text-left= trxn.srNumber
+                    if context.label.item
+                      td.text-left(colspan=2)
+                        if trxn.itemToShow
+                          p= trxn.itemToShow
+                        if trxn.accountNameToShow
+                            p= trxn.accountNameToShow
+                        if trxn.showDescription && trxn.description
+                          p= trxn.description
+                    if context.label.hsnSac
+                      if trxn.hsnNumber
+                        td.text-right= trxn.hsnNumber
+                          span (H)
+                      else if trxn.sacNumber
+                        td.text-right= trxn.sacNumber
+                          span (S)
+                      else
+                        td.text-right -
+                    if context.label.taxes
+                      td= taxRate
+                    if context.label.quantity
+                      if trxn.quantity
+                        td= trxn.quantity + trxn.stockUnit
+                      else
+                        td
+                    if context.label.rate
+                      td.text-right= trxn.rate ? trxn.rate : '-'
+                    if context.label.total
+                      td= trxn.amount
             tfoot
               tr
-                th(colspan='3')
-                th.text-left Sub Total
-                th.text-right 32500.00
-              tr
-                th(colspan='3')
-                th.text-left Discount
-                th.text-right 00.00
-              tr
-                th(colspan='3')
-                th.text-left IGST
-                th.text-right 5250.00
-              tr
-                th.text-left.inwords(colspan='3') #{context.totalInWords}
-                th.text-left
-                  strong Total
-                th.text-right
-                  strong= context.balance
-        table.item.pdRL3(cellspacing='0', cellpadding='0')
-          thead
-            tr
-              th.text-left #{context.label.sNo}
-              th.text-left #{context.label.hsnSac}
-              th #{context.label.taxableAmount}
-              th #{context.label.gstin}
-              th #{context.label.amount}
-          tbody
-            each a, idx in context.entries
-              each el, index in a
+                th
+                th(colspan=abc - 2)
+                th.text-left.inwords Sub Total
+                th.text-right.inwords #{subTotal}
+              if context.label.discount
                 tr
-                  td.text-left= index + 1
-                  td.text-left #{el.transactions[0].hsnNumber ? el.transactions[0].hsnNumber : el.transactions[0].sacNumber}
-                  td #{el.transactions[0].taxableValue}
-                  td #{el.transactions[0].gstin}
-                  td #{el.transactions[0].amount}
-          tfoot
-            tr
-              th.bdrB(colspan='2')
-              th.bdrB.text-right(colspan='1')
-              th.bdrB.text-right
-                strong Total
-                strong.mrL2 32500.00
-              th.text-right.bdrB
-                strong 5250.00
+                  th
+                  th(colspan=abc - 2)
+                  th.text-left Discount
+                  th.text-right= context.discount.amount
+              each tax, trxnIndx in context.gstTaxesTotal
+                tr
+                    th
+                    th(colspan=abc - 2)
+                    th.text-left.inwords #{tax.name}
+                    th.text-right.inwords #{tax.total}
+              if context.paidAmount > 0
+                tr
+                  th
+                  th(colspan=abc - 2)
+                  th.text-left.inwords Paid
+                  th.text-right.inwords #{context.paidAmount}
+                tr
+                  th
+                  th(colspan=abc - 2)
+                  th.text-left.inwords Due Amount
+                  th.text-right.inwords #{context.balance}
+              if context.label.total
+                tr
+                  if context.label.totalInWords
+                    th.text-left.inwords(colspan=abc-1)= context.totalInWords
+                    th.text-left
+                      strong Total
+                    th.text-right
+                      strong #{context.grandTotal}
+                  else 
+                    th
+                    th.text-left
+                      strong= context.label.total
+                    th.text-right
+                      strong= context.gstEntriesTotal
+                
+          table.tax-table.item(cellspacing='0', cellpadding='0')
+                - var taxableAmountTotal = 0
+                - cgstTotal = 0
+                - igstTotal = 0
+                - sgstTotal = 0    
+                thead
+                  tr
+                    if context.label.hsnSac
+                      th.text-left #{context.label.hsnSac}
+                    else
+                      th.text-left HSN/SAC
+                    if context.label.taxableValue
+                      th= context.label.taxableValue
+                    each tax, trxnIndx in context.gstTaxesTotal
+                      th
+                        span #{tax.name} Rate
+                      th Amt.
+                tbody                                                  
+                  each a, idx in context.entries
+                    each trxn in a.transactions
+                      - taxableAmountTotal = taxableAmountTotal + trxn.taxableValue                  
+                          tr
+                            if context.label.hsnSac
+                              if trxn.hsnNumber
+                                td.text-left= trxn.hsnNumber
+                                  span (H)
+                              else if trxn.sacNumber
+                                td.text-left= trxn.sacNumber
+                                  span (S)
+                              else
+                                td.text-left -
+                            else
+                                td.text-left -
+
+                            if context.label.taxableValue
+                              if trxn.category != category
+                                  td.text-right= trxn.taxableValue
+                              else
+                                td
+                            each tax in a.taxes
+                              each gstTax, trxnIndx in context.gstTaxesTotal
+                                if gstTax.name == tax.accountName
+                                  if tax.rate
+                                    td= tax.rate
+                                      span %
+                                    td= tax.amount
+                                  else
+                                    td -
+                                    td -
+                tfoot
+                  tr
+                    th.text-right total
+                    th.text-right= taxableAmountTotal
+                      each gstTax, trxnIndx in context.gstTaxesTotal
+                        th
+                        th.text-right= gstTax.total
       #Template-footer.pdRL3
         table.subfooter
           tbody
-            tr
-              td(style='vertical-align: bottom;')
-              if context.thanks
-                h1 THANK YOU
-                h4 FOR YOUR BUSINESS.
-              td
-              td(style='text-align: center;vertical-align: bottom;')
-                p.bdrB
-                p
-                  strong #{context.companyName}
-                if context.slogan
-                  p (#{context.slogan})
-            tr
-              td(colspan='3')
-                if context.message2
+            if context.name
+              tr
+                td
+                  p Name: ${context.name}
+            if context.virtualBankAcc
+              tr
+                td
+                  p A/C No: ${context.virtualBankAcc}
+
+            if context.ifscCode
+              tr
+                td
+                  p Ifsc: ${context.ifscCode}
+            if context.thanks
+              tr
+                td(colspan='2', style='vertical-align: top;')
+                  h1.primary-clr #{context.thanks}
+                td(style='text-align: center;vertical-align: bottom;')
+                  p.bdrB(style='margin-top: 10px;')
+                  p
+                    strong=context.slogan
+                  p (Signature)
+            if context.message1            
+              tr
+                td(colspan='3')
                   ul.note
-                    li #{context.message2}
+                      li= context.message1
       #pageFooter
         footer(style='text-align: center;')
           if context.companyName
             p 
               strong #{context.companyName}
           if context.companyAddress
-            p 
-              strong #{context.companyAddress}
+            p #{context.companyAddress}

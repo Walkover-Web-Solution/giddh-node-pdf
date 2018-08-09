@@ -19,7 +19,6 @@ html
         padding: 0;
         text-decoration: none;
         vertical-align: top;
-        font-family: 'Open Sans', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
       header {
@@ -27,7 +26,7 @@ html
       }
       header h1 {
       /* margin-bottom: 10px; */
-        font-size: 12px;
+        font-size: 14px;
         color: #DF4927;
       }
        header p {
@@ -66,8 +65,9 @@ html
         border-collapse: inherit
       }
        .logo {
-      max-width: 120px;
-      width: 100%;
+        max-width: 70px;
+        width: 100%;
+        margin-bottom: 10px;
       }
        strong {
       font-weight: bold;
@@ -106,6 +106,9 @@ html
       }
       .meta tbody tr td, .meta tbody tr th {
           border: 0;
+      }
+      .meta tbody tr td p {
+        padding-right: 7px;
       }
        .meta h4 {
       font-weight: bold;
@@ -149,17 +152,7 @@ html
        table.item tr th:nth-child(1),  table.item tr th:nth-child(2),  table.item tr th:nth-child(3) {
       vertical-align: middle;
       }
-       table.item td:nth-child(2) {
-      width: 38%;
-      text-align: left;
-      }
-       table.item td:nth-child(3),  table.item th:nth-child(3) {
-      width: 18%;
-      text-align: left;
-      }
-       table.item td:nth-child(1) {
-      width: 26%;
-      }
+
        .item td{
       border-radius: 0;
       padding: 7px;
@@ -194,10 +187,6 @@ html
       padding: 14px 0px;
       line-height: 1.2rem;
       vertical-align: middle
-      }
-       table.item td:nth-child(5), #silver table.item th:nth-child(5) {
-      width: 13%;
-      text-align: right;
       }
       /* table balance */
       table.balance {
@@ -236,7 +225,7 @@ html
         margin: 3px 0;
       }
       .subfooter h4 {
-        font-size: 14px;
+        font-size: 10px;
         color: #df4927;
         margin: 10px 0 0
       }
@@ -255,7 +244,6 @@ html
         margin-top: 7px;
         border-top: 1px solid #DF4927;
         padding: 8px 5px;
-        background: #F5F5F5;
         height: 100%;
         vertical-align: middle;
       }
@@ -274,12 +262,27 @@ html
        .secondry_clr {
       color: #4b4c4f;
       }
-      @page {
-      margin: 0;
-      size: A4 portrait;
-      }
+
       * {
-      font-family: !{fontFamilyName}, sans-serif !important;
+      font-family: !{fontFamilyName} !important;
+      }
+      .space-between {
+        margin: 0 7px;
+      }
+      .cName h1 {
+        margin-bottom:7px;
+      }
+      .cargoDetail {
+        margin-top: 10px;
+      }
+      [data-title="item"] {
+        width: calc(100% - 85%) !important;        
+      }
+      [data-title="sno"] {
+        width: 25px;
+      }
+      [data-title="date"] {
+        width: 50px;
       }
   body
     div
@@ -287,15 +290,16 @@ html
         header
           table
             tbody
+              if context.logopath
+                tr
+                  td.text-center
+                      img.logo(src='data:image/png;base64,' + context.logopath)
               tr
-                td.text-center
-                  if context.logopath
-                    img.clogo(style='max-width: 80px;', src=context.logopath, alt='')
-              tr
-                td.text-center
+                td.text-center.cName
                   h1 #{context.companyName}
                   p 
                     span #{context.label.gstin}: #{context.gstin}
+                    span.space-between
                     span #{context.pan}: #{context.pan}
       table.invoice-table(cellspacing='0', cellpadding='0')
         tbody
@@ -306,8 +310,10 @@ html
               table
                 tbody
                   tr
-                    td.text-right #{context.label.invoiceDate}: #{context.invoiceDate}
-                    td.text-right #{context.label.invoiceNumber}: #{context.invoiceNumber}
+                    td.text-right 
+                      span #{context.label.invoiceDate}: #{context.invoiceDate}
+                      span.space-between
+                      span #{context.label.invoiceNumber}: #{context.invoiceNumber}
       table.meta.cargoDetail(cellspacing='0' cellpadding='0')
         tbody
           tr
@@ -351,216 +357,208 @@ html
                 p
                   strong #{context.label.shippingGstin}
                 p #{context.shippingGstin}
-      table.meta
-        tbody
-          tr
-            td
-              if context.label.shippingDate
-                strong #{context.label.shippingDate}
-                p #{context.shippingDate}
-            td
-              strong #{context.label.shippedVia}
-              p #{context.shippedVia}
-            td
-              strong #{context.label.trackingNumber}
-              p #{context.trackingNumber}
-            td
-              strong #{context.label.customField1}
-              p #{context.customField1}
-            td
-              strong #{context.label.customField2}
-              p #{context.customField2}
-            td
-              strong #{context.label.customField3}
-              p #{context.customField3}
-      article
-        table.item(cellpadding='0', cellspacing='0')
-          thead
-            tr
-              th HSN/SAC
-              th(colspan='2') Item
-              th Qty.
-              th Rate/ Item
-              th Dis./ Item
-              th Taxable Value
-              th SGST
-              th CGST
-              th CESS
-              th(colspan='2') Total
+      if context.label.shippingDate || context.label.shippedVia || context.label.trackingNumber || context.label.customField1 || context.label.customField2 || context.label.customField3
+        table.meta
           tbody
             tr
-              td 123456
-              td(colspan='2') Dummy Product Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
               td
-                | 9700.00
-                p @10%
+                if context.label.shippingDate
+                  strong #{context.label.shippingDate}
+                  p #{context.shippingDate}
               td
-                | 970.00
-                p @10%
+                strong #{context.label.shippedVia}
+                p #{context.shippedVia}
               td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-            tr
-              td 123456
-              td(colspan='2') Dummy Product Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
+                strong #{context.label.trackingNumber}
+                p #{context.trackingNumber}
               td
-                | 9700.00
-                p @10%
+                strong #{context.label.customField1}
+                p #{context.customField1}
               td
-                | 970.00
-                p @10%
+                strong #{context.label.customField2}
+                p #{context.customField2}
               td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-            tr
-              td 123456
-              td(colspan='2') Dummy Product Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
-              td
-                | 9700.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-            tr
-              td 123456
-              td(colspan='2') Dummy Product Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
-              td
-                | 9700.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-            tr
-              td 123456
-              td(colspan='2') Dummy Product Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
-              td
-                | 9700.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-            tr
-              td 123456
-              td(colspan='2') Dummy Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
-              td
-                | 9700.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-            tr
-              td 123456
-              td(colspan='2') Dummy Edition 2
-              td 10 No.
-              td 1000.00
-              td 30.00
-              td 9700.00
-              td
-                | 9700.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td
-                | 970.00
-                p @10%
-              td(colspan='2') 11000344640.00
-          tfoot
-            tr
-              td(colspan='6')   
-              td 30100.00
-              td 30100.00
-              td 30100.00
-              td 30100.00
-              td(colspan='2') 30100.00
-        table.balance
-          tr
-            th
-              strong Taxable Amount
-            td
-              span
-                strong 30100.00
-          tr
-            th
-              strong Total Tax*
-            td
-              span
-                strong 5920.00
-          tr
-            th
-              strong Invoice Total
-            td
-              span
-                strong 36020.00
-          tr
-            th
-              strong Invoice Total (In words)
-            td
-              strong Thirty Six Thousand Twenty Only
+                strong #{context.label.customField3}
+                p #{context.customField3}
+      #Template-table
+        article
+          table.item(cellpadding='0' cellspacing='0')
+            thead
+              tr
+                if context.label.sNo
+                  th.text-left(data-title='sno') #{context.label.sNo}
+                if context.label.date
+                  th.text-left(data-title='date') #{context.label.date}
+                if context.label.item
+                  th.text-left(data-title='item') #{context.label.item}
+                if context.label.hsnSac
+                  th.text-right(data-title='hsnsac') #{context.label.hsnSac}
+                if context.label.quantity
+                  th.text-right(data-title='quantity') #{context.label.quantity}
+                if context.label.rate
+                  th.text-right(data-title='rate') #{context.label.rate}
+                if context.label.discount
+                  th.text-right(data-title='discount') #{context.label.discount}
+                if context.label.taxableValue
+                  th.text-right(data-title='taxableValue') #{context.label.taxableValue}
+                if context.gstTaxesTotal && context.gstTaxesTotal.length
+                  each tax, trxnIndx in context.gstTaxesTotal
+                    th(data-title='tax') #{tax.name}
+                if context.label.total
+                  th.text-right(data-title='total') #{context.label.total}
+            tbody
+              each a, idx in context.entries
+                each trxn in a.transactions
+                  tr
+                    if context.label.sNo
+                      td.text-left= idx + 1
+                    if context.label.date
+                      td.text-left= a.entryDate
+                    if context.label.item
+                      td.text-left= trxn.accountName
+                    if context.label.hsnSac
+                      if trxn.hsnNumber
+                        td.text-right= trxn.hsnNumber
+                          small (H)
+                      else if trxn.sacNumber
+                        td.text-right= trxn.sacNumber
+                          small (S)
+                      else
+                        td.text-right -
+                    if context.label.quantity
+                      if trxn.quantity
+                        td.text-right= trxn.quantity
+                      else
+                        td.text-right -
+                    if context.label.rate
+                      if rate
+                        td.text-right= trxn.rate
+                      else
+                        td.text-right  -
+                    if context.label.discount
+                      if a.discountTotal
+                        td.text-right= a.discountTotal
+                      else
+                        td.text-right -
+                    if context.label.taxableValue
+                      if trxn.taxableValue
+                        td.text-right= trxn.taxableValue
+                      else
+                        td.text-right -
+                    each gstTax, trxnIndx in context.gstTaxesTotal
+                      - var taxIdx = null
+                        - taxIdx = a.taxes.findIndex(function(o){
+                          - return o.accountName == gstTax.name
+                        - });
+                      if taxIdx > -1
+                        td
+                          p.text-right #{a.taxes[taxIdx].amount}
+                          p.text-right @#{a.taxes[taxIdx].rate}%
+                      else
+                        td.text-right -
+
+                        
+                      //- if a.taxes && a.taxes.length
+                      //-   each tax in a.taxes                    
+                      //-     if gstTax.name == tax.accountName
+                      //-       if tax.rate
+                      //-         td= tax.amount
+                      //-           p
+                      //-             span @ 
+                      //-             span=tax.rate
+                      //-             span %
+                      //-       else
+                      //-         td -
+                      //- else
+                      //-   td= trxnIndx
+                    if context.label.total
+                      td.text-right= trxn.amount
+            tfoot
+              if context.label.sNo
+                th.text-right(style='white-space: normal !important;')
+              if context.label.date
+                th.text-right(style='white-space: normal !important;')
+              if context.label.item
+                th.text-left(style='white-space: normal !important;')
+              if context.label.hsnSac
+                th.text-right(style='white-space: normal !important;')
+              if context.label.quantity
+                th.text-right(style='white-space: normal !important;')
+              if context.label.rate
+                th.text-right(style='white-space: normal !important;')
+              if context.label.discount
+                th.text-right(style='white-space: normal !important;')
+              if context.label.taxableValue
+                th.text-right
+              if context.gstTaxesTotal && context.gstTaxesTotal.length
+                each tax, trxnIndx in context.gstTaxesTotal
+                  th.text-right #{tax.total}
+              if context.label.total
+                th #{context.total}
     #Template-footer
-      table.subfooter(cellpadding='0' cellspacing='0')
-        tbody
-          tr
+        aside
+          table.balance
+            if context.label.taxableAmount
+              tr
+                th
+                  strong #{context.label.taxableAmount}
+                td
+                  strong #{context.taxableAmount}
+            if context.label.totalTax
+              tr
+                th
+                  strong #{context.label.totalTax}
+                td
+                  strong #{context.totalTax}
+            if context.roundOff
+              tr
+                th
+                  strong Round Off
+                td
+                  strong #{context.roundOff}
+            if context.label.grandTotal
+              tr
+                th
+                  strong #{context.label.grandTotal}
+                td
+                  strong #{context.grandTotal}
+            if context.paidAmount > 0
+              tr
+                th
+                  strong Paid
+                td
+                  strong #{context.paidAmount}
+              tr
+                th
+                  strong Due Amount
+                td
+                  strong #{context.balance}
+            if context.totalInWords
+            tr
+              th
+                strong #{context.label.totalInWords}
+              td 
+                strong #{context.totalInWords}
+    table.subfooter(cellpadding='0' cellspacing='0')
+      tbody
+        tr
+          if context.message1
             td(colspan='2')
-              p(style='margin-bottom: 15px;')
-                strong *Tax to be paid on Reverse Charge
               section
-                if context.message2
-                  strong
-                    h2 Notes
-                  p #{context.message2}
-            td(style='text-align: center;vertical-align: bottom;')
-              hr
-              strong
-                h3 #{context.slogan}
-              strong
-                small (Signature)
+                strong
+                  h2 Notes
+                p= context.message1
+          td(style='text-align: center;vertical-align: bottom;')
+            hr
+            strong
+              h3 #{context.slogan}
+            strong
+              small (Signature)
+        if context.thanks
           tr
             td
               strong
-                h4 Thank You for your business.
+                h4 #{context.thanks}
       #pageFooter      
         footer(style='text-align: center;')
           if context.companyName

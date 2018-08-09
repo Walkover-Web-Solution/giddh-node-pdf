@@ -1,7 +1,7 @@
 html#default
   head
     title
-    link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet')
+    link(href=fontFamilyPath, rel='stylesheet')
     //- link(href=mediumFont, rel='stylesheet')
     //- link(href=boldFont, rel='stylesheet')
 
@@ -34,7 +34,6 @@ html#default
       }
       header {
         margin: 0;
-        background: #fff;
         padding: 10px 10px 0;
       }
       header figure {
@@ -47,7 +46,7 @@ html#default
         display: block;
         margin-bottom: 6px;
       }
-      .numDetail strong {
+      .numDetail span {
         width: 50px;
         float: left;
       }
@@ -316,6 +315,13 @@ html#default
       @page {
         margin: #{topMargin} #{rightMargin} #{bottomMargin} #{leftMargin};
       }
+      #pageHeader {
+        background: #f2f2f2;
+      }
+      .col-xs-6 {
+        width: 50%;
+        float: left;
+      }
       /* table { 
         page-break-inside:avoid;
         page-break-after:auto;
@@ -332,9 +338,11 @@ html#default
         header
           div.logo
             img.pull-left(src='data:image/png;base64,' + context.logopath)
-          div
+          div.col-xs-6.pull-left
             strong
               h2 #{context.companyName}
+          div.col-xs-6.text-right(style="float: right;")
+            h2 #{context.label.formNameTaxInvoice}
           table(cellspacing='0' cellpadding='0')
             tbody
               tr
@@ -343,12 +351,12 @@ html#default
                     tbody
                       tr
                         td
-                          strong #{context.label.gstin}
+                          span #{context.label.gstin}
                           |  #{context.gstin}
                       tr
                         td
                           if context.label.pan
-                            strong #{context.label.pan}
+                            span #{context.label.pan}
                             |  #{context.pan}
                 td(colspan='2')
                 td.pull-right
@@ -356,24 +364,15 @@ html#default
                     tbody
                       tr
                         td
-                          strong #{context.label.invoiceDate}
+                          span #{context.label.invoiceDate}
                         td #{context.invoiceDate}
                       tr
                         td
-                          strong #{context.label.invoiceNumber}
+                          span #{context.label.invoiceNumber}
                         td #{context.invoiceNumber}
-          .docTitle
-            h2(title=context.label.formNameTaxInvoice)
-              hr(style='background-color: #df4927;')
       table.meta.cargoDetail(cellspacing='0' cellpadding='0')
         tbody
           tr
-            td
-              if context.customerName || context.customerEmail || context.customerMobile
-                p
-                  strong #{context.customerName}
-                p #{context.customerEmail}
-                p #{context.customerMobile}
             td
               if context.label.billingAddress
                 p
@@ -392,12 +391,34 @@ html#default
                 p #{context.shippingAddress[2]}
                 p #{context.shippingAddress[3]}
                 p #{context.shippingAddress[4]}
-          tr
             td
-              if context.showDueDate
-                p
-                  strong #{context.label.dueDate}
-                p #{context.dueDate}
+              table
+                tbody
+                  if context.label.shippingDate
+                    tr
+                      td
+                        label #{context.label.shippingDate} #{context.shippingDate}
+                  if context.label.shippedVia
+                    tr
+                      td
+                        label #{context.label.shippedVia} #{context.shippedVia}
+                  if context.label.trackingNumber
+                    tr
+                      td
+                        label #{context.label.trackingNumber} #{context.trackingNumber}
+                  if context.label.customField1
+                    tr
+                      td
+                        label #{context.label.customField1} #{context.customField1}
+                  if context.label.customField2
+                    tr
+                      td
+                        label #{context.label.customField2} #{context.customField2}
+                  if context.label.customField3
+                    tr
+                      td
+                        label #{context.label.customField3} #{context.customField3}
+          tr
             td
               if context.label.billingGstin
                 p
@@ -408,6 +429,18 @@ html#default
                 p
                   strong #{context.label.shippingGstin}
                 p #{context.shippingGstin}
+          tr
+            td
+              if context.customerName || context.customerEmail || context.customerMobile
+                p
+                  strong #{context.customerName}
+                p #{context.customerEmail}
+                p #{context.customerMobile}
+            td
+              if context.showDueDate
+                p
+                  strong #{context.label.dueDate}
+                p #{context.dueDate}
       table.meta
         tbody
           tr

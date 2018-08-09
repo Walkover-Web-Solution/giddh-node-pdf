@@ -28,20 +28,50 @@ function processDataAndGenerateInvoice(res, invoiceData, method) {
 
     var compiledFunction = null;
 
-    if (invoiceData.templateUniqueName) {
-        if (invoiceData.templateUniqueName === 'gst_template_c') {
-            compiledFunction = pug.compileFile('views/gst_template_c.pug');
-        } else {
-            compiledFunction = pug.compileFile('views/gst_template_a.pug');
-        }
-    } else {
-        compiledFunction = pug.compileFile('views/gst_template_a.pug');
-    }
+    // if (invoiceData.templateUniqueName) {
+    //     // if (invoiceData.templateUniqueName === 'gst_template_c') {
+    //     //     compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    //     // } else if()
+    //     //  else {
+    //     //     compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    //     // }
 
+
+    //     // mustafa 
+    //     // switch (invoiceData.templateUniqueName) {
+    //     //     case 'gst_template_a':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    //     //         break;
+    //     //     case 'gst_template_b':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_b.pug');
+    //     //         break;
+    //     //     case 'gst_template_c':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_c.pug');
+    //     //         break;
+    //     //     case 'gst_template_d':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_d.pug');
+    //     //         break;
+    //     //     case 'gst_template_e':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_e.pug');
+    //     //     case 'gst_template_f':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_f.pug');
+    //     //         break;
+    //     //     case 'gst_template_g':
+    //     //         compiledFunction = pug.compileFile('views/gst_template_g.pug');
+    //     //         break;
+    //     //     default:
+    //     //         compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    //     //         break;
+    //     // }
+
+    // } else {
+    //     compiledFunction = pug.compileFile('views/gst_template_a.pug');
+    // }
+    compiledFunction = pug.compileFile('views/gst_template_e.pug');
     invoiceData = formatData(invoiceData);
 
-    // invoiceData.fontFamilyName = 'Roboto' + ', sans-serif';
-    invoiceData.lightFont = 'https://fonts.googleapis.com/css?family=Roboto';
+    invoiceData.fontFamilyName = 'Roboto' + ', sans-serif';
+    invoiceData.fontFamilyPath = 'https://fonts.googleapis.com/css?family=Roboto:400,500,700';
     // invoiceData.mediumFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf';
     // invoiceData.boldFont = 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf';
 
